@@ -33,7 +33,7 @@ const MyPredictions: React.FC = () => {
         }
         const isPredictionOpen = new Date(match.predictionsEndingTime || '') > new Date();
         return isPredictionOpen ?
-            <span className="bg-green-100 text-green-800 text-xs font-semibold px-2 py-0.5 rounded">Open</span> :
+            <span className="bg-green-100 text-green-800 text-xs font-semibold px-2 py-0.5 rounded">Scheduled</span> :
             <span className="bg-yellow-100 text-yellow-800 text-xs font-semibold px-2 py-0.5 rounded">Closed</span>;
     };
 
@@ -68,16 +68,18 @@ const MyPredictions: React.FC = () => {
                                     <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Actual Score</th>
                                     <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Match Rank</th>
                                     <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Overall Rank</th>
-                                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-200">
                                 {predictions.map((prediction) => {
                                     const match = prediction.matchId as Match;
+                                    const team1Name = match.team1Info?.teamName || match.team1;
+                                    const team2Name = match.team2Info?.teamName || match.team2;
                                     return (
                                         <tr key={prediction._id}>
                                             <td className="px-6 py-4 whitespace-nowrap">
-                                                <div className="text-sm font-bold text-gray-900">{match.team1} vs {match.team2}</div>
+                                                <div className="text-sm font-bold text-gray-900">{team1Name} vs {team2Name}</div>
                                                 <div className="text-xs text-gray-500">{format(new Date(match.matchTime), 'MMM dd, HH:mm')}</div>
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap">
@@ -116,16 +118,7 @@ const MyPredictions: React.FC = () => {
                                                     <span className="text-gray-400 text-xs">-</span>
                                                 )}
                                             </td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                {match.status !== 'completed' && new Date(match.predictionsEndingTime || '') > new Date() && (
-                                                    <button
-                                                        onClick={() => setEditingPrediction(prediction)}
-                                                        className="text-secondary hover:text-blue-900 font-bold"
-                                                    >
-                                                        Edit
-                                                    </button>
-                                                )}
-                                            </td>
+                                           
                                         </tr>
                                     );
                                 })}
