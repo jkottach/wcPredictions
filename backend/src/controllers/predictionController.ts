@@ -328,8 +328,18 @@ export const getUserPredictionsFromResults = async (req: AuthRequest, res: Respo
       : [];
     const teamById = new Map(teams.map((t) => [t.teamId, t]));
 
+    const matchIds = results.map((r) => r.matchId);
+    const predictionRows = matchIds.length
+      ? await prisma.prediction.findMany({
+          where: { userId: userIdNum, matchId: { in: matchIds } },
+          select: { matchId: true, team1Score: true, team2Score: true },
+        })
+      : [];
+    const predictionByMatchId = new Map(predictionRows.map((p) => [p.matchId, p]));
+
     // Format response data
     const populatedResults = results.map((result) => {
+      const linkedPrediction = predictionByMatchId.get(result.matchId);
       const apiMatch = result.match
         ? {
             matchId: String(result.match.id),
@@ -364,8 +374,10 @@ export const getUserPredictionsFromResults = async (req: AuthRequest, res: Respo
         finalPoints: result.finalPoints,
         communityName1: result.communityName1,
         communityName2: result.communityName2,
-        team1PredictedScore: result.team1PredictedScore,
-        team2PredictedScore: result.team2PredictedScore,
+        team1PredictedScore:
+          result.team1PredictedScore ?? linkedPrediction?.team1Score ?? null,
+        team2PredictedScore:
+          result.team2PredictedScore ?? linkedPrediction?.team2Score ?? null,
         matchRank: result.matchRank,
         finalRank: result.finalRank,
         createdAt: result.createdAt,

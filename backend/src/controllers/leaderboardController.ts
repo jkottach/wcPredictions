@@ -152,39 +152,65 @@ export const getUserStats = async (req: AuthRequest, res: Response) => {
     const user = await prisma.user.findUnique({ where: { id: userIdNum } });
     if (!user) return res.status(404).json({ error: 'User not found' });
 
-    const finalUserResult = await prisma.finalUserResult.findUnique({ where: { userId: userIdNum } });
+    const userIdStr = String(userIdNum);
 
-    const finalStats = finalUserResult
-      ? { rank: finalUserResult.finalRank ?? '-', totalPoints: finalUserResult.finalPoint }
-      : { rank: '-', totalPoints: 0 };
+    const topLeader = await prisma.topLeader.findFirst({
+      where: { userId: userIdStr },
+      orderBy: [{ rank: 'asc' }],
+      select: { rank: true, totalPoints: true },
+    });
+
+    let finalStats: { rank: string | number; totalPoints: number };
+    if (topLeader) {
+      finalStats = { rank: topLeader.rank, totalPoints: topLeader.totalPoints };
+      await prisma.finalUserResult.upsert({
+        where: { userId: userIdNum },
+        create: {
+          userId: userIdNum,
+          finalPoint: topLeader.totalPoints,
+          finalRank: topLeader.rank,
+        },
+        update: {
+          finalPoint: topLeader.totalPoints,
+          finalRank: topLeader.rank,
+        },
+      });
+    } else {
+      const finalUserResult = await prisma.finalUserResult.findUnique({ where: { userId: userIdNum } });
+      const pointsSum = await prisma.result.aggregate({
+        where: { userId: userIdNum },
+        _sum: { finalPoints: true },
+      });
+      finalStats = finalUserResult
+        ? { rank: finalUserResult.finalRank ?? '-', totalPoints: finalUserResult.finalPoint }
+        : { rank: '-', totalPoints: pointsSum._sum.finalPoints ?? 0 };
+    }
 
     const communityRanks: any[] = [];
     for (const cid of [user.communityId1, user.communityId2].filter((v): v is number => typeof v === 'number')) {
       const cidStr = String(cid);
-      const [community, latestCommunityResult] = await Promise.all([
-        Number.isInteger(cid) && cid > 0
-          ? prisma.community.findUnique({ where: { id: cid }, select: { name: true } })
-          : Promise.resolve(null),
-        prisma.communityResult.findFirst({
+      const [community, communityLeader, dailyCommunityLeader] = await Promise.all([
+        prisma.community.findUnique({ where: { id: cid }, select: { name: true } }),
+        prisma.communityLeader.findFirst({
           where: { communityId: cidStr },
-          orderBy: [{ matchId: 'desc' }, { updatedAt: 'desc' }, { id: 'desc' }],
+          orderBy: [{ rank: 'asc' }],
+          select: { rank: true, totalPoints: true },
+        }),
+        prisma.dailyCommunityLeader.findFirst({
+          where: { communityId: cidStr },
+          orderBy: [{ date: 'desc' }, { rank: 'asc' }],
+          select: { rank: true, totalPoints: true },
         }),
       ]);
 
       communityRanks.push({
         communityId: cidStr,
         name: community?.name ?? cidStr,
-        overall: latestCommunityResult
-          ? {
-              rank: latestCommunityResult.finalRank ?? '-',
-              totalPoints: latestCommunityResult.totalCommunityPoint,
-            }
+        overall: communityLeader
+          ? { rank: communityLeader.rank, totalPoints: communityLeader.totalPoints }
           : { rank: '-', totalPoints: 0 },
-        daily: latestCommunityResult
-          ? {
-              rank: latestCommunityResult.dailyRank ?? '-',
-              totalPoints: latestCommunityResult.communityMatchPoint,
-            }
+        daily: dailyCommunityLeader
+          ? { rank: dailyCommunityLeader.rank, totalPoints: dailyCommunityLeader.totalPoints }
           : { rank: '-', totalPoints: 0 },
       });
     }

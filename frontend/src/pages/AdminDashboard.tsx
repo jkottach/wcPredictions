@@ -201,7 +201,11 @@ const AdminDashboard: React.FC = () => {
                 return;
             }
             await apiService.finalizeMatch({ matchId, team1Score, team2Score });
-            setSuccess('Match finalized and points calculated');
+            setSuccess(
+              import.meta.env.VITE_FINALIZE_MATCH_URL
+                ? 'Match finalized, points calculated, and leaderboards rebuilt'
+                : 'Match finalized and points calculated'
+            );
             fetchInitialData();
         } catch (err) {
             setError('Failed to finalize match');

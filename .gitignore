@@ -4,6 +4,7 @@
 # Build outputs
 backend/dist/
 frontend/dist/
+**/package-lock.json
 
 # Environment files
 **/.env

@@ -17,7 +17,7 @@ const MyPredictions: React.FC = () => {
     const fetchPredictions = async (page: number) => {
         try {
             setLoading(true);
-            const response = await apiService.getUserPredictionsFromResults(page, 10);
+            const response = await apiService.getUserPredictions(page, 10);
             setPredictions(response.data.predictions);
             setPagination(response.data.pagination);
         } catch (error) {
@@ -82,6 +82,18 @@ const MyPredictions: React.FC = () => {
                                             const match = prediction.matchId;
                                             const team1Name = match?.team1Info?.teamName || match?.team1 || 'Unknown';
                                             const team2Name = match?.team2Info?.teamName || match?.team2 || 'Unknown';
+                                            const pred1 =
+                                                prediction.team1PredictedScore ??
+                                                prediction.team1Score;
+                                            const pred2 =
+                                                prediction.team2PredictedScore ??
+                                                prediction.team2Score;
+                                            const matchRank =
+                                                prediction.matchRank ??
+                                                prediction.historicRank?.matchRank;
+                                            const finalRank =
+                                                prediction.finalRank ??
+                                                prediction.historicRank?.finalRank;
                                             return (
                                                 <tr key={prediction.id} className="hover:bg-gray-50 transition-colors">
                                                     <td className="px-6 py-4 whitespace-nowrap">
@@ -97,7 +109,7 @@ const MyPredictions: React.FC = () => {
                                                     </td>
                                                     <td className="px-6 py-4 whitespace-nowrap text-center">
                                                         <div className="font-mono bg-blue-50 px-3 py-1 rounded-lg text-blue-700 font-bold text-sm">
-                                                            {prediction.team1PredictedScore} - {prediction.team2PredictedScore}
+                                                            {pred1 != null && pred2 != null ? `${pred1} - ${pred2}` : '-'}
                                                         </div>
                                                     </td>
                                                     <td className="px-6 py-4 whitespace-nowrap text-center">
@@ -110,19 +122,19 @@ const MyPredictions: React.FC = () => {
                                                         )}
                                                     </td>
                                                     <td className="px-6 py-4 whitespace-nowrap text-center">
-                                                        {match?.status === 'completed' && prediction.matchRank ? (
+                                                        {match?.status === 'completed' && matchRank ? (
                                                             <span className="text-sm font-black text-primary bg-primary/10 px-3 py-1 rounded-full">
-                                                                #{prediction.matchRank}
+                                                                #{matchRank}
                                                             </span>
                                                         ) : (
                                                             <span className="text-gray-400 text-xs">TBD</span>
                                                         )}
                                                     </td>
                                                     <td className="px-6 py-4 whitespace-nowrap text-center">
-                                                        {match?.status === 'completed' && prediction.finalRank && prediction.finalRank > 0 ? (
+                                                        {match?.status === 'completed' && finalRank && finalRank > 0 ? (
                                                             <div className="flex items-center justify-center gap-1">
                                                                 <span className="text-lg">🏆</span>
-                                                                <span className="font-black text-secondary">{prediction.finalRank}</span>
+                                                                <span className="font-black text-secondary">{finalRank}</span>
                                                             </div>
                                                         ) : (
                                                             <span className="text-gray-400 text-xs">-</span>
@@ -143,6 +155,14 @@ const MyPredictions: React.FC = () => {
                                 const team1Name = match?.team1Info?.teamName || match?.team1 || 'Unknown';
                                 const team2Name = match?.team2Info?.teamName || match?.team2 || 'Unknown';
                                 const isCompleted = match?.status === 'completed';
+                                const pred1 =
+                                    prediction.team1PredictedScore ?? prediction.team1Score;
+                                const pred2 =
+                                    prediction.team2PredictedScore ?? prediction.team2Score;
+                                const matchRank =
+                                    prediction.matchRank ?? prediction.historicRank?.matchRank;
+                                const finalRank =
+                                    prediction.finalRank ?? prediction.historicRank?.finalRank;
 
                                 return (
                                     <div
@@ -176,7 +196,7 @@ const MyPredictions: React.FC = () => {
                                             <div className="bg-blue-50 rounded-xl p-4 text-center">
                                                 <p className="text-xs text-gray-600 font-semibold mb-2">YOUR PREDICTION</p>
                                                 <div className="font-mono text-2xl font-black text-blue-700">
-                                                    {prediction.team1PredictedScore} - {prediction.team2PredictedScore}
+                                                    {pred1 != null && pred2 != null ? `${pred1} - ${pred2}` : '-'}
                                                 </div>
                                             </div>
 
@@ -193,15 +213,15 @@ const MyPredictions: React.FC = () => {
                                             <div className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl p-4 text-center border border-primary/20">
                                                 <p className="text-xs text-primary font-bold mb-2">MATCH RANK</p>
                                                 <div className="text-2xl font-black text-primary">
-                                                    {isCompleted && prediction.matchRank ? `#${prediction.matchRank}` : 'TBD'}
+                                                    {isCompleted && matchRank ? `#${matchRank}` : 'TBD'}
                                                 </div>
                                             </div>
 
                                             <div className="bg-gradient-to-br from-secondary/10 to-secondary/5 rounded-xl p-4 text-center border border-secondary/20">
                                                 <p className="text-xs text-secondary font-bold mb-2">OVERALL RANK</p>
                                                 <div className="text-2xl font-black text-secondary">
-                                                    {isCompleted && prediction.finalRank && prediction.finalRank > 0
-                                                        ? `🏆 ${prediction.finalRank}`
+                                                    {isCompleted && finalRank && finalRank > 0
+                                                        ? `🏆 ${finalRank}`
                                                         : '-'}
                                                 </div>
                                             </div>

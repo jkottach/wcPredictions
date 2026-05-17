@@ -4,9 +4,16 @@ import axios, { AxiosInstance } from 'axios';
 const API_BASE_URL =
   import.meta.env.VITE_API_URL ||
   (import.meta.env.DEV
-    ? 'http://localhost:5000/api'
+    ? '/api'
     : 'https://fifa-aps-dpbpdfgjdycdhcbe.eastus-01.azurewebsites.net/api');
 
+/** Append Azure Functions host key when VITE_AZURE_FUNCTIONS_KEY is set. */
+function withFunctionsKey(url: string): string {
+  const key = import.meta.env.VITE_AZURE_FUNCTIONS_KEY as string | undefined;
+  if (!key?.trim()) return url;
+  const sep = url.includes('?') ? '&' : '?';
+  return `${url}${sep}code=${encodeURIComponent(key.trim())}`;
+}
 
 class ApiService {
   private client: AxiosInstance;
@@ -157,8 +164,33 @@ class ApiService {
     return this.client.post('/admin/reject-community', data);
   }
 
-  finalizeMatch(data: { matchId: string, team1Score: number, team2Score: number }) {
+  finalizeMatch(data: { matchId: string; team1Score: number; team2Score: number }) {
+    const functionsUrl = import.meta.env.VITE_FINALIZE_MATCH_URL as string | undefined;
+    if (functionsUrl?.trim()) {
+      return axios.post(
+        withFunctionsKey(functionsUrl.trim()),
+        {
+          matchId: data.matchId,
+          team1Score: data.team1Score,
+          team2Score: data.team2Score,
+          rebuildLeaderboards: true,
+        },
+        { headers: { 'Content-Type': 'application/json' } }
+      );
+    }
     return this.client.post('/admin/finalize-match', data);
+  }
+
+  rebuildLeaderboards(date?: string) {
+    const functionsUrl = import.meta.env.VITE_REBUILD_LEADERBOARDS_URL as string | undefined;
+    if (!functionsUrl?.trim()) {
+      return Promise.reject(new Error('VITE_REBUILD_LEADERBOARDS_URL is not configured'));
+    }
+    return axios.post(
+      withFunctionsKey(functionsUrl.trim()),
+      date ? { date } : {},
+      { headers: { 'Content-Type': 'application/json' } }
+    );
   }
 
   getAllUsers() {
