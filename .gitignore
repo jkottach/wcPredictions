@@ -1,19 +1,66 @@
+# OS
+.DS_Store
+Thumbs.db
+
 # Dependencies
+node_modules/
 **/node_modules/
+
+# Python
+.venv/
+venv/
+**/.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
 
 # Build outputs
 backend/dist/
 frontend/dist/
-**/package-lock.json
+dist/
+build/
 
-# Environment files
-**/.env
-**/.env.*
+# Environment & secrets (keep *.example templates)
+.env
+.env.*
 !.env.example
+!**/.env.example
 !frontend/.env.production.example
 !frontend/.env.qa
+azure_functions/local.settings.json
+
+# Azure Functions
+.python_packages/
+
+# Azurite (local Azure Storage emulator)
+__azurite_db_*
+AzuriteWorkspace/
 
 # Logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+lerna-debug.log*
+
+# Test / coverage
+coverage/
+.nyc_output/
+
+# IDE / editor (optional local settings)
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Vite / tooling cache
+.vite/
+.eslintcache
+*.tsbuildinfo
+
+# Misc
+.cache/
+tmp/
+temp/
