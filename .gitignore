@@ -35,6 +35,7 @@ azure_functions/local.settings.json
 
 # Azurite (local Azure Storage emulator)
 __azurite_db_*
+AzuriteConfig
 AzuriteWorkspace/
 
 # Logs
