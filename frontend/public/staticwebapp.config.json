@@ -1,10 +1,1 @@
-{
-  "navigationFallback": {
-    "rewrite": "/index.html",
-    "exclude": ["/assets/*", "/*.{ico,png,jpg,jpeg,gif,svg,webp,css,js,map,woff2,json}"]
-  },
-  "globalHeaders": {
-    "X-Content-Type-Options": "nosniff",
-    "Referrer-Policy": "strict-origin-when-cross-origin"
-  }
-}
+{"navigationFallback":{"rewrite":"/index.html","exclude":["/assets/*","/*.{ico,png,jpg,jpeg,gif,svg,webp,css,js,map,woff2,json}"]},"globalHeaders":{"X-Content-Type-Options":"nosniff","Referrer-Policy":"strict-origin-when-cross-origin"},"auth":{"rolesSource":"/api/getRoles","identityProviders":{"google":{"registration":{"clientIdSettingName":"GOOGLE_CLIENT_ID","clientSecretSettingName":"GOOGLE_CLIENT_SECRET_APP_SETTING_NAME"}}}}}
