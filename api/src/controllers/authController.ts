@@ -14,17 +14,7 @@ import { formatUserForAuth, formatUserId, formatUserProfile } from '../db/helper
 
 const client = new OAuth2Client();
 
-const googleAudiences = Array.from(
-  new Set(
-    [
-      process.env.GOOGLE_CLIENT_ID,
-      ...(process.env.GOOGLE_CLIENT_IDS || '')
-        .split(',')
-        .map((s) => s.trim())
-        .filter(Boolean),
-    ].filter(Boolean) as string[]
-  )
-);
+const googleClientId = process.env.GOOGLE_CLIENT_ID?.trim() || '';
 
 export const register = async (req: AuthRequest, res: Response) => {
   try {
@@ -74,13 +64,13 @@ export const googleLogin = async (req: AuthRequest, res: Response) => {
   try {
     const { credential } = req.body;
     if (!credential) return res.status(400).json({ error: 'Missing Google credential' });
-    if (googleAudiences.length === 0) {
+    if (!googleClientId) {
       return res.status(500).json({ error: 'Google auth is not configured on server' });
     }
 
     const ticket = await client.verifyIdToken({
       idToken: credential,
-      audience: googleAudiences,
+      audience: googleClientId,
     });
 
     const payload = ticket.getPayload();

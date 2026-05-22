@@ -11,10 +11,6 @@ export const config = {
     clientId: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   },
-  instagram: {
-    clientId: process.env.INSTAGRAM_CLIENT_ID,
-    clientSecret: process.env.INSTAGRAM_CLIENT_SECRET,
-  },
   server: {
     port: parseInt(process.env.PORT || '5001', 10),
     nodeEnv: process.env.NODE_ENV || 'development',

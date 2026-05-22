@@ -37,6 +37,10 @@ jobs:
         with:
           node-version: 20
       - name: Build frontend (QA)
+        env:
+          VITE_API_URL: /api
+          # Add repo secret: Settings → Secrets → Actions → VITE_GOOGLE_CLIENT_ID
+          VITE_GOOGLE_CLIENT_ID: ${{ secrets.VITE_GOOGLE_CLIENT_ID }}
         run: |
           cd ./frontend
           npm ci

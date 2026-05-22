@@ -48,9 +48,11 @@ Push to `dev` deploys via `.github/workflows/azure-static-web-apps-polite-bay-08
 
 ## Environment
 
-| App | File |
-|-----|------|
-| API | `api/.env` — see `api/.env.example` |
-| Frontend | `frontend/.env` — `VITE_API_URL`, `VITE_GOOGLE_CLIENT_ID` |
+| Where | What |
+|-------|------|
+| Local API | `api/.env` — copy from `api/.env.example` |
+| Local frontend | `frontend/.env` |
+| **Azure API** | Portal → Static Web App → **Environment variables** — see **[AZURE_DEPLOYMENT.md](./AZURE_DEPLOYMENT.md)** |
+| **Azure frontend build** | GitHub secret `VITE_GOOGLE_CLIENT_ID` or `frontend/.env.qa` |
 
-Production builds use `VITE_API_URL=/api` (same origin as the static site).
+Missing Azure API env vars cause `/api/leaderboard/top` → **500**.
