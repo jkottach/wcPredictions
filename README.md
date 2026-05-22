@@ -54,6 +54,6 @@ Push to `dev` deploys via `.github/workflows/azure-static-web-apps-blue-plant-0b
 | Local API | `api/.env` — always loaded from `api/` (not shell cwd) |
 | Local frontend | `frontend/.env` (copy from `frontend/.env.example`) |
 | **Azure API** | Portal → Static Web App → **Environment variables** — see **[AZURE_DEPLOYMENT.md](./AZURE_DEPLOYMENT.md)** |
-| **Azure frontend build** | GitHub secret `VITE_GOOGLE_CLIENT_ID` (set in workflow) |
+| **Azure frontend build** | `frontend/.env.production` (committed) |
 
 Missing Azure API env vars cause `/api/leaderboard/top` → **500**.

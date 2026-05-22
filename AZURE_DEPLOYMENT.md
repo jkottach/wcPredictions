@@ -65,12 +65,9 @@ If `mongo.ok` is `false`, fix `MONGODB_URI` / `MONGODB_DB` or Atlas **Network Ac
 
 ## 2. Frontend build variables (Google Sign-In in the browser)
 
-`VITE_*` variables are **baked in at build time** during CI. They are **not** read from Azure Portal at runtime.
+`VITE_*` variables are **baked in at build time** from `frontend/.env.production` (committed; client ID is public).
 
-1. GitHub repo → **Settings** → **Secrets and variables** → **Actions**
-2. **New repository secret**: `VITE_GOOGLE_CLIENT_ID` = your Google Web client ID
-3. Workflow sets `VITE_API_URL=/api` and runs `npm run build`
-4. Push to `dev` to rebuild frontend
+Update that file if you change Google client or API URL, then push to `dev` to redeploy.
 
 Local dev: copy `frontend/.env.example` → `frontend/.env` (gitignored).
 

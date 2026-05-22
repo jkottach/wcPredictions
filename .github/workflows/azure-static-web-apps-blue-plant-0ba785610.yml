@@ -37,9 +37,6 @@ jobs:
         with:
           node-version: 20
       - name: Build frontend
-        env:
-          VITE_API_URL: /api
-          VITE_GOOGLE_CLIENT_ID: ${{ secrets.VITE_GOOGLE_CLIENT_ID }}
         run: |
           cd ./frontend
           npm ci
