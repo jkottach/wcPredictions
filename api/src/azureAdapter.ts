@@ -3,6 +3,11 @@ import type { HttpRequest, HttpResponseInit, InvocationContext } from '@azure/fu
 import { IncomingMessage, ServerResponse } from 'http';
 import { Socket } from 'net';
 
+type RequestWithPreParsed = IncomingMessage & {
+  _preParsedBody?: unknown;
+  _bodyParsed?: boolean;
+};
+
 /** Bridge Azure Functions v4 HTTP requests to an Express application. */
 export async function runExpress(
   expressApp: Express,
@@ -14,13 +19,28 @@ export async function runExpress(
 
   return new Promise((resolve, reject) => {
     const socket = new Socket();
-    const req = new IncomingMessage(socket);
+    const req = new IncomingMessage(socket) as RequestWithPreParsed;
     req.method = azureReq.method ?? 'GET';
     req.url = url.pathname + url.search;
 
     azureReq.headers.forEach((value, key) => {
       req.headers[key.toLowerCase()] = value;
     });
+
+    if (body.length > 0) {
+      const contentType = String(req.headers['content-type'] ?? '');
+      if (contentType.includes('application/json')) {
+        try {
+          req._preParsedBody = JSON.parse(body.toString('utf8'));
+          req._bodyParsed = true;
+        } catch {
+          req._preParsedBody = {};
+          req._bodyParsed = true;
+        }
+      }
+      req.push(body);
+    }
+    req.push(null);
 
     const res = new ServerResponse(req);
     const bodyChunks: Buffer[] = [];
@@ -72,11 +92,6 @@ export async function runExpress(
       context.error('Express request error', err);
       reject(err);
     });
-
-    if (body.length > 0) {
-      req.push(body);
-    }
-    req.push(null);
 
     expressApp(req, res);
   });

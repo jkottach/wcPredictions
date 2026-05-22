@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
-import { config } from '../config';
+import { getJwtSecret } from '../config/jwtSecret';
 import { logger } from '../lib/logger';
 import { findUserById } from '../db/repositories';
 
@@ -12,15 +12,24 @@ export interface AuthRequest extends Request {
   };
 }
 
+function getBearerToken(req: Request): string | undefined {
+  const raw =
+    req.headers.authorization ||
+    (req.headers['x-ms-client-principal'] as string | undefined);
+  if (!raw) return undefined;
+  if (raw.startsWith('Bearer ')) return raw.slice(7);
+  return raw;
+}
+
 export const authMiddleware = (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
-    const token = req.headers.authorization?.split(' ')[1];
+    const token = getBearerToken(req);
 
     if (!token) {
       return res.status(401).json({ error: 'No token provided' });
     }
 
-    const decoded = jwt.verify(token, config.jwt.secret) as {
+    const decoded = jwt.verify(token, getJwtSecret()) as {
       userId: string;
       email: string;
       role?: 'user' | 'admin';
@@ -28,6 +37,10 @@ export const authMiddleware = (req: AuthRequest, res: Response, next: NextFuncti
     req.user = decoded;
     next();
   } catch (error) {
+    if (error instanceof Error && error.message === 'JWT_SECRET is not configured') {
+      logger.error('authMiddleware', error, { path: req.path });
+      return res.status(500).json({ error: 'Server auth is not configured' });
+    }
     logger.error('authMiddleware', error, {
       method: req.method,
       path: req.path,

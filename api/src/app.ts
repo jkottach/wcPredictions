@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import { config } from './config';
 import { errorHandler } from './middleware/errorHandler';
+import { applyPreParsedBody, jsonUnlessPreParsed } from './middleware/preParsedBody';
 import { logger } from './lib/logger';
 import { connectMongo, pingMongo } from './lib/mongodb';
 
@@ -27,7 +28,8 @@ export function buildApp(): Express {
 
   app.use(helmet());
   app.use(cors());
-  app.use(express.json({ limit: '10mb' }));
+  app.use(applyPreParsedBody);
+  app.use(jsonUnlessPreParsed);
   app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
   app.use((req, res, next) => {
@@ -52,12 +54,16 @@ export function buildApp(): Express {
 
   app.get('/api/health', async (_req, res) => {
     const mongo = await pingMongo();
-    const status = mongo.ok ? 'ok' : 'degraded';
-    res.status(mongo.ok ? 200 : 503).json({
-      status,
+    const googleConfigured = Boolean(process.env.GOOGLE_CLIENT_ID?.trim());
+    const jwtConfigured = Boolean(process.env.JWT_SECRET?.trim());
+    const ok = mongo.ok && googleConfigured && jwtConfigured;
+    res.status(ok ? 200 : 503).json({
+      status: ok ? 'ok' : 'degraded',
       timestamp: new Date().toISOString(),
       runtime: 'express',
       mongo,
+      google: { configured: googleConfigured },
+      jwt: { configured: jwtConfigured },
     });
   });
 

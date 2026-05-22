@@ -109,14 +109,26 @@ export const googleLogin = async (req: AuthRequest, res: Response) => {
       user: formatUserForAuth(user),
     });
   } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
     const errorDetails = logger.error('googleLogin', error, {
       method: req.method,
       path: req.path,
       userId: req.user?.userId,
     });
+
+    let hint: string | undefined;
+    if (!googleClientId) {
+      hint = 'Set GOOGLE_CLIENT_ID in Azure Static Web App environment variables';
+    } else if (message.toLowerCase().includes('audience')) {
+      hint = 'GOOGLE_CLIENT_ID on API must match VITE_GOOGLE_CLIENT_ID in frontend build';
+    } else if (message.includes('MongoServerSelectionError') || message.includes('ETIMEOUT')) {
+      hint = 'Check MONGODB_URI and Atlas network access';
+    }
+
     res.status(errorDetails.statusCode || 500).json({
       error: 'Google login failed',
-      ...(process.env.NODE_ENV === 'development' ? { details: errorDetails.message } : {}),
+      ...(hint ? { hint } : {}),
+      ...(process.env.NODE_ENV === 'development' ? { details: message } : {}),
     });
   }
 };
