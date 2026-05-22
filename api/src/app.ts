@@ -13,6 +13,7 @@ import matchRoutes from './routes/matchRoutes';
 import predictionRoutes from './routes/predictionRoutes';
 import leaderboardRoutes from './routes/leaderboardRoutes';
 import adminRoutes from './routes/adminRoutes';
+import rolesRoutes from './routes/rolesRoutes';
 
 /** Connect MongoDB once per process (Express dev server or Azure Functions worker). */
 export async function initDatabase(): Promise<void> {
@@ -74,6 +75,9 @@ export function buildApp(): Express {
     standardHeaders: true,
     legacyHeaders: false,
   });
+  // Azure SWA rolesSource — must respond quickly; register before rate limiter
+  app.use('/api', rolesRoutes);
+
   app.use('/api/', limiter);
 
   app.use('/api/auth', authRoutes);

@@ -1,27 +1,90 @@
 import { create } from 'zustand';
 import { AuthState, User } from '../types';
+import { apiService } from '../services/apiService';
+import {
+  fetchClientPrincipal,
+  logoutFromAzure,
+  useAzureAuth,
+} from '../services/swaAuth';
+
+const readCachedUser = (): User | null => {
+  try {
+    const raw = localStorage.getItem('user');
+    return raw ? (JSON.parse(raw) as User) : null;
+  } catch {
+    return null;
+  }
+};
 
 export const useAuthStore = create<AuthState>((set) => ({
-  token: localStorage.getItem('token'),
-  user: localStorage.getItem('user')
-    ? JSON.parse(localStorage.getItem('user') as string)
-    : null,
-  isLoggedIn: !!localStorage.getItem('token'),
+  token: useAzureAuth ? null : localStorage.getItem('token'),
+  user: readCachedUser(),
+  isLoggedIn: useAzureAuth ? false : !!localStorage.getItem('token'),
+  authReady: false,
 
-  login: (token: string, user: User) => {
+  login: (tokenOrUser: string | User, maybeUser?: User) => {
+    if (useAzureAuth) {
+      const user = typeof tokenOrUser === 'string' ? maybeUser! : tokenOrUser;
+      localStorage.setItem('user', JSON.stringify(user));
+      set({ token: null, user, isLoggedIn: true, authReady: true });
+      return;
+    }
+    const token = typeof tokenOrUser === 'string' ? tokenOrUser : '';
+    const user = typeof tokenOrUser === 'string' ? maybeUser! : tokenOrUser;
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(user));
-    set({ token, user, isLoggedIn: true });
+    set({ token, user, isLoggedIn: true, authReady: true });
   },
 
   logout: () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    set({ token: null, user: null, isLoggedIn: false });
+    set({ token: null, user: null, isLoggedIn: false, authReady: true });
+    if (useAzureAuth) {
+      logoutFromAzure();
+    }
   },
 
   setUser: (user: User) => {
     localStorage.setItem('user', JSON.stringify(user));
     set({ user });
+  },
+
+  initialize: async () => {
+    if (useAzureAuth) {
+      const principal = await fetchClientPrincipal();
+      if (!principal) {
+        set({ isLoggedIn: false, user: null, token: null, authReady: true });
+        return;
+      }
+      try {
+        const res = await apiService.getProfile();
+        set({
+          user: res.data,
+          isLoggedIn: true,
+          token: null,
+          authReady: true,
+        });
+        localStorage.setItem('user', JSON.stringify(res.data));
+      } catch {
+        set({ isLoggedIn: false, user: null, token: null, authReady: true });
+      }
+      return;
+    }
+
+    const token = localStorage.getItem('token');
+    if (!token) {
+      set({ authReady: true, isLoggedIn: false });
+      return;
+    }
+    try {
+      const res = await apiService.getProfile();
+      set({ user: res.data, isLoggedIn: true, token, authReady: true });
+      localStorage.setItem('user', JSON.stringify(res.data));
+    } catch {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      set({ token: null, user: null, isLoggedIn: false, authReady: true });
+    }
   },
 }));

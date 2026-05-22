@@ -3,6 +3,7 @@ import { Request, Response, NextFunction } from 'express';
 import { getJwtSecret } from '../config/jwtSecret';
 import { logger } from '../lib/logger';
 import { findUserById } from '../db/repositories';
+import { resolveUserFromRequest } from './resolveUser';
 
 export interface AuthRequest extends Request {
   user?: {
@@ -13,20 +14,23 @@ export interface AuthRequest extends Request {
 }
 
 function getBearerToken(req: Request): string | undefined {
-  const raw =
-    req.headers.authorization ||
-    (req.headers['x-ms-client-principal'] as string | undefined);
-  if (!raw) return undefined;
+  const raw = req.headers.authorization;
+  if (!raw || typeof raw !== 'string') return undefined;
   if (raw.startsWith('Bearer ')) return raw.slice(7);
   return raw;
 }
 
-export const authMiddleware = (req: AuthRequest, res: Response, next: NextFunction) => {
+export const authMiddleware = async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
-    const token = getBearerToken(req);
+    const fromPrincipal = await resolveUserFromRequest(req);
+    if (fromPrincipal) {
+      req.user = fromPrincipal;
+      return next();
+    }
 
+    const token = getBearerToken(req);
     if (!token) {
-      return res.status(401).json({ error: 'No token provided' });
+      return res.status(401).json({ error: 'Not authenticated' });
     }
 
     const decoded = jwt.verify(token, getJwtSecret()) as {

@@ -1,9 +1,15 @@
-import axios, { AxiosInstance } from 'axios';
+import axios, { AxiosInstance, InternalAxiosRequestConfig } from 'axios';
+import { loginWithGoogle, useAzureAuth } from './swaAuth';
 
 /** SWA production uses same-origin `/api`; local dev uses Vite proxy. */
 const API_BASE_URL =
   import.meta.env.VITE_API_URL ||
   (import.meta.env.DEV ? '/api' : '/api');
+
+type AuthRequestConfig = InternalAxiosRequestConfig & {
+  /** If true, a 401 will not clear storage or redirect to login. */
+  skipAuthRedirect?: boolean;
+};
 
 class ApiService {
   private client: AxiosInstance;
@@ -14,12 +20,15 @@ class ApiService {
       headers: {
         'Content-Type': 'application/json',
       },
+      withCredentials: useAzureAuth,
     });
 
     this.client.interceptors.request.use((config) => {
-      const token = localStorage.getItem('token');
-      if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
+      if (!useAzureAuth) {
+        const token = localStorage.getItem('token');
+        if (token) {
+          config.headers.Authorization = `Bearer ${token}`;
+        }
       }
       return config;
     });
@@ -27,10 +36,25 @@ class ApiService {
     this.client.interceptors.response.use(
       (response) => response,
       (error) => {
-        if (error.response?.status === 401) {
-          localStorage.removeItem('token');
-          localStorage.removeItem('user');
-          window.location.href = '/login';
+        const config = error.config as AuthRequestConfig | undefined;
+        const hadToken = Boolean(config?.headers?.Authorization);
+        const skipRedirect = config?.skipAuthRedirect === true;
+        const url = String(config?.url ?? '');
+
+        if (error.response?.status === 401 && !skipRedirect && !url.includes('/auth/google')) {
+          if (useAzureAuth) {
+            const returnPath = window.location.pathname + window.location.search;
+            loginWithGoogle(returnPath || '/dashboard');
+            return Promise.reject(error);
+          }
+
+          if (hadToken) {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            if (!window.location.pathname.startsWith('/login')) {
+              window.location.href = '/login';
+            }
+          }
         }
         return Promise.reject(error);
       }
@@ -46,7 +70,7 @@ class ApiService {
   }
 
   getProfile() {
-    return this.client.get('/auth/profile');
+    return this.client.get('/auth/profile', { skipAuthRedirect: true } as AuthRequestConfig);
   }
 
   updateProfile(data: Record<string, unknown>) {

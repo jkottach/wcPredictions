@@ -4,82 +4,123 @@
 |--------|----------------|--------|
 | Frontend | **Azure Static Web Apps** | `frontend/dist` |
 | API | **Azure Functions** (linked) | `api/` |
+| Sign-in | **SWA Custom auth → Google** | `frontend/public/staticwebapp.config.json` |
 
 SWA URL example: `https://blue-plant-0ba785610.7.azurestaticapps.net`  
+Login: `/.auth/login/google`  
 API calls: `https://blue-plant-0ba785610.7.azurestaticapps.net/api/...`
 
 ---
 
-## 1. API environment variables (fixes `/api` 500 errors)
+## 1. Environment variables (Azure Portal)
 
-These must be set in **Azure Portal**, not only in local `api/.env`.
+**Static Web App → Settings → Environment variables → Production**
 
-1. Open [Azure Portal](https://portal.azure.com)
-2. Your **Static Web App** (e.g. `blue-plant-0ba785610`)
-3. **Settings** → **Environment variables** (or **Configuration**)
-4. Scope: **Production** (and Preview if you use PR previews)
-5. **Add** each row below (copy values from your local `api/.env`)
-
-| Name | Value (from your `api/.env`) |
-|------|------------------------------|
-| `MONGODB_URI` | Full Atlas `mongodb+srv://...` string |
+| Name | Purpose |
+|------|---------|
+| `MONGODB_URI` | Atlas connection string |
 | `MONGODB_DB` | `fifaPrediction` |
-| `JWT_SECRET` | Same as local (use a strong secret in prod) |
+| `JWT_SECRET` | Still required (local dev / legacy JWT fallback) |
 | `JWT_EXPIRE` | `7d` |
-| `GOOGLE_CLIENT_ID` | FIFA Google Web client ID (must match `VITE_GOOGLE_CLIENT_ID`) |
+| `GOOGLE_CLIENT_ID` | Same Web client ID as Google Cloud (used by SWA auth + API) |
+| `GOOGLE_CLIENT_SECRET_APP_SETTING_NAME` | **Required** — Google client secret (name matches `staticwebapp.config.json`; set in Portal when you added Google auth) |
 | `NODE_ENV` | `production` |
 | `FRONTEND_URL` | `https://blue-plant-0ba785610.7.azurestaticapps.net` |
 | `RATE_LIMIT_WINDOW_MS` | `900000` |
 | `RATE_LIMIT_MAX_REQUESTS` | `1000` |
 
-6. Click **Save** / **Apply**
-7. **Redeploy** (push to `dev`) or restart the app from Portal
+Save, then redeploy or restart.
 
-Template (names only): see `api/.env.example`
+Template: `api/.env.example`
 
-### Do not add on Azure
+### Verify API
 
-| Name | Why |
-|------|-----|
-| `DATABASE_URL` | Old MySQL — not used |
-| `PORT` | Not used on Functions |
+`https://blue-plant-0ba785610.7.azurestaticapps.net/api/health` → `status: "ok"`, `mongo.ok: true`
 
-### Verify after save
+---
 
-Open:
+## 2. Azure authentication (Google)
 
-`https://blue-plant-0ba785610.7.azurestaticapps.net/api/health`
+The app uses **Custom authentication** with Google (not the in-browser JWT button on production).
 
-Expected:
+Config is in `frontend/public/staticwebapp.config.json`:
 
 ```json
-{
-  "status": "ok",
-  "mongo": { "ok": true, "db": "fifaPrediction" }
+"auth": {
+  "rolesSource": "/api/getRoles",
+  "identityProviders": {
+    "google": {
+      "registration": {
+        "clientIdSettingName": "GOOGLE_CLIENT_ID",
+          "clientSecretSettingName": "GOOGLE_CLIENT_SECRET_APP_SETTING_NAME"
+      }
+    }
+  }
 }
 ```
 
-If `mongo.ok` is `false`, fix `MONGODB_URI` / `MONGODB_DB` or Atlas **Network Access** (allow `0.0.0.0/0` for testing).
+In Portal you can also set **Authentication → Custom → Google** with the same client ID and secret.
+
+Production build sets `VITE_USE_AZURE_AUTH=true` in `frontend/.env.production`.
+
+**User flow**
+
+1. `/login` → **Continue with Google** → `/.auth/login/google`
+2. Google redirects to Azure → `/.auth/login/google/callback`
+3. App loads profile via `GET /api/auth/profile` (Azure sends `x-ms-client-principal` to the API)
+4. Logout → `/.auth/logout`
+
+**Role assignment** (`rolesSource: /api/getRoles`): after Google sign-in, Azure POSTs the user’s claims to `/api/getRoles`. The API syncs the user in MongoDB and returns:
+
+```json
+{ "roles": ["authenticated"] }
+```
+
+Use `"allowedRoles": ["authenticated"]` in `staticwebapp.config.json` for routes that require sign-in.
 
 ---
 
-## 2. Frontend build variables (Google Sign-In in the browser)
 
-`VITE_*` variables are **baked in at build time** from `frontend/.env.production` (committed; client ID is public).
+## 3. Google Cloud Console (required redirect URI)
 
-Update that file if you change Google client or API URL, then push to `dev` to redeploy.
+For **Azure SWA Google**, add **Authorized redirect URIs**:
 
-Local dev: copy `frontend/.env.example` → `frontend/.env` (gitignored).
+```
+https://blue-plant-0ba785610.7.azurestaticapps.net/.auth/login/google/callback
+```
+
+Optional logout callback:
+
+```
+https://blue-plant-0ba785610.7.azurestaticapps.net/.auth/logout/google/callback
+```
+
+**Authorized JavaScript origins** (still useful):
+
+```
+https://blue-plant-0ba785610.7.azurestaticapps.net
+http://localhost:3000
+```
+
+Use your **FIFA** OAuth client (app name e.g. “Kanhans fifa app”).
 
 ---
 
-## 3. MongoDB Atlas
+## 4. Local development
 
-- Database name: `fifaPrediction`
-- Collections: `users`, `teams`, `matches`
-- **Network Access**: allow Azure (or `0.0.0.0/0` for testing)
+| Mode | How |
+|------|-----|
+| **JWT + Google button** (default) | `frontend/.env` with `VITE_GOOGLE_CLIENT_ID`, no `VITE_USE_AZURE_AUTH` |
+| **SWA auth locally** | Install [SWA CLI](https://azure.github.io/static-web-apps-cli/) and run `swa start ./frontend/dist --api-location api` after building |
 
-Seed (from your machine):
+`/.auth/login/google` does **not** work with Vite alone (`npm run dev`).
+
+---
+
+## 5. MongoDB Atlas
+
+- Database: `fifaPrediction`
+- **Network Access**: allow `0.0.0.0/0` for testing or Azure IPs
 
 ```bash
 cd api && npm run seed:mongo
@@ -87,24 +128,10 @@ cd api && npm run seed:mongo
 
 ---
 
-## 4. Google Cloud Console
+## 6. CI/CD
 
-**Authorized JavaScript origins:**
-
-- `https://blue-plant-0ba785610.7.azurestaticapps.net`
-- `http://localhost:3000`
-
-Use the **FIFA** OAuth client — not the Kerala Election app name.
-
----
-
-## 5. CI/CD
-
-Workflow: `.github/workflows/azure-static-web-apps-blue-plant-0ba785610.yml`
-
-GitHub secret required for deploy token:
-
-- `AZURE_STATIC_WEB_APPS_API_TOKEN_BLUE_PLANT_0BA785610`
+Workflow: `.github/workflows/azure-static-web-apps-blue-plant-0ba785610.yml`  
+Secret: `AZURE_STATIC_WEB_APPS_API_TOKEN_BLUE_PLANT_0BA785610`
 
 ---
 
@@ -112,7 +139,8 @@ GitHub secret required for deploy token:
 
 | Symptom | Fix |
 |---------|-----|
-| `/api/*` → **500** | Add all API env vars in Azure (section 1); check `/api/health` |
-| `/api/health` OK, leaderboard 500 | Redeploy latest `api/` code; check Application Insights / Log stream |
-| Google shows wrong app name | Set `VITE_GOOGLE_CLIENT_ID` at build + matching `GOOGLE_CLIENT_ID` on API |
-| Deploy “too many files” | Workflow uploads `frontend/dist` only, not `node_modules` |
+| Google login 404 on `/.auth/login/google` | Enable **Custom** auth; redeploy with `staticwebapp.config.json` |
+| Google “redirect_uri_mismatch” | Add `/.auth/login/google/callback` redirect URI (section 3) |
+| Logged in at Google but API 401 | `GOOGLE_CLIENT_ID` / secret in Azure env; redeploy API |
+| Instant logout after login | `JWT_SECRET` set; check Network for 401 on `/api/leaderboard/stats` |
+| Popup shows host URL not app name | OAuth consent screen app name + `azurestaticapps.net` authorized domain |

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { apiService } from '../services/apiService';
+import { useAzureAuth } from '../services/swaAuth';
 
 const Header: React.FC = () => {
   const { isLoggedIn, user, logout, setUser } = useAuth();
@@ -108,7 +109,9 @@ const Header: React.FC = () => {
                         onClick={() => {
                           setUserMenuOpen(false);
                           logout();
-                          window.location.href = '/';
+                          if (!useAzureAuth) {
+                            window.location.href = '/';
+                          }
                         }}
                         className="block w-full text-left px-4 py-2 text-sm text-danger hover:bg-gray-100"
                       >
@@ -162,7 +165,9 @@ const Header: React.FC = () => {
                   <button
                     onClick={() => {
                       logout();
-                      window.location.href = '/';
+                      if (!useAzureAuth) {
+                        window.location.href = '/';
+                      }
                       closeMobileMenu();
                     }}
                     className="w-full px-4 py-3 bg-danger rounded-lg hover:bg-red-600 transition font-medium min-h-[44px]"

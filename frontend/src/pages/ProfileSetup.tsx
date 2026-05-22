@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { apiService } from '../services/apiService';
 import { useAuth } from '../hooks/useAuth';
+import { useAzureAuth } from '../services/swaAuth';
 
 const ProfileSetup: React.FC = () => {
   const navigate = useNavigate();
-  const { user, login } = useAuth();
+  const { user, login, token } = useAuth();
 
   const [formData, setFormData] = useState({
     city: '',
@@ -50,8 +51,11 @@ const ProfileSetup: React.FC = () => {
 
     try {
       const response = await apiService.updateProfile(formData);
-      const token = localStorage.getItem('token') || '';
-      login(token, response.data.user);
+      if (useAzureAuth) {
+        login(response.data.user);
+      } else {
+        login(token || localStorage.getItem('token') || '', response.data.user);
+      }
       navigate('/dashboard');
     } catch (err: unknown) {
       const message =

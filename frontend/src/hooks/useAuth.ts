@@ -1,7 +1,8 @@
 import { useAuthStore } from '../context/authStore';
 
 export const useAuth = () => {
-  const { isLoggedIn, token, user, login, logout, setUser } = useAuthStore();
+  const { isLoggedIn, token, user, login, logout, setUser, authReady, initialize } =
+    useAuthStore();
 
   return {
     isLoggedIn,
@@ -10,5 +11,7 @@ export const useAuth = () => {
     login,
     logout,
     setUser,
+    authReady,
+    initialize,
   };
 };

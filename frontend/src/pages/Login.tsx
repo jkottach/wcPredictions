@@ -1,39 +1,87 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { apiService } from '../services/apiService';
 import { useAuth } from '../hooks/useAuth';
 import { GoogleLogin } from '@react-oauth/google';
+import {
+  fetchClientPrincipal,
+  loginWithGoogle,
+  needsProfileSetup,
+  useAzureAuth,
+} from '../services/swaAuth';
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, authReady, isLoggedIn, user } = useAuth();
   const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID ?? '';
 
   const [error, setError] = useState('');
+  const [checkingSession, setCheckingSession] = useState(useAzureAuth);
 
-  const handleGoogleSuccess = async (credentialResponse: any) => {
+  useEffect(() => {
+    if (!useAzureAuth) {
+      setCheckingSession(false);
+      return;
+    }
+    if (!authReady) return;
+
+    if (isLoggedIn && user) {
+      navigate(needsProfileSetup(user) ? '/profile-setup' : '/dashboard');
+      return;
+    }
+
+    void (async () => {
+      const principal = await fetchClientPrincipal();
+      if (!principal) {
+        setCheckingSession(false);
+        return;
+      }
+      try {
+        const response = await apiService.getProfile();
+        login(response.data);
+        navigate(
+          needsProfileSetup(response.data) ? '/profile-setup' : '/dashboard'
+        );
+      } catch {
+        setCheckingSession(false);
+      }
+    })();
+  }, [authReady, isLoggedIn, user, login, navigate]);
+
+  const handleGoogleSuccess = async (credentialResponse: { credential?: string }) => {
     if (!credentialResponse.credential) return;
     setError('');
 
     try {
       const response = await apiService.googleLogin(credentialResponse.credential);
-      const user = response.data.user;
-      login(response.data.token, user);
+      const profileUser = response.data.user;
+      login(response.data.token, profileUser);
 
-      // Check if user needs to complete profile (backend sets these to 'Not Set' for new Google users)
-      if (user.city === 'Not Set' || user.state === 'Not Set' || user.country === 'Not Set') {
+      if (needsProfileSetup(profileUser)) {
         navigate('/profile-setup');
       } else {
         navigate('/dashboard');
       }
-    } catch (err: any) {
-      setError(err.response?.data?.error || 'Google Login failed');
+    } catch (err: unknown) {
+      const message =
+        err && typeof err === 'object' && 'response' in err
+          ? (err as { response?: { data?: { error?: string } } }).response?.data?.error
+          : undefined;
+      setError(message || 'Google Login failed');
     }
   };
 
-  const handleGoogleError = () => {
-    setError('Google Login was unsuccessful. Please try again.');
+  const handleAzureSignIn = () => {
+    loginWithGoogle('/dashboard');
   };
+
+  if (useAzureAuth && checkingSession) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-primary to-secondary flex items-center justify-center p-4">
+        <p className="text-white text-lg">Checking sign-in…</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary to-secondary flex items-center justify-center p-4">
@@ -43,32 +91,39 @@ const Login: React.FC = () => {
         </h2>
 
         {error && (
-          <div className="mb-4 p-3 bg-red-100 text-red-700 rounded">
-            {error}
-          </div>
+          <div className="mb-4 p-3 bg-red-100 text-red-700 rounded">{error}</div>
         )}
 
         <div className="space-y-4 flex flex-col items-center mt-2">
-          <div className="w-full flex justify-center">
-            {googleClientId ? (
-              <div className="origin-center" aria-label="Google login button">
-                <GoogleLogin
-                  onSuccess={handleGoogleSuccess}
-                  onError={handleGoogleError}
-                  useOneTap
-                  theme="outline"
-                  text="continue_with"
-                  size="large"
-                  shape="pill"
-                  width="260"
-                />
-              </div>
-            ) : (
-              <div className="w-full text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded p-3 text-center">
-                Google login is not configured. Set VITE_GOOGLE_CLIENT_ID in frontend env.
-              </div>
-            )}
-          </div>
+          {useAzureAuth ? (
+            <button
+              type="button"
+              onClick={handleAzureSignIn}
+              className="w-full max-w-[260px] flex items-center justify-center gap-3 px-6 py-3 border border-gray-300 rounded-full bg-white text-gray-800 font-medium hover:bg-gray-50 transition min-h-[48px]"
+            >
+              <span className="text-lg" aria-hidden>
+                G
+              </span>
+              Continue with Google
+            </button>
+          ) : googleClientId ? (
+            <div className="origin-center" aria-label="Google login button">
+              <GoogleLogin
+                onSuccess={handleGoogleSuccess}
+                onError={() => setError('Google Login was unsuccessful. Please try again.')}
+                theme="outline"
+                text="continue_with"
+                size="large"
+                shape="pill"
+                width="260"
+              />
+            </div>
+          ) : (
+            <div className="w-full text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded p-3 text-center">
+              Google login is not configured. Set VITE_GOOGLE_CLIENT_ID in frontend env, or
+              VITE_USE_AZURE_AUTH=true for Azure sign-in.
+            </div>
+          )}
         </div>
       </div>
     </div>

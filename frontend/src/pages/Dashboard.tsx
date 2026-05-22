@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
+import { loginWithGoogle, useAzureAuth } from '../services/swaAuth';
 import { apiService } from '../services/apiService';
 import { Match, Prediction } from '../types';
 import MatchCard from '../components/MatchCard';
@@ -17,7 +18,7 @@ const pickRank = (data: { final?: UserRankInfo; overall?: UserRankInfo } | undef
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
-  const { isLoggedIn, user } = useAuth();
+  const { isLoggedIn, user, authReady } = useAuth();
   const [matches, setMatches] = useState<Match[]>([]);
   const [loading, setLoading] = useState(true);
   const [userPredictions, setUserPredictions] = useState<Prediction[]>([]);
@@ -28,12 +29,17 @@ const Dashboard: React.FC = () => {
     typeof prediction.matchId === 'string' ? prediction.matchId : prediction.matchId.matchId;
 
   useEffect(() => {
+    if (!authReady) return;
     if (!isLoggedIn) {
-      navigate('/login');
+      if (useAzureAuth) {
+        loginWithGoogle('/dashboard');
+      } else {
+        navigate('/login');
+      }
       return;
     }
     loadDashboardData();
-  }, [isLoggedIn, navigate]);
+  }, [authReady, isLoggedIn, navigate]);
 
   const loadDashboardData = async () => {
     try {
