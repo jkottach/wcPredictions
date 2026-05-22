@@ -52,18 +52,18 @@ const MyPredictions: React.FC = () => {
                     <div className="absolute w-96 h-96 bg-white rounded-full blur-3xl -bottom-48 -left-48" />
                 </div>
 
-                <div className="relative max-w-7xl mx-auto px-4 py-8 sm:py-12">
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-2 drop-shadow-lg">
+                <div className="relative px-4 py-8">
+                    <h1 className="text-3xl font-black text-white mb-2 drop-shadow-lg">
                         📋 My Predictions
                     </h1>
-                    <p className="text-white/90 text-base sm:text-lg font-medium">
+                    <p className="text-white/90 text-base font-medium">
                         Track your predictions and points
                     </p>
                 </div>
             </div>
 
             {/* Main Content */}
-            <div className="max-w-7xl mx-auto px-4 py-8 sm:py-12">
+            <div className="px-4 py-8">
                 {loading ? (
                     <div className="flex flex-col items-center justify-center py-20">
                         <div className="relative w-16 h-16 mb-6">
@@ -74,77 +74,7 @@ const MyPredictions: React.FC = () => {
                     </div>
                 ) : predictions.length > 0 ? (
                     <>
-                        {/* Desktop Table View */}
-                        <div className="hidden md:block bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
-                            <div className="overflow-x-auto">
-                                <table className="min-w-full divide-y divide-gray-200">
-                                    <thead className="bg-gradient-to-r from-primary/10 to-secondary/10">
-                                        <tr>
-                                            <th className="px-6 py-4 text-left text-xs font-bold text-primary uppercase tracking-wider">Match</th>
-                                            <th className="px-6 py-4 text-center text-xs font-bold text-primary uppercase tracking-wider">Status</th>
-                                            <th className="px-6 py-4 text-center text-xs font-bold text-primary uppercase tracking-wider">Prediction</th>
-                                            <th className="px-6 py-4 text-center text-xs font-bold text-primary uppercase tracking-wider">Actual Score</th>
-                                            <th className="px-6 py-4 text-center text-xs font-bold text-primary uppercase tracking-wider">Points</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="bg-white divide-y divide-gray-100">
-                                        {predictions.map((prediction: any) => {
-                                            const match = prediction.matchId;
-                                            const team1Name = match?.team1Info?.teamName || match?.team1 || 'Unknown';
-                                            const team2Name = match?.team2Info?.teamName || match?.team2 || 'Unknown';
-                                            const pred1 =
-                                                prediction.team1PredictedScore ??
-                                                prediction.team1Score;
-                                            const pred2 =
-                                                prediction.team2PredictedScore ??
-                                                prediction.team2Score;
-                                            const points = getPoints(prediction);
-                                            return (
-                                                <tr key={prediction.id} className="hover:bg-gray-50 transition-colors">
-                                                    <td className="px-6 py-4 whitespace-nowrap">
-                                                        <div className="text-sm font-bold text-gray-900">{team1Name} vs {team2Name}</div>
-                                                        <div className="text-xs text-gray-500">{match?.matchTime ? format(new Date(match.matchTime), 'MMM dd, HH:mm') : '-'}</div>
-                                                    </td>
-                                                    <td className="px-6 py-4 whitespace-nowrap text-center">
-                                                        {match?.status === 'completed' ? (
-                                                            <span className="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full">Completed</span>
-                                                        ) : (
-                                                            <span className="bg-yellow-100 text-yellow-800 text-xs font-bold px-3 py-1 rounded-full">Scheduled</span>
-                                                        )}
-                                                    </td>
-                                                    <td className="px-6 py-4 whitespace-nowrap text-center">
-                                                        <div className="font-mono bg-blue-50 px-3 py-1 rounded-lg text-blue-700 font-bold text-sm">
-                                                            {pred1 != null && pred2 != null ? `${pred1} - ${pred2}` : '-'}
-                                                        </div>
-                                                    </td>
-                                                    <td className="px-6 py-4 whitespace-nowrap text-center">
-                                                        {match?.status === 'completed' ? (
-                                                            <span className="font-mono bg-gray-100 px-3 py-1 rounded-lg text-gray-700 font-bold text-sm">
-                                                                {match?.team1Score} - {match?.team2Score}
-                                                            </span>
-                                                        ) : (
-                                                            <span className="text-gray-400 text-xs">-</span>
-                                                        )}
-                                                    </td>
-                                                    <td className="px-6 py-4 whitespace-nowrap text-center">
-                                                        {points != null ? (
-                                                            <span className="text-sm font-black text-secondary bg-secondary/10 px-3 py-1 rounded-full">
-                                                                {points} pts
-                                                            </span>
-                                                        ) : (
-                                                            <span className="text-gray-400 text-xs">—</span>
-                                                        )}
-                                                    </td>
-                                                </tr>
-                                            );
-                                        })}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        {/* Mobile Card View */}
-                        <div className="md:hidden space-y-4">
+                        <div className="space-y-4">
                             {predictions.map((prediction: any, idx) => {
                                 const match = prediction.matchId;
                                 const team1Name = match?.team1Info?.teamName || match?.team1 || 'Unknown';
@@ -212,21 +142,21 @@ const MyPredictions: React.FC = () => {
 
                         {/* Pagination */}
                         {pagination.pages > 1 && (
-                            <div className="mt-8 flex items-center justify-center gap-2 sm:gap-4">
+                            <div className="mt-8 flex items-center justify-center gap-2">
                                 <button
                                     disabled={pagination.page === 1}
                                     onClick={() => fetchPredictions(pagination.page - 1)}
-                                    className="px-4 sm:px-6 py-2 sm:py-3 bg-white border-2 border-gray-300 rounded-lg font-bold text-gray-700 hover:bg-gray-50 disabled:opacity-50 transition-all"
+                                    className="px-4 py-3 bg-white border-2 border-gray-300 rounded-lg font-bold text-gray-700 hover:bg-gray-50 disabled:opacity-50 transition-all min-h-[44px]"
                                 >
                                     ← Prev
                                 </button>
-                                <span className="text-sm sm:text-base text-gray-600 font-bold bg-white px-4 py-2 rounded-lg border border-gray-200">
+                                <span className="text-sm text-gray-600 font-bold bg-white px-4 py-2 rounded-lg border border-gray-200">
                                     {pagination.page} / {pagination.pages}
                                 </span>
                                 <button
                                     disabled={pagination.page === pagination.pages}
                                     onClick={() => fetchPredictions(pagination.page + 1)}
-                                    className="px-4 sm:px-6 py-2 sm:py-3 bg-white border-2 border-gray-300 rounded-lg font-bold text-gray-700 hover:bg-gray-50 disabled:opacity-50 transition-all"
+                                    className="px-4 py-3 bg-white border-2 border-gray-300 rounded-lg font-bold text-gray-700 hover:bg-gray-50 disabled:opacity-50 transition-all min-h-[44px]"
                                 >
                                     Next →
                                 </button>

@@ -1,5 +1,5 @@
 {
-  "name": "velicham-fifa26-api",
+  "name": "kanhans-fifa26-api",
   "version": "1.0.0",
   "description": "Fifa26 API — Express + MongoDB, Azure Functions for production",
   "main": "dist/index.js",

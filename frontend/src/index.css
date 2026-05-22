@@ -28,6 +28,13 @@ body {
   overflow-x: hidden;
 }
 
+.mobile-app {
+  max-width: 430px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04);
+}
+
 .pb-safe {
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }

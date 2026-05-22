@@ -1,4 +1,4 @@
-# Velicham FIFA 26 Predictor
+# Kanhans FIFA 26 Predictor
 
 Match prediction app: submit scores, earn points, view leaderboards.
 

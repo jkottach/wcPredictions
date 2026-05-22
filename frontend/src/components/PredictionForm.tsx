@@ -48,8 +48,8 @@ const PredictionForm: React.FC<PredictionFormProps> = ({ match, initialPredictio
   };
 
   return (
-    <div className="bg-white rounded-lg shadow p-4 sm:p-6 max-w-md w-full">
-      <h3 className="text-lg sm:text-xl font-bold mb-4 text-gray-800">
+    <div className="bg-white rounded-lg shadow p-4 w-full">
+      <h3 className="text-lg font-bold mb-4 text-gray-800">
         Predict: {match.team1} vs {match.team2}
       </h3>
 

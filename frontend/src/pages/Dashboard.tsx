@@ -114,15 +114,15 @@ const Dashboard: React.FC = () => {
     myRank.rank === '-' ? '–' : `#${myRank.rank}`;
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-6 sm:py-8">
+    <div className="px-4 py-6">
       {loadError && (
         <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-lg text-sm">{loadError}</div>
       )}
       <div className="mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold text-primary mb-1">
+        <h1 className="text-2xl font-bold text-primary mb-1">
           Welcome, {user?.firstName}!
         </h1>
-        <p className="text-sm sm:text-base text-gray-600">
+        <p className="text-sm text-gray-600">
           Predict upcoming matches and climb the leaderboard
         </p>
       </div>
@@ -130,7 +130,7 @@ const Dashboard: React.FC = () => {
       <div className="mb-6 rounded-xl bg-gradient-to-br from-amber-500 via-orange-500 to-rose-500 p-5 text-white shadow-lg">
         <p className="text-xs font-bold uppercase tracking-wide text-white/80">My rank</p>
         <div className="mt-1 flex items-baseline justify-between gap-3">
-          <p className="text-3xl sm:text-4xl font-black">{rankDisplay}</p>
+          <p className="text-3xl font-black">{rankDisplay}</p>
           <span className="rounded-lg bg-white/20 px-3 py-1 text-sm font-bold">
             {myRank.totalPoints} pts
           </span>
@@ -153,7 +153,7 @@ const Dashboard: React.FC = () => {
           <p className="mt-4 text-gray-600">Loading matches...</p>
         </div>
       ) : displayMatches.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4">
           {displayMatches.map((match) => {
             const userPrediction = userPredictions.find(
               (p) => getPredictionMatchId(p) === match.matchId

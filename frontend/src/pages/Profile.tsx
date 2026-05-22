@@ -85,7 +85,7 @@ const Profile: React.FC = () => {
   if (!profile) return null;
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-6 sm:py-8">
+    <div className="px-4 py-6">
       {success && (
         <div className="mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg text-sm">
           {success}
@@ -99,7 +99,7 @@ const Profile: React.FC = () => {
 
       <div className="bg-white shadow-xl rounded-2xl overflow-hidden border border-gray-100">
         <div className="bg-gradient-to-r from-primary to-blue-900 px-6 py-8 text-white">
-          <h1 className="text-2xl sm:text-3xl font-bold">
+          <h1 className="text-2xl font-bold">
             {profile.firstName} {profile.lastName}
           </h1>
           <p className="text-blue-200 mt-1 text-sm">{profile.email}</p>
@@ -131,7 +131,7 @@ const Profile: React.FC = () => {
                   required
                 />
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">City</label>
                   <input
@@ -166,7 +166,7 @@ const Profile: React.FC = () => {
                   <option value="Canada">Canada</option>
                 </select>
               </div>
-              <div className="flex flex-col-reverse sm:flex-row gap-3 pt-2">
+              <div className="flex flex-col gap-3 pt-2">
                 <button
                   type="button"
                   onClick={() => setIsEditing(false)}
@@ -189,7 +189,7 @@ const Profile: React.FC = () => {
                 <dt className="text-xs font-bold text-gray-400 uppercase">Phone</dt>
                 <dd className="text-gray-800 font-medium">{profile.phoneNumber || '—'}</dd>
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-4">
                 <div>
                   <dt className="text-xs font-bold text-gray-400 uppercase">City</dt>
                   <dd className="text-gray-800 font-medium">{profile.city || '—'}</dd>

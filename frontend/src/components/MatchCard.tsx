@@ -47,7 +47,7 @@ const Flag: React.FC<{ src?: string | null; alt: string }> = ({ src, alt }) => {
   const [err, setErr] = useState(false);
   if (!src || err) {
     return (
-      <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white font-bold text-xs shrink-0">
+      <div className="w-14 h-14 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white font-bold text-xs shrink-0">
         {alt.slice(0, 3)}
       </div>
     );
@@ -57,7 +57,7 @@ const Flag: React.FC<{ src?: string | null; alt: string }> = ({ src, alt }) => {
       src={src}
       alt={alt}
       onError={() => setErr(true)}
-      className="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border-2 border-white/30 shadow-lg shrink-0"
+      className="w-14 h-14 rounded-full object-cover border-2 border-white/30 shadow-lg shrink-0"
     />
   );
 };
