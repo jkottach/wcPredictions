@@ -7,30 +7,10 @@ export interface User {
   city: string;
   state: string;
   country: string;
-  communityId1?: string;
-  communityId2?: string;
   phoneNumber?: string;
   status: 'active' | 'inactive' | 'suspended';
-  isActive: boolean; 
+  isActive: boolean;
   createdAt?: string;
-  requestedCommunity?: {
-    name: string;
-    shortName: string;
-    description: string;
-    isOnline: boolean;
-    city: string;
-    state: string;
-    existingCommunityId?: string;
-  };
-}
-
-export interface Community {
-  _id: string;
-  communityId: string;
-  name: string;
-  fullName?: string;
-  state: string;
-  city: string;
 }
 
 export interface TeamInfo {
@@ -78,22 +58,14 @@ export interface Prediction {
     dailyRank: number;
   } | null;
 }
+
 export interface LeaderboardEntry {
   rank: number;
   totalPoints: number;
   name: string;
   state: string;
-  community1?: string;
-  community2?: string;
   userId: string;
   email: string;
-}
-
-export interface CommunityLeaderboardEntry {
-  rank: number;
-  totalPoints: number;
-  communityName: string;
-  communityId: string;
 }
 
 export interface AuthState {

@@ -32,6 +32,17 @@ const MyPredictions: React.FC = () => {
         fetchPredictions(pagination.page);
     };
 
+    const getPoints = (prediction: Prediction & { matchPoints?: number }): number | null => {
+        if (prediction.matchPoints != null) return prediction.matchPoints;
+        if (prediction.points != null) return prediction.points;
+        const match = prediction.matchId;
+        const isCompleted =
+            typeof match === 'object' &&
+            match !== null &&
+            (match as Match).status === 'completed';
+        return isCompleted ? 0 : null;
+    };
+
     return (
         <div className="min-h-screen w-full bg-gradient-to-br from-gray-50 to-gray-100">
             {/* Header Section */}
@@ -46,7 +57,7 @@ const MyPredictions: React.FC = () => {
                         📋 My Predictions
                     </h1>
                     <p className="text-white/90 text-base sm:text-lg font-medium">
-                        Track your predictions and rankings
+                        Track your predictions and points
                     </p>
                 </div>
             </div>
@@ -73,8 +84,7 @@ const MyPredictions: React.FC = () => {
                                             <th className="px-6 py-4 text-center text-xs font-bold text-primary uppercase tracking-wider">Status</th>
                                             <th className="px-6 py-4 text-center text-xs font-bold text-primary uppercase tracking-wider">Prediction</th>
                                             <th className="px-6 py-4 text-center text-xs font-bold text-primary uppercase tracking-wider">Actual Score</th>
-                                            <th className="px-6 py-4 text-center text-xs font-bold text-primary uppercase tracking-wider">Match Rank</th>
-                                            <th className="px-6 py-4 text-center text-xs font-bold text-primary uppercase tracking-wider">Overall Rank</th>
+                                            <th className="px-6 py-4 text-center text-xs font-bold text-primary uppercase tracking-wider">Points</th>
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white divide-y divide-gray-100">
@@ -88,12 +98,7 @@ const MyPredictions: React.FC = () => {
                                             const pred2 =
                                                 prediction.team2PredictedScore ??
                                                 prediction.team2Score;
-                                            const matchRank =
-                                                prediction.matchRank ??
-                                                prediction.historicRank?.matchRank;
-                                            const finalRank =
-                                                prediction.finalRank ??
-                                                prediction.historicRank?.finalRank;
+                                            const points = getPoints(prediction);
                                             return (
                                                 <tr key={prediction.id} className="hover:bg-gray-50 transition-colors">
                                                     <td className="px-6 py-4 whitespace-nowrap">
@@ -122,22 +127,12 @@ const MyPredictions: React.FC = () => {
                                                         )}
                                                     </td>
                                                     <td className="px-6 py-4 whitespace-nowrap text-center">
-                                                        {match?.status === 'completed' && matchRank ? (
-                                                            <span className="text-sm font-black text-primary bg-primary/10 px-3 py-1 rounded-full">
-                                                                #{matchRank}
+                                                        {points != null ? (
+                                                            <span className="text-sm font-black text-secondary bg-secondary/10 px-3 py-1 rounded-full">
+                                                                {points} pts
                                                             </span>
                                                         ) : (
-                                                            <span className="text-gray-400 text-xs">TBD</span>
-                                                        )}
-                                                    </td>
-                                                    <td className="px-6 py-4 whitespace-nowrap text-center">
-                                                        {match?.status === 'completed' && finalRank && finalRank > 0 ? (
-                                                            <div className="flex items-center justify-center gap-1">
-                                                                <span className="text-lg">🏆</span>
-                                                                <span className="font-black text-secondary">{finalRank}</span>
-                                                            </div>
-                                                        ) : (
-                                                            <span className="text-gray-400 text-xs">-</span>
+                                                            <span className="text-gray-400 text-xs">—</span>
                                                         )}
                                                     </td>
                                                 </tr>
@@ -159,10 +154,7 @@ const MyPredictions: React.FC = () => {
                                     prediction.team1PredictedScore ?? prediction.team1Score;
                                 const pred2 =
                                     prediction.team2PredictedScore ?? prediction.team2Score;
-                                const matchRank =
-                                    prediction.matchRank ?? prediction.historicRank?.matchRank;
-                                const finalRank =
-                                    prediction.finalRank ?? prediction.historicRank?.finalRank;
+                                const points = getPoints(prediction);
 
                                 return (
                                     <div
@@ -191,38 +183,25 @@ const MyPredictions: React.FC = () => {
                                             </div>
                                         </div>
 
-                                        {/* Prediction & Score Row */}
-                                        <div className="grid grid-cols-2 gap-4 mb-4">
-                                            <div className="bg-blue-50 rounded-xl p-4 text-center">
-                                                <p className="text-xs text-gray-600 font-semibold mb-2">YOUR PREDICTION</p>
-                                                <div className="font-mono text-2xl font-black text-blue-700">
-                                                    {pred1 != null && pred2 != null ? `${pred1} - ${pred2}` : '-'}
+                                        <div className="grid grid-cols-3 gap-3">
+                                            <div className="bg-blue-50 rounded-xl p-3 text-center">
+                                                <p className="text-[10px] text-gray-600 font-semibold mb-1">Prediction</p>
+                                                <div className="font-mono text-lg font-black text-blue-700">
+                                                    {pred1 != null && pred2 != null ? `${pred1} - ${pred2}` : '—'}
                                                 </div>
                                             </div>
 
-                                            <div className="bg-gray-100 rounded-xl p-4 text-center">
-                                                <p className="text-xs text-gray-600 font-semibold mb-2">ACTUAL SCORE</p>
-                                                <div className="font-mono text-2xl font-black text-gray-700">
-                                                    {isCompleted ? `${match?.team1Score} - ${match?.team2Score}` : '-'}
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        {/* Rankings Row */}
-                                        <div className="grid grid-cols-2 gap-4">
-                                            <div className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl p-4 text-center border border-primary/20">
-                                                <p className="text-xs text-primary font-bold mb-2">MATCH RANK</p>
-                                                <div className="text-2xl font-black text-primary">
-                                                    {isCompleted && matchRank ? `#${matchRank}` : 'TBD'}
+                                            <div className="bg-gray-100 rounded-xl p-3 text-center">
+                                                <p className="text-[10px] text-gray-600 font-semibold mb-1">Actual</p>
+                                                <div className="font-mono text-lg font-black text-gray-700">
+                                                    {isCompleted ? `${match?.team1Score} - ${match?.team2Score}` : '—'}
                                                 </div>
                                             </div>
 
-                                            <div className="bg-gradient-to-br from-secondary/10 to-secondary/5 rounded-xl p-4 text-center border border-secondary/20">
-                                                <p className="text-xs text-secondary font-bold mb-2">OVERALL RANK</p>
-                                                <div className="text-2xl font-black text-secondary">
-                                                    {isCompleted && finalRank && finalRank > 0
-                                                        ? `🏆 ${finalRank}`
-                                                        : '-'}
+                                            <div className="bg-gradient-to-br from-secondary/10 to-secondary/5 rounded-xl p-3 text-center border border-secondary/20">
+                                                <p className="text-[10px] text-secondary font-bold mb-1">Points</p>
+                                                <div className="text-lg font-black text-secondary">
+                                                    {points != null ? points : '—'}
                                                 </div>
                                             </div>
                                         </div>

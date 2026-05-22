@@ -1,19 +1,9 @@
 import axios, { AxiosInstance } from 'axios';
 
-
+/** SWA production uses same-origin `/api`; local dev uses Vite proxy. */
 const API_BASE_URL =
   import.meta.env.VITE_API_URL ||
-  (import.meta.env.DEV
-    ? '/api'
-    : 'https://fifa-aps-dpbpdfgjdycdhcbe.eastus-01.azurewebsites.net/api');
-
-/** Append Azure Functions host key when VITE_AZURE_FUNCTIONS_KEY is set. */
-function withFunctionsKey(url: string): string {
-  const key = import.meta.env.VITE_AZURE_FUNCTIONS_KEY as string | undefined;
-  if (!key?.trim()) return url;
-  const sep = url.includes('?') ? '&' : '?';
-  return `${url}${sep}code=${encodeURIComponent(key.trim())}`;
-}
+  (import.meta.env.DEV ? '/api' : '/api');
 
 class ApiService {
   private client: AxiosInstance;
@@ -26,7 +16,6 @@ class ApiService {
       },
     });
 
-    // Add token to all requests
     this.client.interceptors.request.use((config) => {
       const token = localStorage.getItem('token');
       if (token) {
@@ -35,7 +24,6 @@ class ApiService {
       return config;
     });
 
-    // Handle errors
     this.client.interceptors.response.use(
       (response) => response,
       (error) => {
@@ -49,8 +37,7 @@ class ApiService {
     );
   }
 
-  // Auth endpoints
-  register(data: any) {
+  register(data: Record<string, unknown>) {
     return this.client.post('/auth/register', data);
   }
 
@@ -66,11 +53,10 @@ class ApiService {
     return this.client.get('/auth/profile');
   }
 
-  updateProfile(data: any) {
+  updateProfile(data: Record<string, unknown>) {
     return this.client.put('/auth/profile', data);
   }
 
-  // Match endpoints
   getAllMatches(status?: string, page?: number, limit?: number) {
     return this.client.get('/matches', {
       params: { status, page, limit },
@@ -85,20 +71,7 @@ class ApiService {
     return this.client.get('/matches/teams');
   }
 
-  createMatch(data: any) {
-    return this.client.post('/matches', data);
-  }
-
-  updateMatch(matchId: string, data: any) {
-    return this.client.put(`/matches/${matchId}`, data);
-  }
-
-  deleteMatch(matchId: string) {
-    return this.client.delete(`/matches/${matchId}`);
-  }
-
-  // Prediction endpoints
-  submitPrediction(data: any) {
+  submitPrediction(data: Record<string, unknown>) {
     return this.client.post('/predictions', data);
   }
 
@@ -114,7 +87,7 @@ class ApiService {
     });
   }
 
-  updatePrediction(predictionId: string, data: any) {
+  updatePrediction(predictionId: string, data: Record<string, unknown>) {
     return this.client.put(`/predictions/${predictionId}`, data);
   }
 
@@ -122,7 +95,6 @@ class ApiService {
     return this.client.delete(`/predictions/${predictionId}`);
   }
 
-  // Leaderboard endpoints
   getTopLeaderboard(limit?: number) {
     return this.client.get('/leaderboard/top', { params: { limit } });
   }
@@ -131,83 +103,8 @@ class ApiService {
     return this.client.get('/leaderboard/daily', { params: { limit, date } });
   }
 
-  getCommunityLeaderboard(limit?: number) {
-    return this.client.get('/leaderboard/community', { params: { limit } });
-  }
-
-  getDailyCommunityLeaderboard(limit?: number, date?: string) {
-    return this.client.get('/leaderboard/community/daily', { params: { limit, date } });
-  }
-
-  getCommunityRanking(communityId: string, isDaily: boolean = false) {
-    return this.client.get(`/leaderboard/ranking/community/${communityId}`, { params: { isDaily } });
-  }
-
   getUserStats() {
     return this.client.get('/leaderboard/stats');
-  }
-
-  // Admin endpoints
-  getCommunityRequests() {
-    return this.client.get('/admin/community-requests');
-  }
-
-  approveCommunity(data: { userId: string, communityId: string }) {
-    return this.client.post('/admin/approve-community', data);
-  }
-
-  createAndApproveCommunity(data: { userId: string; name: string; fullName?: string; state?: string; city?: string; address?: string; isOnline?: boolean; shortName?: string; description?: string }) {
-    return this.client.post('/admin/create-and-approve-community', data);
-  }
-
-  rejectCommunity(data: { userId: string }) {
-    return this.client.post('/admin/reject-community', data);
-  }
-
-  finalizeMatch(data: { matchId: string; team1Score: number; team2Score: number }) {
-    const functionsUrl = import.meta.env.VITE_FINALIZE_MATCH_URL as string | undefined;
-    if (functionsUrl?.trim()) {
-      return axios.post(
-        withFunctionsKey(functionsUrl.trim()),
-        {
-          matchId: data.matchId,
-          team1Score: data.team1Score,
-          team2Score: data.team2Score,
-          rebuildLeaderboards: true,
-        },
-        { headers: { 'Content-Type': 'application/json' } }
-      );
-    }
-    return this.client.post('/admin/finalize-match', data);
-  }
-
-  rebuildLeaderboards(date?: string) {
-    const functionsUrl = import.meta.env.VITE_REBUILD_LEADERBOARDS_URL as string | undefined;
-    if (!functionsUrl?.trim()) {
-      return Promise.reject(new Error('VITE_REBUILD_LEADERBOARDS_URL is not configured'));
-    }
-    return axios.post(
-      withFunctionsKey(functionsUrl.trim()),
-      date ? { date } : {},
-      { headers: { 'Content-Type': 'application/json' } }
-    );
-  }
-
-  getAllUsers() {
-    return this.client.get('/admin/users');
-  }
-
-  deleteUser(userId: string) {
-    return this.client.delete(`/admin/users/${userId}`);
-  }
-
-  // Community endpoints
-  getCommunities() {
-    return this.client.get('/communities');
-  }
-
-  getCommunity(communityId: string) {
-    return this.client.get(`/communities/${communityId}`);
   }
 }
 

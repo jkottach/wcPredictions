@@ -125,7 +125,12 @@ const MatchCard: React.FC<MatchCardProps> = ({ match, userPrediction, onPredicti
 
   const t1Name = match.team1Info?.teamName ?? match.team1;
   const t2Name = match.team2Info?.teamName ?? match.team2;
-  const roundLabel = /^\d+$/.test(match.round.trim()) ? `Round ${match.round}` : match.round;
+  const roundStr = String(match.round ?? '').trim();
+  const roundLabel = roundStr
+    ? /^\d+$/.test(roundStr)
+      ? `Round ${roundStr}`
+      : roundStr
+    : 'Round';
   const groupLabel = match.group
     ? /^group\s+/i.test(match.group.trim())
       ? match.group.trim()

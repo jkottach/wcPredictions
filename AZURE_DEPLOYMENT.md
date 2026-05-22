@@ -1,255 +1,83 @@
-# Azure Deployment Guide
+# Azure Deployment: Static Web Apps + API Functions
 
-## Prerequisites
+| Layer | Azure service | Folder |
+|--------|----------------|--------|
+| Frontend (React/Vite) | **Azure Static Web Apps** | `frontend/` |
+| Backend (Express + MongoDB) | **Azure Functions** (linked to SWA) | `api/` |
 
-- Azure Subscription
-- Azure CLI installed
-- GitHub account with the repository
-- Node.js 18+ installed locally
+The browser calls **`/api/*`** on the same SWA hostname. SWA proxies those requests to the Node function running the Express app.
 
-## Manual Deployment Steps
+## Architecture
 
-### 1. Create Azure Resources
+```mermaid
+flowchart LR
+  Browser --> SWA[Static Web App]
+  SWA -->|static assets| CDN[frontend/dist]
+  SWA -->|/api/*| Fn[Azure Functions]
+  Fn --> Express[api/src Express app]
+  Express --> Mongo[(MongoDB Atlas)]
+```
+
+## CI/CD
+
+Workflow: `.github/workflows/azure-static-web-apps-polite-bay-08b90600f.yml`
+
+On push to `dev`:
+
+1. Builds `frontend/dist` (`npm run build:qa`)
+2. Builds `api/` (`npm run build`)
+3. Deploys both to SWA (`api_location: api`)
+
+## Azure Portal: application settings
+
+**Static Web App → Settings → Environment variables:**
+
+| Name | Notes |
+|------|--------|
+| `MONGODB_URI` | Atlas connection string |
+| `MONGODB_DB` | e.g. `fifaPrediction` |
+| `JWT_SECRET` | Long random secret |
+| `JWT_EXPIRE` | `7d` |
+| `GOOGLE_CLIENT_ID` | Web client ID |
+| `GOOGLE_CLIENT_IDS` | Same ID (comma-separated if multiple) |
+| `NODE_ENV` | `production` |
+| `FRONTEND_URL` | Your SWA URL |
+| `RATE_LIMIT_WINDOW_MS` | `900000` |
+| `RATE_LIMIT_MAX_REQUESTS` | `1000` |
+
+## Local development
 
 ```bash
-# Login to Azure
-az login
+# API (Express on :5001)
+cd api && npm install && cp .env.example .env   # edit .env
+npm run dev
 
-# Create a resource group
-az group create \
-  --name fifa26-rg \
-  --location eastus
-
-# Create App Service Plan (Linux)
-az appservice plan create \
-  --name fifa26-plan \
-  --resource-group fifa26-rg \
-  --sku B1 \
-  --is-linux
-
-# Create Backend App Service
-az webapp create \
-  --resource-group fifa26-rg \
-  --plan fifa26-plan \
-  --name fifa26-backend \
-  --runtime "NODE|18-lts"
-
-# Create Frontend Static Web App
-az staticwebapp create \
-  --name fifa26-frontend \
-  --resource-group fifa26-rg \
-  --source https://github.com/yourusername/fifa26-predictor \
-  --location eastus \
-  --branch main
+# Frontend (Vite proxies /api → :5001)
+cd frontend && npm install && npm run dev
 ```
 
-### 2. Configure Backend Environment Variables
+**Azure Functions locally** (optional):
 
 ```bash
-# Set application settings
-az webapp config appsettings set \
-  --resource-group fifa26-rg \
-  --name fifa26-backend \
-  --settings \
-    MONGODB_URI="your_mongodb_connection_string" \
-    JWT_SECRET="your_jwt_secret_key" \
-    JWT_EXPIRE="7d" \
-    NODE_ENV="production" \
-    FRONTEND_URL="https://fifa26-frontend.azurestaticapps.net" \
-    RATE_LIMIT_WINDOW_MS="900000" \
-    RATE_LIMIT_MAX_REQUESTS="100"
+cd api && cp local.settings.json.example local.settings.json
+npm run start:functions   # requires Azure Functions Core Tools
 ```
 
-### 3. Deploy Backend
+## Database
 
 ```bash
-# Build the backend
-cd backend
-npm install
-npm run build
-
-# Create deployment package
-cd dist
-zip -r ../backend-deploy.zip .
-cd ..
-
-# Deploy to App Service
-az webapp deployment source config-zip \
-  --resource-group fifa26-rg \
-  --name fifa26-backend \
-  --src backend-deploy.zip
+cd api
+npm run seed:mongo              # teams + matches
+npm run migrate:app-to-users    # one-time legacy `app` → `users`
 ```
 
-### 4. Deploy Frontend
-
-```bash
-# Build the frontend
-cd frontend
-npm install
-npm run build
-
-# The frontend will be automatically deployed to Static Web Apps
-# if you've connected the GitHub repository during creation
-```
-
-## Automated Deployment with GitHub Actions
-
-### 1. Create GitHub Secrets
-
-Add these secrets to your GitHub repository (Settings > Secrets and variables > Actions):
-
-```
-AZURE_CREDENTIALS: 
-{
-  "clientId": "your-client-id",
-  "clientSecret": "your-client-secret",
-  "subscriptionId": "your-subscription-id",
-  "tenantId": "your-tenant-id"
-}
-
-AZURE_STATIC_WEB_APPS_API_TOKEN: <token-from-static-web-app>
-```
-
-### 2. Create Service Principal
-
-```bash
-az ad sp create-for-rbac \
-  --name fifa26-deployer \
-  --role Contributor \
-  --scopes /subscriptions/{subscriptionId}
-```
-
-### 3. Push to Deploy
-
-Simply push to the `main` or `develop` branch to trigger automatic deployment:
-
-```bash
-git push origin main
-```
-
-## Environment Variables Reference
-
-### Backend (.env or Azure App Settings)
-
-```
-MONGODB_URI=mongodb+srv://user:password@cluster.mongodb.net/fifa26predictor
-JWT_SECRET=your_jwt_secret_key_here_change_in_production
-JWT_EXPIRE=7d
-NODE_ENV=production
-PORT=8080
-FRONTEND_URL=https://fifa26-frontend.azurestaticapps.net
-RATE_LIMIT_WINDOW_MS=900000
-RATE_LIMIT_MAX_REQUESTS=100
-```
-
-### Frontend (.env.production)
-
-```
-VITE_API_URL=https://fifa26-backend-a3b8hgb4ggdzd5ha.eastus-01.azurewebsites.net/api
-```
-
-## Database Migration
-
-After deployment, run seeds to populate data:
-
-### Using Azure Portal:
-
-1. Navigate to App Service SSH console
-2. Run:
-   ```bash
-   cd /home/site/wwwroot
-   npm run seed:communities
-   npm run seed:teams
-   npm run seed:matches
-   ```
-
-### Using Azure CLI:
-
-```bash
-az webapp ssh \
-  --resource-group fifa26-rg \
-  --name fifa26-backend
-
-# Once connected:
-cd /home/site/wwwroot
-npm run seed:communities
-npm run seed:teams
-npm run seed:matches
-```
-
-## Monitoring & Logs
-
-### View Application Logs
-
-```bash
-# Stream backend logs
-az webapp log tail \
-  --resource-group fifa26-rg \
-  --name fifa26-backend
-
-# View historical logs
-az webapp log download \
-  --resource-group fifa26-rg \
-  --name fifa26-backend
-```
-
-### Application Insights
-
-```bash
-# Create Application Insights resource
-az monitor app-insights component create \
-  --app fifa26-insights \
-  --location eastus \
-  --resource-group fifa26-rg
-```
-
-## Scaling
-
-### Increase Backend Capacity
-
-```bash
-az appservice plan update \
-  --name fifa26-plan \
-  --resource-group fifa26-rg \
-  --sku S1
-```
-
-### Static Web Apps Scaling
-
-Static Web Apps automatically scales based on demand.
+Collections: `users`, `teams`, `matches`.
 
 ## Troubleshooting
 
-### Backend not starting
-
-```bash
-# Check Application logs
-az webapp log tail --resource-group fifa26-rg --name fifa26-backend
-
-# Restart the app
-az webapp restart --resource-group fifa26-rg --name fifa26-backend
-```
-
-### CORS Issues
-
-Ensure `FRONTEND_URL` is correctly set in backend environment variables.
-
-### Static Web App not updating
-
-- Verify the GitHub action is running successfully
-- Check the deployment logs in Azure Portal
-- Ensure build command is correct: `npm run build`
-
-## Cleanup
-
-To remove all resources:
-
-```bash
-az group delete --name fifa26-rg --yes
-```
-
-## Additional Resources
-
-- [Azure App Service Documentation](https://docs.microsoft.com/en-us/azure/app-service/)
-- [Azure Static Web Apps Documentation](https://docs.microsoft.com/en-us/azure/static-web-apps/)
-- [GitHub Actions Azure Integration](https://github.com/Azure/actions)
+| Issue | Fix |
+|-------|-----|
+| API 404 on SWA | Confirm workflow `api_location: api` and API build step passed |
+| MongoDB errors | Check `MONGODB_URI` / `MONGODB_DB` in SWA settings; Atlas IP allowlist |
+| Google login | `FRONTEND_URL` + Google Console authorized origins = SWA URL |
+| Local API fails | `api/.env` present; `PORT=5001` matches Vite proxy in `frontend/vite.config.ts` |

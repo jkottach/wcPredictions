@@ -9,7 +9,6 @@ const Header: React.FC = () => {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const didRefreshProfile = useRef(false);
 
-  // Keep the cached user (localStorage) in sync with backend role changes.
   useEffect(() => {
     if (!isLoggedIn || didRefreshProfile.current) return;
 
@@ -17,41 +16,39 @@ const Header: React.FC = () => {
     apiService
       .getProfile()
       .then((res) => setUser(res.data))
-      .catch(() => {
-        // Ignore: auth interceptor will handle 401s.
-      });
+      .catch(() => undefined);
   }, [isLoggedIn, setUser]);
 
+  const closeMobileMenu = () => setMobileMenuOpen(false);
+
+  const navLinkClass =
+    'block py-3 px-1 text-base font-medium hover:text-secondary transition min-h-[44px] flex items-center';
+
   return (
-    <header className="bg-primary text-white shadow-lg">
-      <nav className="max-w-7xl mx-auto px-4 py-4">
-        <div className="flex justify-between items-center">
-          <Link to="/" className="flex items-center gap-2">
-            <h1 className="text-xl sm:text-2xl font-bold">🏆 Velicham Fifa'26 Prediction</h1>
+    <header className="bg-primary text-white shadow-lg sticky top-0 z-40">
+      <nav className="max-w-7xl mx-auto px-4 py-3 sm:py-4">
+        <div className="flex justify-between items-center gap-2">
+          <Link to="/" className="flex items-center gap-2 min-w-0" onClick={closeMobileMenu}>
+            <h1 className="text-base sm:text-xl md:text-2xl font-bold truncate">
+              <span className="sm:hidden">🏆 Velicham Fifa&apos;26</span>
+              <span className="hidden sm:inline">🏆 Velicham Fifa&apos;26 Prediction</span>
+            </h1>
           </Link>
 
-          {/* Mobile: Show Login/Register or Menu button */}
-          <div className="md:hidden flex items-center gap-2">
+          <div className="md:hidden flex items-center gap-2 shrink-0">
             {!isLoggedIn && (
-              <>
-                <Link
-                  to="/login"
-                  className="px-3 py-1.5 text-xs bg-secondary rounded hover:bg-blue-600 transition"
-                >
-                  Login
-                </Link>
-                <Link
-                  to="/register"
-                  className="px-3 py-1.5 text-xs border border-white rounded hover:bg-blue-800 transition"
-                >
-                  Register
-                </Link>
-              </>
+              <Link
+                to="/login"
+                className="px-3 py-2 text-xs bg-secondary rounded-lg hover:bg-blue-600 transition min-h-[44px] flex items-center"
+              >
+                Login
+              </Link>
             )}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded hover:bg-blue-800 transition"
+              className="p-2.5 rounded-lg hover:bg-blue-800 transition min-h-[44px] min-w-[44px] flex items-center justify-center"
               aria-label="Toggle menu"
+              aria-expanded={mobileMenuOpen}
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {mobileMenuOpen ? (
@@ -63,7 +60,6 @@ const Header: React.FC = () => {
             </button>
           </div>
 
-          {/* Desktop menu */}
           <div className="hidden md:flex items-center gap-4 lg:gap-6">
             <Link to="/" className="hover:text-secondary transition">
               Home
@@ -77,19 +73,15 @@ const Header: React.FC = () => {
                 <Link to="/dashboard" className="hover:text-secondary transition">
                   Dashboard
                 </Link>
-                {user?.role === 'admin' && (
-                  <Link to="/admin" className="hover:text-secondary font-bold text-yellow-400 transition">
-                    Admin
-                  </Link>
-                )}
+                <Link to="/my-predictions" className="hover:text-secondary transition">
+                  My Predictions
+                </Link>
                 <div className="relative">
                   <button
                     onClick={() => setUserMenuOpen(!userMenuOpen)}
-                    className="flex items-center gap-2 hover:text-secondary transition focus:outline-none"
+                    className="flex items-center gap-2 hover:text-secondary transition focus:outline-none min-h-[44px]"
                   >
-                    <span className="text-sm font-medium">
-                      Hi, {user?.firstName}
-                    </span>
+                    <span className="text-sm font-medium">Hi, {user?.firstName}</span>
                     <svg
                       className={`w-4 h-4 transition-transform ${userMenuOpen ? 'rotate-180' : ''}`}
                       fill="none"
@@ -101,7 +93,7 @@ const Header: React.FC = () => {
                   </button>
 
                   {userMenuOpen && (
-                    <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 ring-1 ring-black ring-opacity-5 animate-in fade-in slide-in-from-top-2">
+                    <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 ring-1 ring-black ring-opacity-5">
                       <div className="px-4 py-2 border-b border-gray-100">
                         <p className="text-xs text-gray-500 truncate">{user?.email}</p>
                       </div>
@@ -145,81 +137,46 @@ const Header: React.FC = () => {
           </div>
         </div>
 
-        {/* Mobile menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden mt-4 pt-4 border-t border-blue-800 space-y-3">
-            <Link
-              to="/"
-              className="block py-2 hover:text-secondary transition"
-              onClick={() => setMobileMenuOpen(false)}
-            >
+          <div className="md:hidden mt-3 pt-3 border-t border-blue-800">
+            <Link to="/" className={navLinkClass} onClick={closeMobileMenu}>
               Home
             </Link>
-            <Link
-              to="/leaderboard"
-              className="block py-2 hover:text-secondary transition"
-              onClick={() => setMobileMenuOpen(false)}
-            >
+            <Link to="/leaderboard" className={navLinkClass} onClick={closeMobileMenu}>
               Leaderboard
             </Link>
 
             {isLoggedIn ? (
               <>
-                <Link
-                  to="/dashboard"
-                  className="block py-2 hover:text-secondary transition"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
+                <Link to="/dashboard" className={navLinkClass} onClick={closeMobileMenu}>
                   Dashboard
                 </Link>
-                {user?.role === 'admin' && (
-                  <Link
-                    to="/admin"
-                    className="block py-2 hover:text-secondary font-bold text-yellow-400 transition"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Admin Panel
-                  </Link>
-                )}
-                <div className="pt-2 border-t border-blue-800 space-y-2">
-                  <div className="flex items-center justify-between px-2">
-                    <span className="block text-sm font-bold">
-                      Hi, {user?.firstName}
-                    </span>
-                    <span className="text-[10px] text-blue-300 truncate max-w-[150px]">{user?.email}</span>
-                  </div>
-                  <Link
-                    to="/profile"
-                    className="block py-2 hover:text-secondary transition"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    My Profile
-                  </Link>
+                <Link to="/my-predictions" className={navLinkClass} onClick={closeMobileMenu}>
+                  My Predictions
+                </Link>
+                <Link to="/profile" className={navLinkClass} onClick={closeMobileMenu}>
+                  My Profile
+                </Link>
+                <div className="pt-3 mt-2 border-t border-blue-800">
+                  <p className="text-sm font-bold px-1 mb-2">Hi, {user?.firstName}</p>
                   <button
                     onClick={() => {
                       logout();
                       window.location.href = '/';
-                      setMobileMenuOpen(false);
+                      closeMobileMenu();
                     }}
-                    className="w-full px-4 py-2 bg-danger rounded hover:bg-red-600 transition mt-2"
+                    className="w-full px-4 py-3 bg-danger rounded-lg hover:bg-red-600 transition font-medium min-h-[44px]"
                   >
                     Logout
                   </button>
                 </div>
               </>
             ) : (
-              <div className="space-y-2 pt-2 border-t border-blue-800">
-                <Link
-                  to="/login"
-                  className="block w-full text-center px-4 py-2 bg-secondary rounded hover:bg-blue-600 transition"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Login
-                </Link>
+              <div className="space-y-2 pt-2">
                 <Link
                   to="/register"
-                  className="block w-full text-center px-4 py-2 border border-secondary rounded hover:bg-secondary transition"
-                  onClick={() => setMobileMenuOpen(false)}
+                  className="block w-full text-center px-4 py-3 border border-secondary rounded-lg hover:bg-secondary transition min-h-[44px] flex items-center justify-center"
+                  onClick={closeMobileMenu}
                 >
                   Register
                 </Link>

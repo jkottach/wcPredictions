@@ -16,7 +16,7 @@ __pycache__/
 .Python
 
 # Build outputs
-backend/dist/
+api/dist/
 frontend/dist/
 dist/
 build/
@@ -33,8 +33,10 @@ azure_functions/local.settings.json
 # Azure Functions
 .python_packages/
 
-# Azurite (local Azure Storage emulator)
+# Azurite (local Azure Storage emulator — recreated by `func start` / VS Code)
 __azurite_db_*
+__blobstorage__/
+__queuestorage__/
 AzuriteConfig
 AzuriteWorkspace/
 
