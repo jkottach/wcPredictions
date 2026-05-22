@@ -4,10 +4,9 @@
 |--------|----------------|--------|
 | Frontend | **Azure Static Web Apps** | `frontend/dist` |
 | API | **Azure Functions** (linked) | `api/` |
-| Sign-in | **SWA Custom auth → Google** | `frontend/public/staticwebapp.config.json` |
+| Sign-in | **Google button in app** → `POST /api/auth/google` | `frontend/.env.production` |
 
 SWA URL example: `https://blue-plant-0ba785610.7.azurestaticapps.net`  
-Login: `/.auth/login/google`  
 API calls: `https://blue-plant-0ba785610.7.azurestaticapps.net/api/...`
 
 ---
@@ -22,8 +21,7 @@ API calls: `https://blue-plant-0ba785610.7.azurestaticapps.net/api/...`
 | `MONGODB_DB` | `fifaPrediction` |
 | `JWT_SECRET` | Still required (local dev / legacy JWT fallback) |
 | `JWT_EXPIRE` | `7d` |
-| `GOOGLE_CLIENT_ID` | Same Web client ID as Google Cloud (used by SWA auth + API) |
-| `GOOGLE_CLIENT_SECRET_APP_SETTING_NAME` | **Required** — Google client secret (name matches `staticwebapp.config.json`; set in Portal when you added Google auth) |
+| `GOOGLE_CLIENT_ID` | Same Web client as `VITE_GOOGLE_CLIENT_ID` in `frontend/.env.production` |
 | `NODE_ENV` | `production` |
 | `FRONTEND_URL` | `https://blue-plant-0ba785610.7.azurestaticapps.net` |
 | `RATE_LIMIT_WINDOW_MS` | `900000` |
@@ -39,70 +37,28 @@ Template: `api/.env.example`
 
 ---
 
-## 2. Azure authentication (Google)
+## 2. Google sign-in (production)
 
-The app uses **Custom authentication** with Google (not the in-browser JWT button on production).
+Production uses the **Google button on `/login`** → `POST /api/auth/google` (JWT), same as local.
 
-Config is in `frontend/public/staticwebapp.config.json`:
+- `frontend/.env.production`: `VITE_USE_AZURE_AUTH=false` + `VITE_GOOGLE_CLIENT_ID`
+- `staticwebapp.config.json` has **no** `auth` block (avoids Azure sending you to Microsoft/Hotmail)
 
-```json
-"auth": {
-  "rolesSource": "/api/getRoles",
-  "identityProviders": {
-    "google": {
-      "registration": {
-        "clientIdSettingName": "GOOGLE_CLIENT_ID",
-          "clientSecretSettingName": "GOOGLE_CLIENT_SECRET_APP_SETTING_NAME"
-      }
-    }
-  }
-}
-```
-
-In Portal you can also set **Authentication → Custom → Google** with the same client ID and secret.
-
-Production build sets `VITE_USE_AZURE_AUTH=true` in `frontend/.env.production`.
-
-**User flow**
-
-1. `/login` → **Continue with Google** → `/.auth/login/google`
-2. Google redirects to Azure → `/.auth/login/google/callback`
-3. App loads profile via `GET /api/auth/profile` (Azure sends `x-ms-client-principal` to the API)
-4. Logout → `/.auth/logout`
-
-**Role assignment** (`rolesSource: /api/getRoles`): after Google sign-in, Azure POSTs the user’s claims to `/api/getRoles`. The API syncs the user in MongoDB and returns:
-
-```json
-{ "roles": ["authenticated"] }
-```
-
-Use `"allowedRoles": ["authenticated"]` in `staticwebapp.config.json` for routes that require sign-in.
+In **Azure Portal → Authentication**, disable **Microsoft / Azure AD** if you only want Google.  
+Optional: turn off **Custom authentication** entirely so Portal does not override the app.
 
 ---
 
+## 3. Google Cloud Console
 
-## 3. Google Cloud Console (required redirect URI)
-
-For **Azure SWA Google**, add **Authorized redirect URIs**:
-
-```
-https://blue-plant-0ba785610.7.azurestaticapps.net/.auth/login/google/callback
-```
-
-Optional logout callback:
-
-```
-https://blue-plant-0ba785610.7.azurestaticapps.net/.auth/logout/google/callback
-```
-
-**Authorized JavaScript origins** (still useful):
+**Authorized JavaScript origins:**
 
 ```
 https://blue-plant-0ba785610.7.azurestaticapps.net
 http://localhost:3000
 ```
 
-Use your **FIFA** OAuth client (app name e.g. “Kanhans fifa app”).
+Use your **FIFA** OAuth client (e.g. “Kanhans fifa app”). No `/.auth/login/google/callback` needed for this flow.
 
 ---
 
@@ -111,9 +67,6 @@ Use your **FIFA** OAuth client (app name e.g. “Kanhans fifa app”).
 | Mode | How |
 |------|-----|
 | **JWT + Google button** (default) | `frontend/.env` with `VITE_GOOGLE_CLIENT_ID`, no `VITE_USE_AZURE_AUTH` |
-| **SWA auth locally** | Install [SWA CLI](https://azure.github.io/static-web-apps-cli/) and run `swa start ./frontend/dist --api-location api` after building |
-
-`/.auth/login/google` does **not** work with Vite alone (`npm run dev`).
 
 ---
 
@@ -139,8 +92,7 @@ Secret: `AZURE_STATIC_WEB_APPS_API_TOKEN_BLUE_PLANT_0BA785610`
 
 | Symptom | Fix |
 |---------|-----|
-| Google login 404 on `/.auth/login/google` | Enable **Custom** auth; redeploy with `staticwebapp.config.json` |
-| Google “redirect_uri_mismatch” | Add `/.auth/login/google/callback` redirect URI (section 3) |
-| Logged in at Google but API 401 | `GOOGLE_CLIENT_ID` / secret in Azure env; redeploy API |
-| Instant logout after login | `JWT_SECRET` set; check Network for 401 on `/api/leaderboard/stats` |
+| **Hotmail / Microsoft sign-in** instead of Google | Azure SWA custom Google failed → fell back to Microsoft. **Fix:** In Portal → Authentication, **turn off** Microsoft/Azure AD; use app Google login (this repo). On **Free** plan, custom Google often redirects to Microsoft — upgrade to **Standard** if you need `/.auth/login/google`. |
+| Instant logout after login | Set `JWT_SECRET` in Azure env (same as local) |
+| Google `origin_mismatch` | Add SWA URL under JavaScript origins in Google Console |
 | Popup shows host URL not app name | OAuth consent screen app name + `azurestaticapps.net` authorized domain |
