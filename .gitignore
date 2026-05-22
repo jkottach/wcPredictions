@@ -6,56 +6,34 @@ Thumbs.db
 node_modules/
 **/node_modules/
 
-# Python
-.venv/
-venv/
-**/.venv/
-__pycache__/
-*.py[cod]
-*$py.class
-.Python
-
 # Build outputs
 api/dist/
 frontend/dist/
 dist/
 build/
 
-# Environment & secrets (keep *.example templates)
+# Environment & secrets (templates are tracked)
 .env
 .env.*
 !.env.example
 !**/.env.example
-!frontend/.env.production.example
-!frontend/.env.qa
-azure_functions/local.settings.json
 
-# Azure Functions
-.python_packages/
-
-# Azurite (local Azure Storage emulator — recreated by `func start` / VS Code)
+# Azurite (local Azure Storage emulator)
 __azurite_db_*
 __blobstorage__/
 __queuestorage__/
 AzuriteConfig
 AzuriteWorkspace/
+local.settings.json
 
 # Logs
 *.log
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-lerna-debug.log*
 
-# Test / coverage
-coverage/
-.nyc_output/
-
-# IDE / editor (optional local settings)
+# IDE
 .idea/
 .vscode/
 *.swp
-*.swo
 *~
 
 # Vite / tooling cache

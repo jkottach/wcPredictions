@@ -36,15 +36,14 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20
-      - name: Build frontend (QA)
+      - name: Build frontend
         env:
           VITE_API_URL: /api
-          # Add repo secret: Settings → Secrets → Actions → VITE_GOOGLE_CLIENT_ID
           VITE_GOOGLE_CLIENT_ID: ${{ secrets.VITE_GOOGLE_CLIENT_ID }}
         run: |
           cd ./frontend
           npm ci
-          npm run build:qa
+          npm run build
       - name: Build API (compile check)
         run: |
           cd ./api

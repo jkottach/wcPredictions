@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import '../src/config/loadEnv';
 import { ObjectId } from 'mongodb';
 import {
   connectMongo,

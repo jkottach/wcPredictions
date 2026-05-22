@@ -11,7 +11,6 @@ import authRoutes from './routes/authRoutes';
 import matchRoutes from './routes/matchRoutes';
 import predictionRoutes from './routes/predictionRoutes';
 import leaderboardRoutes from './routes/leaderboardRoutes';
-import communityRoutes from './routes/communityRoutes';
 import adminRoutes from './routes/adminRoutes';
 
 /** Connect MongoDB once per process (Express dev server or Azure Functions worker). */
@@ -75,7 +74,6 @@ export function buildApp(): Express {
   app.use('/api/matches', matchRoutes);
   app.use('/api/predictions', predictionRoutes);
   app.use('/api/leaderboard', leaderboardRoutes);
-  app.use('/api/communities', communityRoutes);
   app.use('/api/admin', adminRoutes);
 
   app.use((req, res) => {

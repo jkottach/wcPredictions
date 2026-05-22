@@ -27,6 +27,7 @@ npm run dev            # http://localhost:5001
 
 # Frontend (proxies /api → :5001)
 cd frontend
+cp .env.example .env
 npm install
 npm run dev            # http://localhost:3000
 ```
@@ -44,15 +45,15 @@ MongoDB collections: `users`, `teams`, `matches`.
 
 See **[AZURE_DEPLOYMENT.md](./AZURE_DEPLOYMENT.md)** for Static Web App settings, CI/CD, and troubleshooting.
 
-Push to `dev` deploys via `.github/workflows/azure-static-web-apps-polite-bay-08b90600f.yml`.
+Push to `dev` deploys via `.github/workflows/azure-static-web-apps-blue-plant-0ba785610.yml`.
 
 ## Environment
 
 | Where | What |
 |-------|------|
-| Local API | `api/.env` — copy from `api/.env.example` |
-| Local frontend | `frontend/.env` |
+| Local API | `api/.env` — always loaded from `api/` (not shell cwd) |
+| Local frontend | `frontend/.env` (copy from `frontend/.env.example`) |
 | **Azure API** | Portal → Static Web App → **Environment variables** — see **[AZURE_DEPLOYMENT.md](./AZURE_DEPLOYMENT.md)** |
-| **Azure frontend build** | GitHub secret `VITE_GOOGLE_CLIENT_ID` or `frontend/.env.qa` |
+| **Azure frontend build** | GitHub secret `VITE_GOOGLE_CLIENT_ID` (set in workflow) |
 
 Missing Azure API env vars cause `/api/leaderboard/top` → **500**.

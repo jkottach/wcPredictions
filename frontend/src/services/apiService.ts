@@ -41,10 +41,6 @@ class ApiService {
     return this.client.post('/auth/register', data);
   }
 
-  login(email: string, password: string) {
-    return this.client.post('/auth/login', { email, password });
-  }
-
   googleLogin(credential: string) {
     return this.client.post('/auth/google', { credential });
   }
@@ -97,10 +93,6 @@ class ApiService {
 
   getTopLeaderboard(limit?: number) {
     return this.client.get('/leaderboard/top', { params: { limit } });
-  }
-
-  getDailyLeaderboard(limit?: number, date?: string) {
-    return this.client.get('/leaderboard/daily', { params: { limit, date } });
   }
 
   getUserStats() {

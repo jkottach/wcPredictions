@@ -39,18 +39,6 @@ export const getTopLeaderboard = async (req: AuthRequest, res: Response) => {
   }
 };
 
-export const getDailyLeaderboard = async (req: AuthRequest, res: Response) => {
-  return getTopLeaderboard(req, res);
-};
-
-export const getCommunityLeaderboard = async (_req: AuthRequest, res: Response) => {
-  res.json({ leaderboard: [], source: 'mongodb' });
-};
-
-export const getDailyCommunityLeaderboard = async (_req: AuthRequest, res: Response) => {
-  res.json({ leaderboard: [], source: 'mongodb' });
-};
-
 export const getUserStats = async (req: AuthRequest, res: Response) => {
   try {
     const userId = req.user?.userId;
@@ -72,8 +60,4 @@ export const getUserStats = async (req: AuthRequest, res: Response) => {
     const errorDetails = logger.error('getUserStats', error, { userId: req.user?.userId });
     res.status(errorDetails.statusCode || 500).json({ error: 'Failed to fetch user stats' });
   }
-};
-
-export const getCommunityUserRanking = async (_req: AuthRequest, res: Response) => {
-  res.json({ ranking: [] });
 };

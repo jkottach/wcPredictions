@@ -1,7 +1,13 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+/** Always load `.env*` from `frontend/`, not the shell cwd. */
+const frontendRoot = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
+  envDir: frontendRoot,
   plugins: [react()],
   server: {
     port: 3000,
@@ -10,12 +16,6 @@ export default defineConfig({
         target: 'http://localhost:5001',
         changeOrigin: true,
       },
-      // Azure Functions (avoids CORS preflight to :7071)
-      '/azure-functions': {
-        target: 'http://localhost:7071',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/azure-functions/, '/api'),
-      },
-    }
-  }
-})
+    },
+  },
+});

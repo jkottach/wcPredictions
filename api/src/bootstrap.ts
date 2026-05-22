@@ -1,3 +1,4 @@
+import './config/loadEnv';
 import type { Express } from 'express';
 import { initDatabase, buildApp } from './app';
 
