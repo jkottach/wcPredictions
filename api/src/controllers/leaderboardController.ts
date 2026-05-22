@@ -9,14 +9,19 @@ import {
 import { formatUserId } from '../db/helpers';
 
 function buildLeaderboardEntries(users: Awaited<ReturnType<typeof listUsersByTotalPoints>>) {
-  return users.map((user, index) => ({
-    rank: index + 1,
-    totalPoints: user.totalPoints,
-    name: `${user.firstName} ${user.lastName}`.trim(),
-    state: user.state || '',
-    userId: formatUserId(user),
-    email: user.email,
-  }));
+  return users
+    .filter((user) => user._id)
+    .map((user, index) => ({
+      rank: index + 1,
+      totalPoints: user.totalPoints ?? 0,
+      name:
+        `${user.firstName ?? ''} ${user.lastName ?? ''}`.trim() ||
+        user.email ||
+        'User',
+      state: user.state || '',
+      userId: formatUserId(user),
+      email: user.email ?? '',
+    }));
 }
 
 export const getTopLeaderboard = async (req: AuthRequest, res: Response) => {
@@ -27,7 +32,10 @@ export const getTopLeaderboard = async (req: AuthRequest, res: Response) => {
     res.json({ leaderboard: buildLeaderboardEntries(users), source: 'mongodb' });
   } catch (error) {
     const errorDetails = logger.error('getTopLeaderboard', error, { path: req.path });
-    res.status(errorDetails.statusCode || 500).json({ error: 'Failed to fetch leaderboard' });
+    res.status(errorDetails.statusCode || 500).json({
+      error: 'Failed to fetch leaderboard',
+      ...(process.env.NODE_ENV !== 'production' ? { details: errorDetails.message } : {}),
+    });
   }
 };
 

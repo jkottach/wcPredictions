@@ -128,9 +128,14 @@ export async function findUsersWithPredictionForMatch(matchId: string): Promise<
   return getUsersCollection().find({ 'predictions.matchId': matchId }).toArray();
 }
 
+/** Active users; legacy docs without `isActive` are included. */
+const activeUserFilter: Filter<UserDocument> = {
+  $or: [{ isActive: true }, { isActive: { $exists: false } }],
+};
+
 export async function listUsersByTotalPoints(limit: number): Promise<UserDocument[]> {
   return getUsersCollection()
-    .find({ isActive: true })
+    .find(activeUserFilter)
     .sort({ totalPoints: -1, updatedAt: 1 })
     .limit(limit)
     .toArray();
@@ -138,7 +143,7 @@ export async function listUsersByTotalPoints(limit: number): Promise<UserDocumen
 
 export async function countUsersAhead(totalPoints: number): Promise<number> {
   return getUsersCollection().countDocuments({
-    isActive: true,
+    ...activeUserFilter,
     totalPoints: { $gt: totalPoints },
   });
 }

@@ -25,8 +25,9 @@ Workflow: `.github/workflows/azure-static-web-apps-polite-bay-08b90600f.yml`
 On push to `dev`:
 
 1. Builds `frontend/dist` (`npm run build:qa`)
-2. Builds `api/` (`npm run build`)
-3. Deploys both to SWA (`api_location: api`)
+2. Verifies `api/` compiles (`npm run build`)
+3. Deletes `node_modules` (avoids SWA **15,000 file limit**)
+4. Deploys `frontend/dist` + `api/` source; Azure Oryx builds the API (`skip_api_build: false`)
 
 ## Azure Portal: application settings
 
@@ -78,6 +79,7 @@ Collections: `users`, `teams`, `matches`.
 | Issue | Fix |
 |-------|-----|
 | API 404 on SWA | Confirm workflow `api_location: api` and API build step passed |
+| API **500** on `/api/*` | Open `https://<your-swa>/api/health` — if `mongo.ok` is false, fix `MONGODB_URI`, `MONGODB_DB`, Atlas **Network Access** (allow `0.0.0.0/0` for test), redeploy |
 | MongoDB errors | Check `MONGODB_URI` / `MONGODB_DB` in SWA settings; Atlas IP allowlist |
 | Google login | `FRONTEND_URL` + Google Console authorized origins = SWA URL |
 | Local API fails | `api/.env` present; `PORT=5001` matches Vite proxy in `frontend/vite.config.ts` |

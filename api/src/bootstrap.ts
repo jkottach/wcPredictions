@@ -7,8 +7,13 @@ let ready: Promise<Express> | null = null;
 export function getExpressApp(): Promise<Express> {
   if (!ready) {
     ready = (async () => {
-      await initDatabase();
-      return buildApp();
+      try {
+        await initDatabase();
+        return buildApp();
+      } catch (err) {
+        ready = null;
+        throw err;
+      }
     })();
   }
   return ready;

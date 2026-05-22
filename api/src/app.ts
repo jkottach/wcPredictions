@@ -5,7 +5,7 @@ import rateLimit from 'express-rate-limit';
 import { config } from './config';
 import { errorHandler } from './middleware/errorHandler';
 import { logger } from './lib/logger';
-import { connectMongo } from './lib/mongodb';
+import { connectMongo, pingMongo } from './lib/mongodb';
 
 import authRoutes from './routes/authRoutes';
 import matchRoutes from './routes/matchRoutes';
@@ -22,6 +22,9 @@ export async function initDatabase(): Promise<void> {
 /** Build the Express app without listening (used by local server and Azure Functions). */
 export function buildApp(): Express {
   const app = express();
+
+  // Required behind Azure Static Web Apps / Functions (X-Forwarded-For)
+  app.set('trust proxy', 1);
 
   app.use(helmet());
   app.use(cors());
@@ -44,6 +47,21 @@ export function buildApp(): Express {
     next();
   });
 
+  app.get('/health', (_req, res) => {
+    res.json({ status: 'ok', timestamp: new Date().toISOString() });
+  });
+
+  app.get('/api/health', async (_req, res) => {
+    const mongo = await pingMongo();
+    const status = mongo.ok ? 'ok' : 'degraded';
+    res.status(mongo.ok ? 200 : 503).json({
+      status,
+      timestamp: new Date().toISOString(),
+      runtime: 'express',
+      mongo,
+    });
+  });
+
   const limiter = rateLimit({
     windowMs: config.rateLimit.windowMs,
     max: config.rateLimit.maxRequests,
@@ -52,14 +70,6 @@ export function buildApp(): Express {
     legacyHeaders: false,
   });
   app.use('/api/', limiter);
-
-  app.get('/health', (_req, res) => {
-    res.json({ status: 'ok', timestamp: new Date().toISOString() });
-  });
-
-  app.get('/api/health', (_req, res) => {
-    res.json({ status: 'ok', timestamp: new Date().toISOString(), runtime: 'express' });
-  });
 
   app.use('/api/auth', authRoutes);
   app.use('/api/matches', matchRoutes);

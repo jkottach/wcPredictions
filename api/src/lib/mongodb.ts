@@ -14,7 +14,10 @@ export async function connectMongo(): Promise<Db> {
   const uri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017';
   const dbName = process.env.MONGODB_DB || 'velicham_fifa26';
 
-  client = new MongoClient(uri);
+  client = new MongoClient(uri, {
+    serverSelectionTimeoutMS: 15_000,
+    connectTimeoutMS: 15_000,
+  });
   await client.connect();
   database = client.db(dbName);
 
@@ -23,20 +26,48 @@ export async function connectMongo(): Promise<Db> {
   return database;
 }
 
+async function safeIndex(
+  label: string,
+  fn: () => Promise<string | void>
+): Promise<void> {
+  try {
+    await fn();
+  } catch (err) {
+    console.warn(`MongoDB index warning (${label}):`, err instanceof Error ? err.message : err);
+  }
+}
+
 async function ensureIndexes(db: Db): Promise<void> {
   const users = db.collection<UserDocument>(USERS_COLLECTION);
   const teams = db.collection<TeamDocument>(TEAMS_COLLECTION);
   const matches = db.collection<MatchDocument>(MATCHES_COLLECTION);
 
-  await users.createIndex({ email: 1 }, { unique: true });
-  await users.createIndex({ totalPoints: -1 });
-  await users.createIndex({ 'predictions.matchId': 1 });
+  await safeIndex('users.email', () => users.createIndex({ email: 1 }, { unique: true }));
+  await safeIndex('users.totalPoints', () => users.createIndex({ totalPoints: -1 }));
+  await safeIndex('users.predictions.matchId', () =>
+    users.createIndex({ 'predictions.matchId': 1 })
+  );
 
-  await teams.createIndex({ teamId: 1 }, { unique: true });
+  await safeIndex('teams.teamId', () => teams.createIndex({ teamId: 1 }, { unique: true }));
 
-  await matches.createIndex({ matchTime: 1 });
-  await matches.createIndex({ status: 1 });
-  await matches.createIndex({ sequence: 1 });
+  await safeIndex('matches.matchTime', () => matches.createIndex({ matchTime: 1 }));
+  await safeIndex('matches.status', () => matches.createIndex({ status: 1 }));
+  await safeIndex('matches.sequence', () => matches.createIndex({ sequence: 1 }));
+}
+
+/** Ping MongoDB (for health checks). */
+export async function pingMongo(): Promise<{ ok: boolean; db: string; error?: string }> {
+  try {
+    const db = await connectMongo();
+    await db.command({ ping: 1 });
+    return { ok: true, db: db.databaseName };
+  } catch (err) {
+    return {
+      ok: false,
+      db: process.env.MONGODB_DB || 'velicham_fifa26',
+      error: err instanceof Error ? err.message : String(err),
+    };
+  }
 }
 
 export function getDb(): Db {

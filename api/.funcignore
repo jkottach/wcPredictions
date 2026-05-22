@@ -1,7 +1,4 @@
-*.ts
-!dist/**
-src/**
-tsconfig.json
-local.settings.json
-local.settings.json.example
 .gitignore
+local.settings.json
+*.tsbuildinfo
+node_modules
