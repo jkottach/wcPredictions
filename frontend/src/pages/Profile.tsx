@@ -24,8 +24,6 @@ const Profile: React.FC = () => {
   const [formData, setFormData] = useState({
     phoneNumber: '',
     city: '',
-    state: '',
-    country: '',
   });
 
   useEffect(() => {
@@ -40,9 +38,7 @@ const Profile: React.FC = () => {
       setProfile(p);
       setFormData({
         phoneNumber: p.phoneNumber || '',
-        city: p.city || '',
-        state: p.state || '',
-        country: p.country || '',
+        city: p.city === 'Not Set' ? '' : p.city || '',
       });
     } catch (err: unknown) {
       const message =
@@ -55,7 +51,7 @@ const Profile: React.FC = () => {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -134,40 +130,15 @@ const Profile: React.FC = () => {
                     required
                   />
                 </div>
-                <div className="space-y-4">
-                  <div>
-                    <label className={label}>City</label>
-                    <input
-                      type="text"
-                      name="city"
-                      value={formData.city}
-                      onChange={handleChange}
-                      className={input}
-                    />
-                  </div>
-                  <div>
-                    <label className={label}>State</label>
-                    <input
-                      type="text"
-                      name="state"
-                      value={formData.state}
-                      onChange={handleChange}
-                      className={input}
-                    />
-                  </div>
-                </div>
                 <div>
-                  <label className={label}>Country</label>
-                  <select
-                    name="country"
-                    value={formData.country}
+                  <label className={label}>City</label>
+                  <input
+                    type="text"
+                    name="city"
+                    value={formData.city}
                     onChange={handleChange}
                     className={input}
-                  >
-                    <option value="">Select</option>
-                    <option value="USA">USA</option>
-                    <option value="Canada">Canada</option>
-                  </select>
+                  />
                 </div>
                 <div className="flex flex-col gap-3 pt-2">
                   <button type="button" onClick={() => setIsEditing(false)} className={btnOutline}>
@@ -186,15 +157,9 @@ const Profile: React.FC = () => {
                 </div>
                 <div>
                   <dt className="text-[10px] font-bold uppercase tracking-wider text-slate-400">City</dt>
-                  <dd className="font-medium text-slate-800">{profile.city || '—'}</dd>
-                </div>
-                <div>
-                  <dt className="text-[10px] font-bold uppercase tracking-wider text-slate-400">State</dt>
-                  <dd className="font-medium text-slate-800">{profile.state || '—'}</dd>
-                </div>
-                <div>
-                  <dt className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Country</dt>
-                  <dd className="font-medium text-slate-800">{profile.country || '—'}</dd>
+                  <dd className="font-medium text-slate-800">
+                    {profile.city && profile.city !== 'Not Set' ? profile.city : '—'}
+                  </dd>
                 </div>
               </dl>
             )}

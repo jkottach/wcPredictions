@@ -15,14 +15,12 @@ const Register: React.FC = () => {
     lastName: '',
     password: '',
     city: '',
-    state: '',
-    country: '',
     phoneNumber: '',
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -109,24 +107,9 @@ const Register: React.FC = () => {
           />
         </div>
 
-        <div className="space-y-4">
-          <div>
-            <label className={label}>City</label>
-            <input type="text" name="city" value={formData.city} onChange={handleChange} className={input} />
-          </div>
-          <div>
-            <label className={label}>State</label>
-            <input type="text" name="state" value={formData.state} onChange={handleChange} className={input} />
-          </div>
-        </div>
-
         <div>
-          <label className={label}>Country</label>
-          <select name="country" value={formData.country} onChange={handleChange} className={input}>
-            <option value="">Select Country</option>
-            <option value="USA">USA</option>
-            <option value="Canada">Canada</option>
-          </select>
+          <label className={label}>City</label>
+          <input type="text" name="city" value={formData.city} onChange={handleChange} className={input} />
         </div>
 
         <div>

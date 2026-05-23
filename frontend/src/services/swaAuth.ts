@@ -33,12 +33,7 @@ export function logoutFromAzure(): void {
 
 export function needsProfileSetup(user: {
   city?: string;
-  state?: string;
-  country?: string;
+  phoneNumber?: string;
 }): boolean {
-  return (
-    user.city === 'Not Set' ||
-    user.state === 'Not Set' ||
-    user.country === 'Not Set'
-  );
+  return user.city === 'Not Set' || !user.phoneNumber?.trim();
 }

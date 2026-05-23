@@ -46,3 +46,6 @@ npm-debug.log*
 .cache/
 tmp/
 temp/
+
+# Local-only admin app (not deployed)
+admin-local/

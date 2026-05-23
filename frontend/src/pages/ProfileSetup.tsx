@@ -12,30 +12,25 @@ const ProfileSetup: React.FC = () => {
 
   const [formData, setFormData] = useState({
     city: '',
-    state: '',
-    country: '',
     phoneNumber: '',
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   useEffect(() => {
-    if (user && user.city !== 'Not Set' && user.country !== 'Not Set') {
+    if (user && user.city !== 'Not Set' && user.phoneNumber?.trim()) {
       navigate('/dashboard');
     }
 
     if (user) {
-      setFormData((prev) => ({
-        ...prev,
+      setFormData({
         city: user.city === 'Not Set' ? '' : user.city || '',
-        state: user.state === 'Not Set' ? '' : user.state || '',
-        country: user.country === 'Not Set' ? '' : user.country || '',
         phoneNumber: user.phoneNumber || '',
-      }));
+      });
     }
   }, [user, navigate]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -47,6 +42,12 @@ const ProfileSetup: React.FC = () => {
 
     if (!formData.phoneNumber.trim()) {
       setError('Phone number is required.');
+      setLoading(false);
+      return;
+    }
+
+    if (!formData.city.trim()) {
+      setError('City is required.');
       setLoading(false);
       return;
     }
@@ -97,50 +98,18 @@ const ProfileSetup: React.FC = () => {
           />
         </div>
 
-        <div className="space-y-4">
-          <div>
-            <label className={label}>
-              City <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              name="city"
-              value={formData.city}
-              onChange={handleChange}
-              className={input}
-              required
-            />
-          </div>
-          <div>
-            <label className={label}>
-              State <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              name="state"
-              value={formData.state}
-              onChange={handleChange}
-              className={input}
-              required
-            />
-          </div>
-        </div>
-
         <div>
           <label className={label}>
-            Country <span className="text-red-500">*</span>
+            City <span className="text-red-500">*</span>
           </label>
-          <select
-            name="country"
-            value={formData.country}
+          <input
+            type="text"
+            name="city"
+            value={formData.city}
             onChange={handleChange}
             className={input}
             required
-          >
-            <option value="">Select Country</option>
-            <option value="USA">USA</option>
-            <option value="Canada">Canada</option>
-          </select>
+          />
         </div>
 
         <button type="submit" disabled={loading} className={btnPrimary}>
