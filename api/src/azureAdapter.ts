@@ -8,6 +8,51 @@ type RequestWithPreParsed = IncomingMessage & {
   _bodyParsed?: boolean;
 };
 
+/**
+ * SWA Managed Functions + host.json routePrefix "api" can forward either:
+ *   /api/auth/google  (full public path) or
+ *   /auth/google      (prefix already stripped by the platform)
+ * Express mounts handlers at /api/* — normalize so both shapes match.
+ */
+export function normalizeExpressPath(pathname: string): string {
+  let path = pathname || '/';
+
+  if (path.startsWith('/api/api/')) {
+    path = path.slice(4);
+  } else if (path === '/api/api') {
+    path = '/api';
+  }
+
+  if (path === '/health') {
+    return path;
+  }
+
+  if (path.startsWith('/api/') || path === '/api') {
+    return path;
+  }
+
+  return `/api${path.startsWith('/') ? '' : '/'}${path}`;
+}
+
+function resolvePathname(azureReq: HttpRequest): string {
+  const url = new URL(azureReq.url);
+  let pathname = url.pathname;
+
+  const original = azureReq.headers.get('x-ms-original-url');
+  if (original) {
+    try {
+      const fromOriginal = new URL(original, url.origin).pathname;
+      if (fromOriginal.startsWith('/api') && !pathname.startsWith('/api')) {
+        pathname = fromOriginal;
+      }
+    } catch {
+      /* ignore malformed header */
+    }
+  }
+
+  return normalizeExpressPath(pathname);
+}
+
 /** Bridge Azure Functions v4 HTTP requests to an Express application. */
 export async function runExpress(
   expressApp: Express,
@@ -16,12 +61,13 @@ export async function runExpress(
 ): Promise<HttpResponseInit> {
   const url = new URL(azureReq.url);
   const body = await readRequestBody(azureReq);
+  const expressPath = resolvePathname(azureReq);
 
   return new Promise((resolve, reject) => {
     const socket = new Socket();
     const req = new IncomingMessage(socket) as RequestWithPreParsed;
     req.method = azureReq.method ?? 'GET';
-    req.url = url.pathname + url.search;
+    req.url = expressPath + url.search;
 
     azureReq.headers.forEach((value, key) => {
       req.headers[key.toLowerCase()] = value;
