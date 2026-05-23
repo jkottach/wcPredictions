@@ -2,7 +2,10 @@ import { create } from 'zustand';
 import { AuthState, User } from '../types';
 import { apiService } from '../services/apiService';
 import {
-  clearStaleSwaSessionIfPresent,
+  disableGoogleAutoSelect,
+  markPreventGoogleAutoselect,
+} from '../services/googleAuth';
+import {
   fetchClientPrincipal,
   logoutFromAzure,
   useAzureAuth,
@@ -34,22 +37,21 @@ export const useAuthStore = create<AuthState>((set) => ({
     const user = typeof tokenOrUser === 'string' ? maybeUser! : tokenOrUser;
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(user));
-    sessionStorage.removeItem('auth_redirect_at');
     set({ token, user, isLoggedIn: true, authReady: true });
   },
 
   logout: () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    sessionStorage.removeItem('auth_redirect_at');
     set({ token: null, user: null, isLoggedIn: false, authReady: true });
 
-    if (useAzureAuth) {
-      logoutFromAzure();
+    if (!useAzureAuth) {
+      disableGoogleAutoSelect();
+      markPreventGoogleAutoselect();
       return;
     }
 
-    void clearStaleSwaSessionIfPresent();
+    logoutFromAzure();
   },
 
   setUser: (user: User) => {
@@ -91,6 +93,8 @@ export const useAuthStore = create<AuthState>((set) => ({
     } catch {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
+      disableGoogleAutoSelect();
+      markPreventGoogleAutoselect();
       set({ token: null, user: null, isLoggedIn: false, authReady: true });
     }
   },

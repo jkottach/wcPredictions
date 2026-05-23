@@ -34,7 +34,7 @@ const Dashboard: React.FC = () => {
       if (useAzureAuth) {
         loginWithGoogle('/dashboard');
       } else {
-        navigate('/login', { replace: true });
+        navigate('/login?signed_out=1', { replace: true });
       }
       return;
     }

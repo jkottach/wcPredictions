@@ -28,7 +28,7 @@ const Header: React.FC = () => {
     closeMenu();
     logout();
     if (!useAzureAuth) {
-      window.location.replace('/login');
+      window.location.replace('/login?signed_out=1');
     }
   };
 

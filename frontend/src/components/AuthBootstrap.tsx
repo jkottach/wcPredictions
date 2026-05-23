@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useAuthStore } from '../context/authStore';
-import { clearStaleSwaSessionIfPresent, needsProfileSetup, useAzureAuth } from '../services/swaAuth';
+import { consumePreventGoogleAutoselect, disableGoogleAutoSelect } from '../services/googleAuth';
+import { needsProfileSetup, useAzureAuth } from '../services/swaAuth';
 
 /**
  * On Azure: load session from /.auth/me + /api/auth/profile.
@@ -11,14 +12,11 @@ const AuthBootstrap: React.FC = () => {
   const isLoggedIn = useAuthStore((s) => s.isLoggedIn);
 
   useEffect(() => {
+    if (!useAzureAuth && consumePreventGoogleAutoselect()) {
+      disableGoogleAutoSelect();
+    }
     void initialize();
   }, [initialize]);
-
-  useEffect(() => {
-    if (useAzureAuth) return;
-    if (localStorage.getItem('token')) return;
-    void clearStaleSwaSessionIfPresent();
-  }, []);
 
   useEffect(() => {
     if (!useAzureAuth || !isLoggedIn) return;

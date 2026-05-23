@@ -20,9 +20,18 @@ function getBearerToken(req: Request): string | undefined {
   return raw;
 }
 
+/** SWA sometimes drops Authorization; frontend also sends X-Access-Token. */
+function getAccessToken(req: Request): string | undefined {
+  const bearer = getBearerToken(req);
+  if (bearer) return bearer;
+  const alt = req.headers['x-access-token'];
+  if (typeof alt === 'string' && alt.trim()) return alt.trim();
+  return undefined;
+}
+
 export const authMiddleware = async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
-    const token = getBearerToken(req);
+    const token = getAccessToken(req);
     if (token) {
       const decoded = jwt.verify(token, getJwtSecret()) as {
         userId: string;

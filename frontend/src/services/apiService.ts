@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, InternalAxiosRequestConfig } from 'axios';
 import { useAuthStore } from '../context/authStore';
-import { loginWithGoogle, useAzureAuth } from './swaAuth';
+import { useAzureAuth } from './swaAuth';
 
 /** SWA production uses same-origin `/api`; local dev uses Vite proxy. */
 const API_BASE_URL =
@@ -8,28 +8,9 @@ const API_BASE_URL =
   (import.meta.env.DEV ? '/api' : '/api');
 
 type AuthRequestConfig = InternalAxiosRequestConfig & {
-  /** If true, a 401 will not clear storage or redirect to login. */
+  /** If true, a 401 will not clear storage or sign the user out. */
   skipAuthRedirect?: boolean;
 };
-
-const PUBLIC_PATHS = new Set(['/', '/login', '/register', '/profile-setup']);
-
-function isPublicPath(): boolean {
-  return PUBLIC_PATHS.has(window.location.pathname);
-}
-
-function shouldRedirectAfter401(hadToken: boolean): boolean {
-  if (!hadToken || useAzureAuth) return false;
-  if (!useAuthStore.getState().authReady) return false;
-  if (isPublicPath()) return false;
-
-  const last = sessionStorage.getItem('auth_redirect_at');
-  const now = Date.now();
-  if (last && now - Number(last) < 5000) return false;
-
-  sessionStorage.setItem('auth_redirect_at', String(now));
-  return true;
-}
 
 class ApiService {
   private client: AxiosInstance;
@@ -48,6 +29,8 @@ class ApiService {
         const token = localStorage.getItem('token');
         if (token) {
           config.headers.Authorization = `Bearer ${token}`;
+          // SWA can drop Authorization; duplicate on a custom header.
+          config.headers['X-Access-Token'] = token;
         }
       }
       return config;
@@ -57,19 +40,13 @@ class ApiService {
       (response) => response,
       (error) => {
         const config = error.config as AuthRequestConfig | undefined;
-        const hadToken = Boolean(config?.headers?.Authorization);
+        const hadToken = Boolean(
+          config?.headers?.Authorization || config?.headers?.['X-Access-Token']
+        );
         const skipRedirect = config?.skipAuthRedirect === true;
         const url = String(config?.url ?? '');
 
         if (error.response?.status === 401 && !skipRedirect && !url.includes('/auth/google')) {
-          if (useAzureAuth) {
-            if (!isPublicPath()) {
-              const returnPath = window.location.pathname + window.location.search;
-              loginWithGoogle(returnPath || '/dashboard');
-            }
-            return Promise.reject(error);
-          }
-
           if (hadToken) {
             localStorage.removeItem('token');
             localStorage.removeItem('user');
@@ -79,10 +56,6 @@ class ApiService {
               isLoggedIn: false,
               authReady: true,
             });
-
-            if (shouldRedirectAfter401(hadToken)) {
-              window.location.replace('/login');
-            }
           }
         }
         return Promise.reject(error);

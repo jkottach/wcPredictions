@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { apiService } from '../services/apiService';
 import { useAuth } from '../hooks/useAuth';
 import { GoogleLogin } from '@react-oauth/google';
+import {
+  consumePreventGoogleAutoselect,
+  disableGoogleAutoSelect,
+} from '../services/googleAuth';
 import {
   fetchClientPrincipal,
   loginWithGoogle,
@@ -12,6 +16,7 @@ import {
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { login, authReady, isLoggedIn, user } = useAuth();
   const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID ?? '';
 
@@ -19,10 +24,16 @@ const Login: React.FC = () => {
   const [checkingSession, setCheckingSession] = useState(useAzureAuth);
 
   useEffect(() => {
+    if (searchParams.get('signed_out') === '1' || consumePreventGoogleAutoselect()) {
+      disableGoogleAutoSelect();
+    }
+  }, [searchParams]);
+
+  useEffect(() => {
     if (!authReady) return;
 
     if (isLoggedIn && user) {
-      navigate(needsProfileSetup(user) ? '/profile-setup' : '/dashboard');
+      navigate(needsProfileSetup(user) ? '/profile-setup' : '/dashboard', { replace: true });
       return;
     }
 
@@ -41,7 +52,8 @@ const Login: React.FC = () => {
         const response = await apiService.getProfile();
         login(response.data);
         navigate(
-          needsProfileSetup(response.data) ? '/profile-setup' : '/dashboard'
+          needsProfileSetup(response.data) ? '/profile-setup' : '/dashboard',
+          { replace: true }
         );
       } catch {
         setCheckingSession(false);
@@ -55,20 +67,33 @@ const Login: React.FC = () => {
 
     try {
       const response = await apiService.googleLogin(credentialResponse.credential);
-      const profileUser = response.data.user;
-      login(response.data.token, profileUser);
+      const token = response.data?.token;
+      const profileUser = response.data?.user;
 
-      if (needsProfileSetup(profileUser)) {
-        navigate('/profile-setup');
-      } else {
-        navigate('/dashboard');
+      if (!token || !profileUser) {
+        setError('Sign-in succeeded but the server returned an invalid response.');
+        return;
       }
+
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(profileUser));
+
+      const profileCheck = await apiService.getProfile();
+      login(token, profileCheck.data);
+
+      navigate(needsProfileSetup(profileCheck.data) ? '/profile-setup' : '/dashboard', {
+        replace: true,
+      });
     } catch (err: unknown) {
-      const message =
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      const data =
         err && typeof err === 'object' && 'response' in err
-          ? (err as { response?: { data?: { error?: string } } }).response?.data?.error
+          ? (err as { response?: { data?: { error?: string; hint?: string } } }).response?.data
           : undefined;
-      setError(message || 'Google Login failed');
+      setError(
+        [data?.error, data?.hint].filter(Boolean).join(' — ') || 'Google sign-in failed. Please try again.'
+      );
     }
   };
 
@@ -92,7 +117,7 @@ const Login: React.FC = () => {
         </h2>
 
         {error && (
-          <div className="mb-4 p-3 bg-red-100 text-red-700 rounded">{error}</div>
+          <div className="mb-4 p-3 bg-red-100 text-red-700 rounded text-sm">{error}</div>
         )}
 
         <div className="space-y-4 flex flex-col items-center mt-2">
@@ -111,12 +136,13 @@ const Login: React.FC = () => {
             <div className="w-full flex justify-center" aria-label="Google login button">
               <GoogleLogin
                 onSuccess={handleGoogleSuccess}
-                onError={() => setError('Google Login was unsuccessful. Please try again.')}
+                onError={() => setError('Google sign-in was unsuccessful. Please try again.')}
                 theme="outline"
                 text="continue_with"
                 size="large"
                 shape="pill"
                 width="320"
+                auto_select={false}
               />
             </div>
           ) : (
