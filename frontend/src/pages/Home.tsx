@@ -2,61 +2,159 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 
+const HERO_BG =
+  'linear-gradient(180deg, #0b1220 0%, #111827 45%, #0f172a 100%)';
+
+const steps = [
+  {
+    number: '01',
+    title: 'Sign in',
+    description: 'Join with Google.',
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.118a7.5 7.5 0 0114.998 0" />
+      </svg>
+    ),
+  },
+  {
+    number: '02',
+    title: 'Predict scores',
+    description: 'Pick scores before the deadline.',
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" />
+      </svg>
+    ),
+  },
+  {
+    number: '03',
+    title: 'Win prizes',
+    description: 'Climb the leaderboard and win prizes.',
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108 1.14 3.957 2.833 4.952M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M18.75 4.236c.982.143 1.954.317 2.916.52a6.003 6.003 0 01-5.395 4.972" />
+      </svg>
+    ),
+  },
+];
+
+const highlights = [
+  { label: 'Live leaderboard', value: 'Real-time' },
+  { label: 'Match pool', value: 'FIFA 2026' },
+  { label: 'Scoring', value: 'Points-based' },
+];
+
 const Home: React.FC = () => {
   const { isLoggedIn } = useAuth();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary via-blue-900 to-secondary">
-      <div className="px-4 py-12">
-        <div className="text-center mb-10">
-          <h1 className="text-3xl font-bold text-white mb-4">
-            🏆 Kanhans Fifa&apos;26 Prediction
+    <div className="min-h-full bg-slate-50">
+      {/* Hero — inline background so it always renders */}
+      <section
+        className="relative overflow-hidden px-5 pt-10 pb-12 text-white"
+        style={{ background: HERO_BG }}
+      >
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.08]"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(255,255,255,.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.15) 1px, transparent 1px)',
+            backgroundSize: '32px 32px',
+          }}
+        />
+
+        <div className="relative z-10">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5">
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+            <span className="text-[11px] font-semibold uppercase tracking-widest text-white">
+              Official prediction league
+            </span>
+          </div>
+
+          <h1 className="mb-4 font-display font-extrabold leading-tight tracking-tight text-white">
+            <span className="block text-sm font-semibold text-emerald-400 mb-2">
+              CyberShelter presents
+            </span>
+            <span className="block text-[1.75rem]">Kanhans Worldcup 26</span>
           </h1>
-          <p className="text-base text-blue-100 mb-8 px-2">
-            Predict match scores, earn points, and climb the leaderboard.
+
+          <p className="mb-8 max-w-sm text-[15px] font-medium leading-relaxed text-slate-300">
+            Predict scores. Earn points. Win prizes.
           </p>
 
-          <div className="flex flex-col gap-3 justify-center px-2">
-            <Link
-              to="/leaderboard"
-              className="px-6 py-3 bg-white text-primary font-bold rounded-lg hover:bg-blue-50 transition text-center min-h-[48px] flex items-center justify-center"
-            >
-              View leaderboard
-            </Link>
+          <div className="flex flex-col gap-3">
             {isLoggedIn ? (
               <Link
                 to="/dashboard"
-                className="px-6 py-3 bg-secondary text-white font-bold rounded-lg hover:bg-blue-600 transition text-center min-h-[48px] flex items-center justify-center"
+                className="flex min-h-[52px] items-center justify-center gap-2 rounded-xl bg-emerald-500 text-[15px] font-semibold text-white shadow-lg shadow-emerald-500/30 hover:bg-emerald-600 active:scale-[0.98] transition-all"
               >
-                Go to dashboard
+                Open dashboard
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
               </Link>
             ) : (
               <Link
                 to="/login"
-                className="px-6 py-3 bg-secondary text-white font-bold rounded-lg hover:bg-blue-600 transition text-center min-h-[48px] flex items-center justify-center"
+                className="flex min-h-[52px] items-center justify-center gap-2 rounded-xl bg-emerald-500 text-[15px] font-semibold text-white shadow-lg shadow-emerald-500/30 hover:bg-emerald-600 active:scale-[0.98] transition-all"
               >
                 Sign in to predict
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
               </Link>
             )}
+            <Link
+              to="/leaderboard"
+              className="flex min-h-[52px] items-center justify-center rounded-xl border-2 border-white/40 bg-white/10 text-[15px] font-semibold text-white hover:bg-white/20 active:scale-[0.98] transition-all"
+            >
+              View leaderboard
+            </Link>
           </div>
         </div>
+      </section>
 
-        <div className="grid grid-cols-1 gap-4">
-          <div className="bg-white rounded-lg shadow-lg p-6">
-            <h3 className="text-lg font-bold text-primary mb-2">⚽ Make predictions</h3>
-            <p className="text-gray-600 text-sm">
-              Submit score predictions before each match deadline and earn points for accuracy.
-            </p>
-          </div>
-
-          <div className="bg-white rounded-lg shadow-lg p-6">
-            <h3 className="text-lg font-bold text-primary mb-2">🏅 Climb the leaderboard</h3>
-            <p className="text-gray-600 text-sm">
-              Track your all-time and per-match rankings against other players.
-            </p>
-          </div>
+      {/* Stats strip */}
+      <section className="relative z-10 -mt-5 mx-4">
+        <div className="grid grid-cols-3 gap-2 rounded-2xl border border-slate-200 bg-white p-3 shadow-md">
+          {highlights.map((item) => (
+            <div key={item.label} className="px-1 py-1 text-center">
+              <p className="font-display text-sm font-bold text-slate-900">{item.value}</p>
+              <p className="mt-0.5 text-[10px] font-medium leading-tight text-slate-500">{item.label}</p>
+            </div>
+          ))}
         </div>
-      </div>
+      </section>
+
+      <section className="px-5 pb-6 pt-8">
+        <div className="space-y-3">
+          {steps.map((step) => (
+            <article
+              key={step.number}
+              className="flex gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"
+            >
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-slate-100 bg-slate-50 text-emerald-600">
+                {step.icon}
+              </div>
+              <div className="min-w-0 pt-0.5">
+                <div className="mb-1 flex items-center gap-2">
+                  <span className="font-display text-[10px] font-bold tracking-wider text-slate-400">
+                    {step.number}
+                  </span>
+                  <h3 className="font-display text-[15px] font-bold text-slate-900">{step.title}</h3>
+                </div>
+                <p className="text-[13px] leading-relaxed text-slate-600">{step.description}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <footer className="border-t border-slate-200 px-5 pb-10 pt-6">
+        <p className="text-center text-[11px] font-medium text-slate-400">
+          CyberShelter presents Kanhans Worldcup 26
+        </p>
+      </footer>
     </div>
   );
 };

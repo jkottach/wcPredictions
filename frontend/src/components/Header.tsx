@@ -37,7 +37,7 @@ const Header: React.FC = () => {
       <nav className="px-4 py-3">
         <div className="flex justify-between items-center gap-2">
           <Link to="/" className="flex items-center gap-2 min-w-0" onClick={closeMenu}>
-            <h1 className="text-base font-bold truncate">🏆 Kanhans Fifa&apos;26</h1>
+            <h1 className="text-base font-bold truncate">🏆 Kanhans Worldcup 26</h1>
           </Link>
 
           <div className="flex items-center gap-2 shrink-0">

@@ -55,7 +55,7 @@ const Register: React.FC = () => {
     <div className="min-h-screen bg-gradient-to-br from-primary to-secondary flex items-center justify-center p-4">
       <div className="bg-white rounded-lg shadow-xl p-6 w-full my-4">
         <h2 className="text-2xl font-bold text-center text-primary mb-4">
-          Join Kanhans Fifa&apos;26
+          Join Kanhans Worldcup 26
         </h2>
 
         {error && (
