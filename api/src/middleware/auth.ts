@@ -4,6 +4,7 @@ import { getJwtSecret } from '../config/jwtSecret';
 import { logger } from '../lib/logger';
 import { findUserById } from '../db/repositories';
 import { resolveUserFromRequest } from './resolveUser';
+import { getTokenFromCookie } from '../utils/authCookie';
 
 export interface AuthRequest extends Request {
   user?: {
@@ -20,12 +21,17 @@ function getBearerToken(req: Request): string | undefined {
   return raw;
 }
 
-/** SWA sometimes drops Authorization; frontend also sends X-Access-Token. */
-function getAccessToken(req: Request): string | undefined {
+/** Cookie first — SWA often drops Authorization on linked Functions. */
+export function getAccessToken(req: Request): string | undefined {
+  const fromCookie = getTokenFromCookie(req);
+  if (fromCookie) return fromCookie;
+
   const bearer = getBearerToken(req);
   if (bearer) return bearer;
+
   const alt = req.headers['x-access-token'];
   if (typeof alt === 'string' && alt.trim()) return alt.trim();
+
   return undefined;
 }
 

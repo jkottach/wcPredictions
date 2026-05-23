@@ -21,7 +21,7 @@ class ApiService {
       headers: {
         'Content-Type': 'application/json',
       },
-      withCredentials: useAzureAuth,
+      withCredentials: true,
     });
 
     this.client.interceptors.request.use((config) => {
@@ -69,6 +69,10 @@ class ApiService {
 
   googleLogin(credential: string) {
     return this.client.post('/auth/google', { credential });
+  }
+
+  logout() {
+    return this.client.post('/auth/logout');
   }
 
   getProfile() {

@@ -73,6 +73,13 @@ export async function runExpress(
       req.headers[key.toLowerCase()] = value;
     });
 
+    const auth = azureReq.headers.get('authorization');
+    if (auth) req.headers.authorization = auth;
+    const xAccess = azureReq.headers.get('x-access-token');
+    if (xAccess) req.headers['x-access-token'] = xAccess;
+    const cookie = azureReq.headers.get('cookie');
+    if (cookie) req.headers.cookie = cookie;
+
     if (body.length > 0) {
       const contentType = String(req.headers['content-type'] ?? '');
       if (contentType.includes('application/json')) {

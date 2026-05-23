@@ -28,7 +28,12 @@ export function buildApp(): Express {
   app.set('trust proxy', 1);
 
   app.use(helmet());
-  app.use(cors());
+  app.use(
+    cors({
+      origin: true,
+      credentials: true,
+    })
+  );
   app.use(applyPreParsedBody);
   app.use(jsonUnlessPreParsed);
   app.use(express.urlencoded({ limit: '10mb', extended: true }));

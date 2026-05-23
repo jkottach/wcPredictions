@@ -9,6 +9,7 @@ const router = Router();
 router.post('/register', validateRequest(schemas.register), authController.register);
 router.post('/login', validateRequest(schemas.login), authController.login);
 router.post('/google', validateRequest(schemas.googleLogin), authController.googleLogin);
+router.post('/logout', authController.logout);
 
 // Protected routes
 router.get('/profile', authMiddleware, authController.getUserProfile);

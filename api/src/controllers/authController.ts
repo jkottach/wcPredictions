@@ -3,6 +3,7 @@ import { OAuth2Client } from 'google-auth-library';
 import { AuthRequest } from '../middleware/auth';
 import { logger } from '../lib/logger';
 import { generateToken } from '../utils/auth';
+import { clearAuthCookie, setAuthCookie } from '../utils/authCookie';
 import { capitalizeProperNoun } from '../utils/stringUtils';
 import {
   createUser,
@@ -41,6 +42,7 @@ export const register = async (req: AuthRequest, res: Response) => {
     });
 
     const token = generateToken(formatUserId(createdUser), email, 'user');
+    setAuthCookie(res, token);
     res.status(201).json({
       message: 'User registered successfully',
       token,
@@ -58,6 +60,11 @@ export const register = async (req: AuthRequest, res: Response) => {
 
 export const login = async (_req: AuthRequest, res: Response) => {
   res.status(400).json({ error: 'Password login is disabled. Please use Google login.' });
+};
+
+export const logout = async (_req: AuthRequest, res: Response) => {
+  clearAuthCookie(res);
+  res.json({ message: 'Logged out' });
 };
 
 export const googleLogin = async (req: AuthRequest, res: Response) => {
@@ -103,6 +110,7 @@ export const googleLogin = async (req: AuthRequest, res: Response) => {
     }
 
     const token = generateToken(formatUserId(user), user.email, user.role);
+    setAuthCookie(res, token);
     res.json({
       message: 'Google login successful',
       token,
