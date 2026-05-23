@@ -253,8 +253,14 @@ export async function resolveTeamInfoForMatch(team1: string, team2: string) {
 }
 
 export async function getEnrichedMatches(matches: MatchDocument[]) {
-  const teamIds = [...new Set(matches.flatMap((m) => [m.team1, m.team2]))];
-  const teams = await findTeamsByIds(teamIds);
+  const teamIds = [
+    ...new Set(
+      matches.flatMap((m) =>
+        [m.team1, m.team2].filter((id): id is string => typeof id === 'string' && id.length > 0)
+      )
+    ),
+  ];
+  const teams = teamIds.length > 0 ? await findTeamsByIds(teamIds) : [];
   const teamById = teamMapFromDocs(teams);
   return matches.map((m) => enrichMatchWithTeams(m, teamById));
 }

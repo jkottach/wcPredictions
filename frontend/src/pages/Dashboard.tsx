@@ -42,24 +42,47 @@ const Dashboard: React.FC = () => {
   }, [authReady, isLoggedIn, navigate]);
 
   const loadDashboardData = async () => {
-    try {
-      setLoading(true);
-      setLoadError('');
-      const [matchesRes, predictionsRes, statsRes] = await Promise.all([
-        apiService.getAllMatches('scheduled', 1, 50),
-        apiService.getUserPredictions(1, 100),
-        apiService.getUserStats(),
-      ]);
+    setLoading(true);
+    setLoadError('');
 
-      setMatches(matchesRes.data?.matches ?? []);
-      setUserPredictions(predictionsRes.data?.predictions ?? []);
-      setMyRank(pickRank(statsRes.data));
-    } catch (error) {
-      console.error('Failed to load dashboard data:', error);
-      setLoadError('Could not load dashboard. Please refresh the page.');
-    } finally {
-      setLoading(false);
+    const [matchesResult, predictionsResult, statsResult] = await Promise.allSettled([
+      apiService.getAllMatches('scheduled', 1, 50),
+      apiService.getUserPredictions(1, 100),
+      apiService.getUserStats(),
+    ]);
+
+    const errors: string[] = [];
+
+    if (matchesResult.status === 'fulfilled') {
+      setMatches(matchesResult.value.data?.matches ?? []);
+    } else {
+      console.error('Failed to load matches:', matchesResult.reason);
+      errors.push('matches');
     }
+
+    if (predictionsResult.status === 'fulfilled') {
+      setUserPredictions(predictionsResult.value.data?.predictions ?? []);
+    } else {
+      console.error('Failed to load predictions:', predictionsResult.reason);
+      errors.push('predictions');
+    }
+
+    if (statsResult.status === 'fulfilled') {
+      setMyRank(pickRank(statsResult.value.data));
+    } else {
+      console.error('Failed to load stats:', statsResult.reason);
+      errors.push('rank');
+    }
+
+    if (errors.length > 0) {
+      setLoadError(
+        errors.includes('matches')
+          ? 'Could not load matches. Pull down to refresh or try again in a moment.'
+          : 'Some dashboard data could not be loaded. Please refresh.'
+      );
+    }
+
+    setLoading(false);
   };
 
   const handlePredictionSubmit = (matchId: string, team1Score: number, team2Score: number) => {

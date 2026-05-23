@@ -30,19 +30,36 @@ export const getAllTeams = async (_req: AuthRequest, res: Response) => {
   }
 };
 
+function parseListQuery(query: AuthRequest['query']) {
+  const rawPage = Array.isArray(query.page) ? query.page[0] : query.page;
+  const rawLimit = Array.isArray(query.limit) ? query.limit[0] : query.limit;
+  const rawStatus = Array.isArray(query.status) ? query.status[0] : query.status;
+
+  const pageNum = Math.max(1, parseInt(String(rawPage ?? '1'), 10) || 1);
+  const limitNum = Math.min(100, Math.max(1, parseInt(String(rawLimit ?? '10'), 10) || 10));
+  const status =
+    typeof rawStatus === 'string' && rawStatus.trim() ? rawStatus.trim() : undefined;
+
+  return { pageNum, limitNum, status };
+}
+
 export const getAllMatches = async (req: AuthRequest, res: Response) => {
   try {
-    const { page = '1', limit = '10', status } = req.query;
-    const pageNum = parseInt(page as string, 10);
-    const limitNum = parseInt(limit as string, 10);
+    const { pageNum, limitNum, status } = parseListQuery(req.query);
 
     const { matches, total } = await listMatches({
-      status: status as string | undefined,
+      status,
       page: pageNum,
       limit: limitNum,
     });
 
-    const enrichedMatches = await getEnrichedMatches(matches);
+    let enrichedMatches;
+    try {
+      enrichedMatches = await getEnrichedMatches(matches);
+    } catch (enrichError) {
+      logger.error('getEnrichedMatches', enrichError, { method: req.method, path: req.path });
+      enrichedMatches = matches.map((m) => formatMatchForApi(m));
+    }
 
     res.json({
       matches: enrichedMatches,
@@ -50,12 +67,17 @@ export const getAllMatches = async (req: AuthRequest, res: Response) => {
         total,
         page: pageNum,
         limit: limitNum,
-        pages: Math.ceil(total / limitNum),
+        pages: limitNum > 0 ? Math.ceil(total / limitNum) : 0,
       },
     });
   } catch (error) {
     const errorDetails = logger.error('getAllMatches', error, { method: req.method, path: req.path });
-    res.status(errorDetails.statusCode || 500).json({ error: 'Failed to fetch matches' });
+    res.status(errorDetails.statusCode || 500).json({
+      error: 'Failed to fetch matches',
+      ...(process.env.NODE_ENV !== 'production'
+        ? { details: errorDetails.message }
+        : {}),
+    });
   }
 };
 

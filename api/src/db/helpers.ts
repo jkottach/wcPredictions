@@ -9,11 +9,34 @@ export function formatMatchId(match: MatchDocument): string {
   return match._id.toString();
 }
 
+function toIso(value: Date | string | undefined | null): string | null {
+  if (value == null) return null;
+  const d = value instanceof Date ? value : new Date(value);
+  const ms = d.getTime();
+  return Number.isNaN(ms) ? null : d.toISOString();
+}
+
+/** Explicit API shape — avoids BSON / spread issues in JSON responses. */
 export function formatMatchForApi(match: MatchDocument) {
   return {
-    ...match,
-    _id: match._id.toString(),
     matchId: match._id.toString(),
+    _id: match._id.toString(),
+    sequence: match.sequence ?? 0,
+    team1: String(match.team1 ?? ''),
+    team2: String(match.team2 ?? ''),
+    team1Info: match.team1Info ?? null,
+    team2Info: match.team2Info ?? null,
+    team1Score: match.team1Score ?? null,
+    team2Score: match.team2Score ?? null,
+    matchTime: toIso(match.matchTime),
+    predictionsEndingTime: toIso(match.predictionsEndingTime),
+    round: match.round ?? '',
+    group: match.group ?? null,
+    comment: match.comment ?? null,
+    matchTag: match.matchTag ?? '',
+    status: match.status ?? 'scheduled',
+    createdAt: toIso(match.createdAt),
+    updatedAt: toIso(match.updatedAt),
   };
 }
 
@@ -50,18 +73,19 @@ export function enrichMatchWithTeams(
   teamById: Map<string, { teamName: string; countryLogo?: string | null }>
 ) {
   const base = formatMatchForApi(match);
+  const t1 = String(match.team1 ?? '');
+  const t2 = String(match.team2 ?? '');
+  const info1 = teamById.get(t1);
+  const info2 = teamById.get(t2);
+
   return {
     ...base,
     team1Info:
       match.team1Info ??
-      (teamById.get(match.team1)
-        ? { teamName: teamById.get(match.team1)!.teamName, countryLogo: teamById.get(match.team1)!.countryLogo }
-        : null),
+      (info1 ? { teamName: info1.teamName, countryLogo: info1.countryLogo ?? null } : null),
     team2Info:
       match.team2Info ??
-      (teamById.get(match.team2)
-        ? { teamName: teamById.get(match.team2)!.teamName, countryLogo: teamById.get(match.team2)!.countryLogo }
-        : null),
+      (info2 ? { teamName: info2.teamName, countryLogo: info2.countryLogo ?? null } : null),
   };
 }
 
