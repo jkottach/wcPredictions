@@ -1,6 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { apiService } from '../services/apiService';
 import { User } from '../types';
+import PageHero from '../components/PageHero';
+import {
+  alertError,
+  alertSuccess,
+  btnOutline,
+  btnPrimary,
+  card,
+  input,
+  label,
+  spinner,
+} from '../theme';
 
 const Profile: React.FC = () => {
   const [profile, setProfile] = useState<User | null>(null);
@@ -76,8 +87,8 @@ const Profile: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-secondary" />
+      <div className="flex flex-col items-center justify-center py-20 bg-slate-50">
+        <div className={spinner} />
       </div>
     );
   }
@@ -85,133 +96,116 @@ const Profile: React.FC = () => {
   if (!profile) return null;
 
   return (
-    <div className="px-4 py-6">
-      {success && (
-        <div className="mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg text-sm">
-          {success}
-        </div>
-      )}
-      {error && (
-        <div className="mb-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg text-sm">
-          {error}
-        </div>
-      )}
+    <div className="min-h-full bg-slate-50">
+      <PageHero
+        title={`${profile.firstName} ${profile.lastName}`}
+        subtitle={profile.email}
+        badge="My profile"
+      />
 
-      <div className="bg-white shadow-xl rounded-2xl overflow-hidden border border-gray-100">
-        <div className="bg-gradient-to-r from-primary to-blue-900 px-6 py-8 text-white">
-          <h1 className="text-2xl font-bold">
-            {profile.firstName} {profile.lastName}
-          </h1>
-          <p className="text-blue-200 mt-1 text-sm">{profile.email}</p>
-        </div>
+      <div className="px-5 py-6">
+        {success && <div className={alertSuccess}>{success}</div>}
+        {error && <div className={alertError}>{error}</div>}
 
-        <div className="p-6 space-y-5">
-          <div className="flex justify-between items-center">
-            <h2 className="text-lg font-bold text-primary">Your details</h2>
-            {!isEditing && (
-              <button
-                onClick={() => setIsEditing(true)}
-                className="text-sm font-bold text-secondary hover:underline min-h-[44px] px-2"
-              >
-                Edit
-              </button>
+        <div className={`${card} overflow-hidden`}>
+          <div className="p-5 space-y-5">
+            <div className="flex justify-between items-center">
+              <h2 className="font-display text-lg font-bold text-slate-900">Your details</h2>
+              {!isEditing && (
+                <button
+                  onClick={() => setIsEditing(true)}
+                  className="text-sm font-semibold text-emerald-600 hover:text-emerald-700 min-h-[44px] px-2"
+                >
+                  Edit
+                </button>
+              )}
+            </div>
+
+            {isEditing ? (
+              <div className="space-y-4">
+                <div>
+                  <label className={label}>Phone</label>
+                  <input
+                    type="tel"
+                    name="phoneNumber"
+                    value={formData.phoneNumber}
+                    onChange={handleChange}
+                    className={input}
+                    required
+                  />
+                </div>
+                <div className="space-y-4">
+                  <div>
+                    <label className={label}>City</label>
+                    <input
+                      type="text"
+                      name="city"
+                      value={formData.city}
+                      onChange={handleChange}
+                      className={input}
+                    />
+                  </div>
+                  <div>
+                    <label className={label}>State</label>
+                    <input
+                      type="text"
+                      name="state"
+                      value={formData.state}
+                      onChange={handleChange}
+                      className={input}
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className={label}>Country</label>
+                  <select
+                    name="country"
+                    value={formData.country}
+                    onChange={handleChange}
+                    className={input}
+                  >
+                    <option value="">Select</option>
+                    <option value="USA">USA</option>
+                    <option value="Canada">Canada</option>
+                  </select>
+                </div>
+                <div className="flex flex-col gap-3 pt-2">
+                  <button type="button" onClick={() => setIsEditing(false)} className={btnOutline}>
+                    Cancel
+                  </button>
+                  <button onClick={handleSaveProfile} disabled={editLoading} className={btnPrimary}>
+                    {editLoading ? 'Saving...' : 'Save'}
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <dl className="space-y-4">
+                <div>
+                  <dt className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Phone</dt>
+                  <dd className="font-medium text-slate-800">{profile.phoneNumber || '—'}</dd>
+                </div>
+                <div>
+                  <dt className="text-[10px] font-bold uppercase tracking-wider text-slate-400">City</dt>
+                  <dd className="font-medium text-slate-800">{profile.city || '—'}</dd>
+                </div>
+                <div>
+                  <dt className="text-[10px] font-bold uppercase tracking-wider text-slate-400">State</dt>
+                  <dd className="font-medium text-slate-800">{profile.state || '—'}</dd>
+                </div>
+                <div>
+                  <dt className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Country</dt>
+                  <dd className="font-medium text-slate-800">{profile.country || '—'}</dd>
+                </div>
+              </dl>
             )}
           </div>
 
-          {isEditing ? (
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
-                <input
-                  type="tel"
-                  name="phoneNumber"
-                  value={formData.phoneNumber}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg text-base"
-                  required
-                />
-              </div>
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">City</label>
-                  <input
-                    type="text"
-                    name="city"
-                    value={formData.city}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg text-base"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">State</label>
-                  <input
-                    type="text"
-                    name="state"
-                    value={formData.state}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg text-base"
-                  />
-                </div>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Country</label>
-                <select
-                  name="country"
-                  value={formData.country}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg text-base"
-                >
-                  <option value="">Select</option>
-                  <option value="USA">USA</option>
-                  <option value="Canada">Canada</option>
-                </select>
-              </div>
-              <div className="flex flex-col gap-3 pt-2">
-                <button
-                  type="button"
-                  onClick={() => setIsEditing(false)}
-                  className="flex-1 py-3 rounded-lg font-bold text-gray-600 hover:bg-gray-100 min-h-[48px]"
-                >
-                  Cancel
-                </button>
-                <button
-                  onClick={handleSaveProfile}
-                  disabled={editLoading}
-                  className="flex-1 py-3 rounded-lg font-bold bg-secondary text-white hover:bg-blue-600 disabled:opacity-50 min-h-[48px]"
-                >
-                  {editLoading ? 'Saving...' : 'Save'}
-                </button>
-              </div>
-            </div>
-          ) : (
-            <dl className="space-y-4">
-              <div>
-                <dt className="text-xs font-bold text-gray-400 uppercase">Phone</dt>
-                <dd className="text-gray-800 font-medium">{profile.phoneNumber || '—'}</dd>
-              </div>
-              <div className="space-y-4">
-                <div>
-                  <dt className="text-xs font-bold text-gray-400 uppercase">City</dt>
-                  <dd className="text-gray-800 font-medium">{profile.city || '—'}</dd>
-                </div>
-                <div>
-                  <dt className="text-xs font-bold text-gray-400 uppercase">State</dt>
-                  <dd className="text-gray-800 font-medium">{profile.state || '—'}</dd>
-                </div>
-              </div>
-              <div>
-                <dt className="text-xs font-bold text-gray-400 uppercase">Country</dt>
-                <dd className="text-gray-800 font-medium">{profile.country || '—'}</dd>
-              </div>
-            </dl>
-          )}
-        </div>
-
-        <div className="bg-gray-50 px-6 py-3 text-xs text-gray-500">
-          Status:{' '}
-          <span className="text-green-600 font-bold uppercase">
-            {profile.isActive ? 'Active' : 'Inactive'}
-          </span>
+          <div className="border-t border-slate-100 bg-slate-50 px-5 py-3 text-xs text-slate-500">
+            Status:{' '}
+            <span className="font-bold uppercase text-emerald-600">
+              {profile.isActive ? 'Active' : 'Inactive'}
+            </span>
+          </div>
         </div>
       </div>
     </div>

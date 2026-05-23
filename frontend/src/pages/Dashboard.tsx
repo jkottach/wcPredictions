@@ -5,6 +5,8 @@ import { loginWithGoogle, useAzureAuth } from '../services/swaAuth';
 import { apiService } from '../services/apiService';
 import { Match, Prediction } from '../types';
 import MatchCard from '../components/MatchCard';
+import PageHero from '../components/PageHero';
+import { alertError, cardPad, linkAccent, spinner } from '../theme';
 
 interface UserRankInfo {
   rank: string | number;
@@ -138,69 +140,71 @@ const Dashboard: React.FC = () => {
       .slice(0, 5);
   }, [matches]);
 
-  const rankDisplay =
-    myRank.rank === '-' ? '–' : `#${myRank.rank}`;
+  const rankDisplay = myRank.rank === '-' ? '–' : `#${myRank.rank}`;
 
   return (
-    <div className="px-4 py-6">
-      {loadError && (
-        <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-lg text-sm">{loadError}</div>
-      )}
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-primary mb-1">
-          Welcome, {user?.firstName}!
-        </h1>
-        <p className="text-sm text-gray-600">
-          Predict upcoming matches and climb the leaderboard
-        </p>
-      </div>
+    <div className="min-h-full bg-slate-50">
+      <PageHero
+        title={`Welcome, ${user?.firstName ?? 'Player'}!`}
+        subtitle="Predict upcoming matches and climb the leaderboard"
+        badge="Dashboard"
+      />
 
-      <div className="mb-6 rounded-xl bg-gradient-to-br from-amber-500 via-orange-500 to-rose-500 p-5 text-white shadow-lg">
-        <p className="text-xs font-bold uppercase tracking-wide text-white/80">My rank</p>
-        <div className="mt-1 flex items-baseline justify-between gap-3">
-          <p className="text-3xl font-black">{rankDisplay}</p>
-          <span className="rounded-lg bg-white/20 px-3 py-1 text-sm font-bold">
-            {myRank.totalPoints} pts
-          </span>
+      <div className="px-5 py-6 space-y-6">
+        {loadError && <div className={alertError}>{loadError}</div>}
+
+        <div
+          className="rounded-2xl border border-emerald-500/20 p-5 text-white shadow-lg"
+          style={{ background: 'linear-gradient(135deg, #059669 0%, #047857 50%, #0f172a 100%)' }}
+        >
+          <p className="text-[10px] font-bold uppercase tracking-widest text-emerald-100/80">My rank</p>
+          <div className="mt-1 flex items-baseline justify-between gap-3">
+            <p className="font-display text-3xl font-extrabold">{rankDisplay}</p>
+            <span className="rounded-lg bg-white/15 px-3 py-1 text-sm font-bold">
+              {myRank.totalPoints} pts
+            </span>
+          </div>
+        </div>
+
+        <Link
+          to="/my-predictions"
+          className={`${cardPad} flex items-center justify-between min-h-[56px] hover:border-emerald-300 transition`}
+        >
+          <span className="font-display font-bold text-slate-900">View previous predictions</span>
+          <span className={linkAccent}>→</span>
+        </Link>
+
+        <div>
+          <h2 className="font-display text-lg font-bold text-slate-900 mb-4">Matches to predict</h2>
+
+          {loading ? (
+            <div className="flex flex-col items-center py-12">
+              <div className={spinner} />
+              <p className="mt-4 text-sm text-slate-600">Loading matches...</p>
+            </div>
+          ) : displayMatches.length > 0 ? (
+            <div className="grid grid-cols-1 gap-4">
+              {displayMatches.map((match) => {
+                const userPrediction = userPredictions.find(
+                  (p) => getPredictionMatchId(p) === match.matchId
+                );
+                return (
+                  <MatchCard
+                    key={match.matchId}
+                    match={match}
+                    userPrediction={userPrediction}
+                    onPredictionSubmit={handlePredictionSubmit}
+                  />
+                );
+              })}
+            </div>
+          ) : (
+            <div className={`${cardPad} text-center py-10 text-slate-600 text-sm`}>
+              No open matches to predict right now
+            </div>
+          )}
         </div>
       </div>
-
-      <Link
-        to="/my-predictions"
-        className="flex items-center justify-between mb-6 p-4 rounded-xl border border-gray-200 bg-white shadow-sm hover:border-secondary transition min-h-[56px]"
-      >
-        <span className="font-bold text-primary">View previous predictions</span>
-        <span className="text-secondary">→</span>
-      </Link>
-
-      <h2 className="text-xl font-bold text-primary mb-4">Matches to predict</h2>
-
-      {loading ? (
-        <div className="text-center py-12">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-secondary" />
-          <p className="mt-4 text-gray-600">Loading matches...</p>
-        </div>
-      ) : displayMatches.length > 0 ? (
-        <div className="grid grid-cols-1 gap-4">
-          {displayMatches.map((match) => {
-            const userPrediction = userPredictions.find(
-              (p) => getPredictionMatchId(p) === match.matchId
-            );
-            return (
-              <MatchCard
-                key={match.matchId}
-                match={match}
-                userPrediction={userPrediction}
-                onPredictionSubmit={handlePredictionSubmit}
-              />
-            );
-          })}
-        </div>
-      ) : (
-        <div className="text-center py-12 text-gray-600 rounded-xl bg-white border border-gray-100">
-          No open matches to predict right now
-        </div>
-      )}
     </div>
   );
 };

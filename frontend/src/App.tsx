@@ -15,7 +15,7 @@ function App() {
   return (
     <Router>
       <AuthBootstrap />
-      <div className="min-h-screen bg-gray-50 pb-safe mobile-app">
+      <div className="min-h-screen bg-slate-50 pb-safe mobile-app">
         <Header />
         <main className="min-h-[calc(100vh-4rem)] w-full">
           <Routes>

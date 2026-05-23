@@ -13,6 +13,8 @@ import {
   needsProfileSetup,
   useAzureAuth,
 } from '../services/swaAuth';
+import AuthCard from '../components/AuthCard';
+import { alertError, spinner } from '../theme';
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
@@ -103,57 +105,50 @@ const Login: React.FC = () => {
 
   if (useAzureAuth && checkingSession) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-primary to-secondary flex items-center justify-center p-4">
-        <p className="text-white text-lg">Checking sign-in…</p>
+      <div className="flex flex-col items-center justify-center py-20">
+        <div className={spinner} />
+        <p className="mt-4 text-sm font-medium text-slate-600">Checking sign-in…</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary to-secondary flex items-center justify-center p-4">
-      <div className="bg-white rounded-lg shadow-xl p-6 w-full">
-        <h2 className="text-2xl font-bold text-center text-primary mb-6">
-          Sign in
-        </h2>
+    <AuthCard title="Sign in" subtitle="Use Google to join the prediction league">
+      {error && <div className={alertError}>{error}</div>}
 
-        {error && (
-          <div className="mb-4 p-3 bg-red-100 text-red-700 rounded text-sm">{error}</div>
+      <div className="flex flex-col items-center gap-4">
+        {useAzureAuth ? (
+          <button
+            type="button"
+            onClick={handleAzureSignIn}
+            className="w-full flex items-center justify-center gap-3 rounded-xl border border-slate-200 bg-white px-6 py-3 text-slate-800 font-semibold hover:bg-slate-50 transition min-h-[48px]"
+          >
+            <span className="text-lg" aria-hidden>
+              G
+            </span>
+            Continue with Google
+          </button>
+        ) : googleClientId ? (
+          <div className="w-full flex justify-center" aria-label="Google login button">
+            <GoogleLogin
+              onSuccess={handleGoogleSuccess}
+              onError={() => setError('Google sign-in was unsuccessful. Please try again.')}
+              theme="outline"
+              text="continue_with"
+              size="large"
+              shape="pill"
+              width="320"
+              auto_select={false}
+            />
+          </div>
+        ) : (
+          <div className="w-full rounded-xl border border-amber-200 bg-amber-50 p-3 text-center text-sm text-amber-800">
+            Google login is not configured. Set VITE_GOOGLE_CLIENT_ID in frontend env, or
+            VITE_USE_AZURE_AUTH=true for Azure sign-in.
+          </div>
         )}
-
-        <div className="space-y-4 flex flex-col items-center mt-2">
-          {useAzureAuth ? (
-            <button
-              type="button"
-              onClick={handleAzureSignIn}
-              className="w-full flex items-center justify-center gap-3 px-6 py-3 border border-gray-300 rounded-full bg-white text-gray-800 font-medium hover:bg-gray-50 transition min-h-[48px]"
-            >
-              <span className="text-lg" aria-hidden>
-                G
-              </span>
-              Continue with Google
-            </button>
-          ) : googleClientId ? (
-            <div className="w-full flex justify-center" aria-label="Google login button">
-              <GoogleLogin
-                onSuccess={handleGoogleSuccess}
-                onError={() => setError('Google sign-in was unsuccessful. Please try again.')}
-                theme="outline"
-                text="continue_with"
-                size="large"
-                shape="pill"
-                width="320"
-                auto_select={false}
-              />
-            </div>
-          ) : (
-            <div className="w-full text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded p-3 text-center">
-              Google login is not configured. Set VITE_GOOGLE_CLIENT_ID in frontend env, or
-              VITE_USE_AZURE_AUTH=true for Azure sign-in.
-            </div>
-          )}
-        </div>
       </div>
-    </div>
+    </AuthCard>
   );
 };
 

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { apiService } from '../services/apiService';
 import { LeaderboardEntry } from '../types';
 import Leaderboard from '../components/Leaderboard';
+import PageHero from '../components/PageHero';
+import { spinner } from '../theme';
 
 const LeaderboardPage: React.FC = () => {
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
@@ -24,17 +26,23 @@ const LeaderboardPage: React.FC = () => {
   };
 
   return (
-    <div className="px-4 py-6">
-      <h1 className="text-2xl font-bold text-primary mb-6">Leaderboard</h1>
+    <div className="min-h-full bg-slate-50">
+      <PageHero
+        title="Leaderboard"
+        subtitle="Top players ranked by total points"
+        badge="Rankings"
+      />
 
-      {loading ? (
-        <div className="text-center py-12">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-secondary" />
-          <p className="mt-4 text-gray-600">Loading...</p>
-        </div>
-      ) : (
-        <Leaderboard entries={leaderboard} title="All-time top players" />
-      )}
+      <div className="px-5 py-6">
+        {loading ? (
+          <div className="flex flex-col items-center py-12">
+            <div className={spinner} />
+            <p className="mt-4 text-sm text-slate-600">Loading...</p>
+          </div>
+        ) : (
+          <Leaderboard entries={leaderboard} title="All-time top players" />
+        )}
+      </div>
     </div>
   );
 };

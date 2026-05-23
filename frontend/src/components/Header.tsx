@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { apiService } from '../services/apiService';
 import { useAzureAuth } from '../services/swaAuth';
+import { HERO_BG } from '../theme';
 
 const Header: React.FC = () => {
   const { isLoggedIn, user, logout, setUser } = useAuth();
@@ -22,7 +23,7 @@ const Header: React.FC = () => {
   const closeMenu = () => setMenuOpen(false);
 
   const navLinkClass =
-    'block py-3 px-1 text-base font-medium hover:text-secondary transition min-h-[44px] flex items-center';
+    'block py-3 px-1 text-base font-medium text-white/90 hover:text-emerald-300 transition min-h-[44px] flex items-center';
 
   const handleLogout = () => {
     closeMenu();
@@ -33,25 +34,28 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="bg-primary text-white shadow-lg sticky top-0 z-40">
+    <header
+      className="sticky top-0 z-40 text-white shadow-lg"
+      style={{ background: HERO_BG }}
+    >
       <nav className="px-4 py-3">
         <div className="flex justify-between items-center gap-2">
           <Link to="/" className="flex items-center gap-2 min-w-0" onClick={closeMenu}>
-            <h1 className="text-base font-bold truncate">🏆 Kanhans Worldcup 26</h1>
+            <h1 className="font-display text-base font-bold truncate">🏆 Kanhans Worldcup 26</h1>
           </Link>
 
           <div className="flex items-center gap-2 shrink-0">
             {!isLoggedIn && (
               <Link
                 to="/login"
-                className="px-3 py-2 text-xs bg-secondary rounded-lg hover:bg-blue-600 transition min-h-[44px] flex items-center"
+                className="px-3 py-2 text-xs font-semibold rounded-lg bg-emerald-500 hover:bg-emerald-600 transition min-h-[44px] flex items-center"
               >
                 Login
               </Link>
             )}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="p-2.5 rounded-lg hover:bg-blue-800 transition min-h-[44px] min-w-[44px] flex items-center justify-center"
+              className="p-2.5 rounded-lg hover:bg-white/10 transition min-h-[44px] min-w-[44px] flex items-center justify-center"
               aria-label="Toggle menu"
               aria-expanded={menuOpen}
             >
@@ -67,7 +71,7 @@ const Header: React.FC = () => {
         </div>
 
         {menuOpen && (
-          <div className="mt-3 pt-3 border-t border-blue-800">
+          <div className="mt-3 pt-3 border-t border-white/15">
             <Link to="/" className={navLinkClass} onClick={closeMenu}>
               Home
             </Link>
@@ -86,11 +90,11 @@ const Header: React.FC = () => {
                 <Link to="/profile" className={navLinkClass} onClick={closeMenu}>
                   My Profile
                 </Link>
-                <div className="pt-3 mt-2 border-t border-blue-800">
-                  <p className="text-sm font-bold px-1 mb-2">Hi, {user?.firstName}</p>
+                <div className="pt-3 mt-2 border-t border-white/15">
+                  <p className="text-sm font-bold px-1 mb-2 text-white">Hi, {user?.firstName}</p>
                   <button
                     onClick={handleLogout}
-                    className="w-full px-4 py-3 bg-danger rounded-lg hover:bg-red-600 transition font-medium min-h-[44px]"
+                    className="w-full px-4 py-3 bg-red-600/90 rounded-xl hover:bg-red-600 transition font-semibold min-h-[44px]"
                   >
                     Logout
                   </button>

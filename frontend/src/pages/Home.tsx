@@ -1,9 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
-
-const HERO_BG =
-  'linear-gradient(180deg, #0b1220 0%, #111827 45%, #0f172a 100%)';
+import { HERO_BG, HERO_GRID_STYLE } from '../theme';
 
 const steps = [
   {
@@ -56,11 +54,7 @@ const Home: React.FC = () => {
       >
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.08]"
-          style={{
-            backgroundImage:
-              'linear-gradient(rgba(255,255,255,.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.15) 1px, transparent 1px)',
-            backgroundSize: '32px 32px',
-          }}
+          style={HERO_GRID_STYLE}
         />
 
         <div className="relative z-10">

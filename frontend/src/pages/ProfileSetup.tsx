@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { apiService } from '../services/apiService';
 import { useAuth } from '../hooks/useAuth';
 import { useAzureAuth } from '../services/swaAuth';
+import AuthCard from '../components/AuthCard';
+import { alertError, btnPrimary, input, label } from '../theme';
 
 const ProfileSetup: React.FC = () => {
   const navigate = useNavigate();
@@ -69,92 +71,83 @@ const ProfileSetup: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary to-secondary flex items-center justify-center p-4">
-      <div className="bg-white rounded-lg shadow-xl p-6 w-full my-4">
-        <h2 className="text-2xl font-bold text-center text-primary mb-4">
-          Complete Your Profile
-        </h2>
+    <AuthCard
+      title="Complete your profile"
+      subtitle={
+        user?.firstName
+          ? `Welcome, ${user.firstName}! Add a few details to get started.`
+          : 'Add a few details to get started.'
+      }
+    >
+      {error && <div className={alertError}>{error}</div>}
 
-        <p className="text-center text-gray-600 mb-6">
-          Welcome{user?.firstName ? `, ${user.firstName}` : ''}! Add a few details to get started.
-        </p>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className={label}>
+            Phone Number <span className="text-red-500">*</span>
+          </label>
+          <input
+            type="tel"
+            name="phoneNumber"
+            value={formData.phoneNumber}
+            onChange={handleChange}
+            placeholder="+1234567890"
+            className={input}
+            required
+          />
+        </div>
 
-        {error && (
-          <div className="mb-4 p-3 bg-red-100 text-red-700 rounded">{error}</div>
-        )}
-
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Phone Number <span className="text-red-500">*</span>
+            <label className={label}>
+              City <span className="text-red-500">*</span>
             </label>
             <input
-              type="tel"
-              name="phoneNumber"
-              value={formData.phoneNumber}
+              type="text"
+              name="city"
+              value={formData.city}
               onChange={handleChange}
-              placeholder="+1234567890"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary text-base"
+              className={input}
               required
             />
           </div>
-
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                City <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                name="city"
-                value={formData.city}
-                onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary text-base"
-                required
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                State <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                name="state"
-                value={formData.state}
-                onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary text-base"
-                required
-              />
-            </div>
-          </div>
-
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Country <span className="text-red-500">*</span>
+            <label className={label}>
+              State <span className="text-red-500">*</span>
             </label>
-            <select
-              name="country"
-              value={formData.country}
+            <input
+              type="text"
+              name="state"
+              value={formData.state}
               onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary text-base"
+              className={input}
               required
-            >
-              <option value="">Select Country</option>
-              <option value="USA">USA</option>
-              <option value="Canada">Canada</option>
-            </select>
+            />
           </div>
+        </div>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-secondary text-white py-3 rounded-lg font-medium hover:bg-blue-600 transition disabled:opacity-50 min-h-[48px]"
+        <div>
+          <label className={label}>
+            Country <span className="text-red-500">*</span>
+          </label>
+          <select
+            name="country"
+            value={formData.country}
+            onChange={handleChange}
+            className={input}
+            required
           >
-            {loading ? 'Saving...' : 'Finish Setup'}
-          </button>
-        </form>
-      </div>
-    </div>
+            <option value="">Select Country</option>
+            <option value="USA">USA</option>
+            <option value="Canada">Canada</option>
+          </select>
+        </div>
+
+        <button type="submit" disabled={loading} className={btnPrimary}>
+          {loading ? 'Saving...' : 'Finish setup'}
+        </button>
+      </form>
+    </AuthCard>
   );
 };
 

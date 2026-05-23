@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { apiService } from '../services/apiService';
 import { useAuth } from '../hooks/useAuth';
+import AuthCard from '../components/AuthCard';
+import { alertError, btnPrimary, input, label, linkAccent } from '../theme';
 
 const Register: React.FC = () => {
   const navigate = useNavigate();
@@ -52,136 +54,107 @@ const Register: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary to-secondary flex items-center justify-center p-4">
-      <div className="bg-white rounded-lg shadow-xl p-6 w-full my-4">
-        <h2 className="text-2xl font-bold text-center text-primary mb-4">
-          Join Kanhans Worldcup 26
-        </h2>
+    <AuthCard title="Join Kanhans Worldcup 26" subtitle="Create your account to start predicting">
+      {error && <div className={alertError}>{error}</div>}
 
-        {error && (
-          <div className="mb-4 p-3 bg-red-100 text-red-700 rounded">{error}</div>
-        )}
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className={label}>Email</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            className={input}
+            required
+            autoComplete="email"
+          />
+        </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <label className={label}>First Name</label>
             <input
-              type="email"
-              name="email"
-              value={formData.email}
+              type="text"
+              name="firstName"
+              value={formData.firstName}
               onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary text-base"
+              className={input}
               required
-              autoComplete="email"
             />
           </div>
-
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">First Name</label>
-              <input
-                type="text"
-                name="firstName"
-                value={formData.firstName}
-                onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary text-base"
-                required
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
-              <input
-                type="text"
-                name="lastName"
-                value={formData.lastName}
-                onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary text-base"
-                required
-              />
-            </div>
-          </div>
-
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+            <label className={label}>Last Name</label>
             <input
-              type="password"
-              name="password"
-              value={formData.password}
+              type="text"
+              name="lastName"
+              value={formData.lastName}
               onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary text-base"
+              className={input}
               required
-              autoComplete="new-password"
             />
           </div>
+        </div>
 
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">City</label>
-              <input
-                type="text"
-                name="city"
-                value={formData.city}
-                onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary text-base"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">State</label>
-              <input
-                type="text"
-                name="state"
-                value={formData.state}
-                onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary text-base"
-              />
-            </div>
-          </div>
+        <div>
+          <label className={label}>Password</label>
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            className={input}
+            required
+            autoComplete="new-password"
+          />
+        </div>
 
+        <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Country</label>
-            <select
-              name="country"
-              value={formData.country}
-              onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary text-base"
-            >
-              <option value="">Select Country</option>
-              <option value="USA">USA</option>
-              <option value="Canada">Canada</option>
-            </select>
+            <label className={label}>City</label>
+            <input type="text" name="city" value={formData.city} onChange={handleChange} className={input} />
           </div>
-
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
-            <input
-              type="tel"
-              name="phoneNumber"
-              value={formData.phoneNumber}
-              onChange={handleChange}
-              placeholder="+1234567890"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary text-base"
-              required
-              autoComplete="tel"
-            />
+            <label className={label}>State</label>
+            <input type="text" name="state" value={formData.state} onChange={handleChange} className={input} />
           </div>
+        </div>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-secondary text-white py-3 rounded-lg font-medium hover:bg-blue-600 transition disabled:opacity-50 min-h-[48px]"
-          >
-            {loading ? 'Creating Account...' : 'Register'}
-          </button>
-        </form>
+        <div>
+          <label className={label}>Country</label>
+          <select name="country" value={formData.country} onChange={handleChange} className={input}>
+            <option value="">Select Country</option>
+            <option value="USA">USA</option>
+            <option value="Canada">Canada</option>
+          </select>
+        </div>
 
-        <p className="text-center text-gray-600 mt-4">
-          Already have an account?{' '}
-          <a href="/login" className="text-secondary hover:underline">
-            Login
-          </a>
-        </p>
-      </div>
-    </div>
+        <div>
+          <label className={label}>Phone Number</label>
+          <input
+            type="tel"
+            name="phoneNumber"
+            value={formData.phoneNumber}
+            onChange={handleChange}
+            placeholder="+1234567890"
+            className={input}
+            required
+            autoComplete="tel"
+          />
+        </div>
+
+        <button type="submit" disabled={loading} className={btnPrimary}>
+          {loading ? 'Creating Account...' : 'Register'}
+        </button>
+      </form>
+
+      <p className="text-center text-sm text-slate-600 mt-4">
+        Already have an account?{' '}
+        <Link to="/login" className={linkAccent}>
+          Sign in
+        </Link>
+      </p>
+    </AuthCard>
   );
 };
 

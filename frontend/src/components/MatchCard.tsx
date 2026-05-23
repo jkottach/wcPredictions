@@ -127,11 +127,11 @@ const MatchCard: React.FC<MatchCardProps> = ({ match, userPrediction, onPredicti
     ? <span className="px-2 py-0.5 rounded-full bg-gray-500/70 text-[10px] font-bold text-white">Full Time</span>
     : isOngoing
     ? <span className="px-2 py-0.5 rounded-full bg-green-500/80 text-[10px] font-bold text-white animate-pulse">● Live</span>
-    : <span className="px-2 py-0.5 rounded-full bg-blue-500/70 text-[10px] font-bold text-white">Upcoming</span>;
+    : <span className="px-2 py-0.5 rounded-full bg-emerald-500/70 text-[10px] font-bold text-white">Upcoming</span>;
 
   return (
     <div
-      className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 hover:border-white/20 transition-all duration-300 hover:shadow-blue-900/30"
+      className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 hover:border-emerald-400/30 transition-all duration-300 hover:shadow-emerald-900/20"
       style={{ background: 'linear-gradient(160deg, #0f172a 0%, #1a2744 50%, #0c1a1a 100%)' }}
     >
       {/* Subtle pitch overlay */}
@@ -191,7 +191,7 @@ const MatchCard: React.FC<MatchCardProps> = ({ match, userPrediction, onPredicti
                   value={team1Score}
                   onChange={(e) => setTeam1Score(e.target.value === '' ? '' : Math.min(20, Math.max(0, Number(e.target.value))))}
                   placeholder="–"
-                  className="w-12 h-12 bg-white/10 border border-white/25 rounded-lg text-center text-white font-black text-xl focus:outline-none focus:ring-2 focus:ring-sky-400/60 focus:border-sky-400/40 disabled:opacity-40 transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                  className="w-12 h-12 bg-white/10 border border-white/25 rounded-lg text-center text-white font-black text-xl focus:outline-none focus:ring-2 focus:ring-emerald-400/60 focus:border-emerald-400/40 disabled:opacity-40 transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 />
                 <span className="text-white/30 font-bold text-lg">–</span>
                 <input
@@ -200,7 +200,7 @@ const MatchCard: React.FC<MatchCardProps> = ({ match, userPrediction, onPredicti
                   value={team2Score}
                   onChange={(e) => setTeam2Score(e.target.value === '' ? '' : Math.min(20, Math.max(0, Number(e.target.value))))}
                   placeholder="–"
-                  className="w-12 h-12 bg-white/10 border border-white/25 rounded-lg text-center text-white font-black text-xl focus:outline-none focus:ring-2 focus:ring-sky-400/60 focus:border-sky-400/40 disabled:opacity-40 transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                  className="w-12 h-12 bg-white/10 border border-white/25 rounded-lg text-center text-white font-black text-xl focus:outline-none focus:ring-2 focus:ring-emerald-400/60 focus:border-emerald-400/40 disabled:opacity-40 transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 />
               </>
             )}
@@ -279,7 +279,7 @@ const MatchCard: React.FC<MatchCardProps> = ({ match, userPrediction, onPredicti
               submitted
                 ? 'bg-green-500 text-white shadow-lg shadow-green-500/30'
                 : isPredictionOpen
-                ? 'bg-gradient-to-r from-blue-600 via-sky-400 to-emerald-500 text-white hover:brightness-110 active:scale-[0.98] shadow-lg shadow-sky-500/20'
+                ? 'bg-emerald-500 text-white hover:bg-emerald-600 active:scale-[0.98] shadow-lg shadow-emerald-500/30'
                 : 'bg-white/8 text-white/25 cursor-not-allowed border border-white/10'
             }`}
           >

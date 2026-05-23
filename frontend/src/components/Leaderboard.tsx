@@ -1,5 +1,6 @@
 import React from 'react';
 import { LeaderboardEntry } from '../types';
+import { HERO_BG } from '../theme';
 
 interface LeaderboardProps {
   entries: LeaderboardEntry[];
@@ -15,32 +16,32 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ entries, title }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow overflow-hidden">
-      <div className="bg-primary text-white p-4">
-        <h2 className="text-lg font-bold">{title}</h2>
+    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+      <div className="px-4 py-3 text-white" style={{ background: HERO_BG }}>
+        <h2 className="font-display text-base font-bold">{title}</h2>
       </div>
 
-      <div className="divide-y divide-gray-100">
+      <div className="divide-y divide-slate-100">
         {entries.map((entry) => (
           <div
             key={String(entry.userId ?? entry.email ?? `row-${entry.rank}`)}
-            className={`px-4 py-3 flex items-center justify-between gap-3 ${
-              entry.rank <= 3 ? 'bg-blue-50' : ''
+            className={`flex items-center justify-between gap-3 px-4 py-3 ${
+              entry.rank <= 3 ? 'bg-emerald-50/60' : ''
             }`}
           >
-            <div className="flex items-center gap-3 min-w-0">
-              <span className="font-bold text-gray-900 shrink-0 w-10">
+            <div className="flex min-w-0 items-center gap-3">
+              <span className="w-10 shrink-0 font-display font-bold text-slate-900">
                 {medal(entry.rank) || `#${entry.rank}`}
               </span>
-              <div className="min-w-0">
-                <p className="font-medium text-gray-900 truncate">{entry.name}</p>
-              </div>
+              <p className="truncate font-medium text-slate-900">{entry.name}</p>
             </div>
-            <span className="font-bold text-secondary shrink-0">{entry.totalPoints}</span>
+            <span className="shrink-0 font-display font-bold text-emerald-600">
+              {entry.totalPoints}
+            </span>
           </div>
         ))}
         {entries.length === 0 && (
-          <p className="text-center py-8 text-gray-500">No entries yet</p>
+          <p className="py-8 text-center text-sm text-slate-500">No entries yet</p>
         )}
       </div>
     </div>
