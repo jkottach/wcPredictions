@@ -25,11 +25,11 @@ const Header: React.FC = () => {
     'block py-3 px-1 text-base font-medium hover:text-secondary transition min-h-[44px] flex items-center';
 
   const handleLogout = () => {
+    closeMenu();
     logout();
     if (!useAzureAuth) {
-      window.location.href = '/';
+      window.location.replace('/login');
     }
-    closeMenu();
   };
 
   return (

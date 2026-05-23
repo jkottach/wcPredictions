@@ -19,14 +19,15 @@ const Login: React.FC = () => {
   const [checkingSession, setCheckingSession] = useState(useAzureAuth);
 
   useEffect(() => {
-    if (!useAzureAuth) {
-      setCheckingSession(false);
-      return;
-    }
     if (!authReady) return;
 
     if (isLoggedIn && user) {
       navigate(needsProfileSetup(user) ? '/profile-setup' : '/dashboard');
+      return;
+    }
+
+    if (!useAzureAuth) {
+      setCheckingSession(false);
       return;
     }
 

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useAuthStore } from '../context/authStore';
-import { needsProfileSetup, useAzureAuth } from '../services/swaAuth';
+import { clearStaleSwaSessionIfPresent, needsProfileSetup, useAzureAuth } from '../services/swaAuth';
 
 /**
  * On Azure: load session from /.auth/me + /api/auth/profile.
@@ -13,6 +13,12 @@ const AuthBootstrap: React.FC = () => {
   useEffect(() => {
     void initialize();
   }, [initialize]);
+
+  useEffect(() => {
+    if (useAzureAuth) return;
+    if (localStorage.getItem('token')) return;
+    void clearStaleSwaSessionIfPresent();
+  }, []);
 
   useEffect(() => {
     if (!useAzureAuth || !isLoggedIn) return;

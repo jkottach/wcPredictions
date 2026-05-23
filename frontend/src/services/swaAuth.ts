@@ -31,6 +31,22 @@ export function logoutFromAzure(): void {
   window.location.href = `/.auth/logout?post_logout_redirect_uri=${uri}`;
 }
 
+export function isAzureStaticWebAppHost(): boolean {
+  return (
+    typeof window !== 'undefined' &&
+    window.location.hostname.endsWith('.azurestaticapps.net')
+  );
+}
+
+/** Clear SWA Easy Auth cookies when app uses JWT — avoids login/logout loops. */
+export async function clearStaleSwaSessionIfPresent(): Promise<void> {
+  if (!isAzureStaticWebAppHost()) return;
+  const principal = await fetchClientPrincipal();
+  if (principal) {
+    logoutFromAzure();
+  }
+}
+
 export function needsProfileSetup(user: {
   city?: string;
   state?: string;

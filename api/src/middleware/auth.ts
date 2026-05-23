@@ -22,24 +22,24 @@ function getBearerToken(req: Request): string | undefined {
 
 export const authMiddleware = async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
+    const token = getBearerToken(req);
+    if (token) {
+      const decoded = jwt.verify(token, getJwtSecret()) as {
+        userId: string;
+        email: string;
+        role?: 'user' | 'admin';
+      };
+      req.user = decoded;
+      return next();
+    }
+
     const fromPrincipal = await resolveUserFromRequest(req);
     if (fromPrincipal) {
       req.user = fromPrincipal;
       return next();
     }
 
-    const token = getBearerToken(req);
-    if (!token) {
-      return res.status(401).json({ error: 'Not authenticated' });
-    }
-
-    const decoded = jwt.verify(token, getJwtSecret()) as {
-      userId: string;
-      email: string;
-      role?: 'user' | 'admin';
-    };
-    req.user = decoded;
-    next();
+    return res.status(401).json({ error: 'Not authenticated' });
   } catch (error) {
     if (error instanceof Error && error.message === 'JWT_SECRET is not configured') {
       logger.error('authMiddleware', error, { path: req.path });

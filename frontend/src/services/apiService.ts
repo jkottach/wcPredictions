@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, InternalAxiosRequestConfig } from 'axios';
+import { useAuthStore } from '../context/authStore';
 import { loginWithGoogle, useAzureAuth } from './swaAuth';
 
 /** SWA production uses same-origin `/api`; local dev uses Vite proxy. */
@@ -10,6 +11,25 @@ type AuthRequestConfig = InternalAxiosRequestConfig & {
   /** If true, a 401 will not clear storage or redirect to login. */
   skipAuthRedirect?: boolean;
 };
+
+const PUBLIC_PATHS = new Set(['/', '/login', '/register', '/profile-setup']);
+
+function isPublicPath(): boolean {
+  return PUBLIC_PATHS.has(window.location.pathname);
+}
+
+function shouldRedirectAfter401(hadToken: boolean): boolean {
+  if (!hadToken || useAzureAuth) return false;
+  if (!useAuthStore.getState().authReady) return false;
+  if (isPublicPath()) return false;
+
+  const last = sessionStorage.getItem('auth_redirect_at');
+  const now = Date.now();
+  if (last && now - Number(last) < 5000) return false;
+
+  sessionStorage.setItem('auth_redirect_at', String(now));
+  return true;
+}
 
 class ApiService {
   private client: AxiosInstance;
@@ -43,16 +63,25 @@ class ApiService {
 
         if (error.response?.status === 401 && !skipRedirect && !url.includes('/auth/google')) {
           if (useAzureAuth) {
-            const returnPath = window.location.pathname + window.location.search;
-            loginWithGoogle(returnPath || '/dashboard');
+            if (!isPublicPath()) {
+              const returnPath = window.location.pathname + window.location.search;
+              loginWithGoogle(returnPath || '/dashboard');
+            }
             return Promise.reject(error);
           }
 
           if (hadToken) {
             localStorage.removeItem('token');
             localStorage.removeItem('user');
-            if (!window.location.pathname.startsWith('/login')) {
-              window.location.href = '/login';
+            useAuthStore.setState({
+              token: null,
+              user: null,
+              isLoggedIn: false,
+              authReady: true,
+            });
+
+            if (shouldRedirectAfter401(hadToken)) {
+              window.location.replace('/login');
             }
           }
         }

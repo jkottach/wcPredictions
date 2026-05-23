@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { AuthState, User } from '../types';
 import { apiService } from '../services/apiService';
 import {
+  clearStaleSwaSessionIfPresent,
   fetchClientPrincipal,
   logoutFromAzure,
   useAzureAuth,
@@ -19,7 +20,7 @@ const readCachedUser = (): User | null => {
 export const useAuthStore = create<AuthState>((set) => ({
   token: useAzureAuth ? null : localStorage.getItem('token'),
   user: readCachedUser(),
-  isLoggedIn: useAzureAuth ? false : !!localStorage.getItem('token'),
+  isLoggedIn: false,
   authReady: false,
 
   login: (tokenOrUser: string | User, maybeUser?: User) => {
@@ -33,16 +34,22 @@ export const useAuthStore = create<AuthState>((set) => ({
     const user = typeof tokenOrUser === 'string' ? maybeUser! : tokenOrUser;
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(user));
+    sessionStorage.removeItem('auth_redirect_at');
     set({ token, user, isLoggedIn: true, authReady: true });
   },
 
   logout: () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    sessionStorage.removeItem('auth_redirect_at');
     set({ token: null, user: null, isLoggedIn: false, authReady: true });
+
     if (useAzureAuth) {
       logoutFromAzure();
+      return;
     }
+
+    void clearStaleSwaSessionIfPresent();
   },
 
   setUser: (user: User) => {
@@ -74,7 +81,7 @@ export const useAuthStore = create<AuthState>((set) => ({
 
     const token = localStorage.getItem('token');
     if (!token) {
-      set({ authReady: true, isLoggedIn: false });
+      set({ authReady: true, isLoggedIn: false, token: null, user: null });
       return;
     }
     try {
