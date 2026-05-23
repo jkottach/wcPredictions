@@ -122,15 +122,20 @@ const Dashboard: React.FC = () => {
   };
 
   const displayMatches = useMemo(() => {
-    const activeMatches = matches.filter((m) => {
-      const normalizedStatus = String(m.status || '').trim().toLowerCase();
-      return normalizedStatus === 'scheduled' || normalizedStatus === 'ongoing';
+    const now = Date.now();
+
+    const openForPrediction = matches.filter((m) => {
+      const status = String(m.status || '').trim().toLowerCase();
+      if (status !== 'scheduled' && status !== 'ongoing') return false;
+
+      const deadline = new Date(m.predictionsEndingTime).getTime();
+      if (Number.isNaN(deadline)) return false;
+      return deadline > now;
     });
 
-    const toSorted = (list: Match[]) =>
-      [...list].sort((a, b) => new Date(a.matchTime).getTime() - new Date(b.matchTime).getTime());
-
-    return activeMatches.length > 0 ? toSorted(activeMatches) : toSorted(matches);
+    return [...openForPrediction]
+      .sort((a, b) => new Date(a.matchTime).getTime() - new Date(b.matchTime).getTime())
+      .slice(0, 5);
   }, [matches]);
 
   const rankDisplay =
@@ -193,7 +198,7 @@ const Dashboard: React.FC = () => {
         </div>
       ) : (
         <div className="text-center py-12 text-gray-600 rounded-xl bg-white border border-gray-100">
-          No matches scheduled yet
+          No open matches to predict right now
         </div>
       )}
     </div>

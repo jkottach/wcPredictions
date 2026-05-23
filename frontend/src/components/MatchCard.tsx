@@ -1,20 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Match, Prediction } from '../types';
 import { format } from 'date-fns';
-
-// Helper to format date in a given IANA timezone, 12-hour format
-function formatInTZ12(date: Date, tz: string) {
-  try {
-    return date.toLocaleString('en-US', {
-      timeZone: tz,
-      hour12: true,
-      hour: '2-digit',
-      minute: '2-digit',
-    });
-  } catch {
-    return format(date, 'hh:mm a');
-  }
-}
 import { apiService } from '../services/apiService';
 
 interface MatchCardProps {
@@ -249,17 +235,11 @@ const MatchCard: React.FC<MatchCardProps> = ({ match, userPrediction, onPredicti
       {/* ── Match time + countdown ── */}
       <div className="relative z-10 flex items-start justify-between px-4 py-3 gap-4">
 
-        {/* Kick-off time in multiple timezones */}
         <div className="flex flex-col gap-0.5 min-w-0">
           <span className="text-white/35 text-[9px] uppercase tracking-widest">Kick-off</span>
-          <span className="text-white/80 text-xs font-bold whitespace-nowrap">
-            {format(new Date(match.matchTime), 'MMM dd, yyyy')}
+          <span className="text-white/80 text-xs font-bold">
+            {format(new Date(match.matchTime), 'MMM dd, yyyy · h:mm a')}
           </span>
-          <div className="flex flex-row flex-wrap gap-2 mt-0.5">
-            <span className="text-white/50 text-[10px] font-semibold whitespace-nowrap leading-tight">{formatInTZ12(new Date(match.matchTime), 'America/New_York')} EST</span>
-            <span className="text-white/50 text-[10px] font-semibold whitespace-nowrap leading-tight">{formatInTZ12(new Date(match.matchTime), 'America/Denver')} MST</span>
-            <span className="text-white/50 text-[10px] font-semibold whitespace-nowrap leading-tight">{formatInTZ12(new Date(match.matchTime), 'America/Los_Angeles')} PST</span>
-          </div>
         </div>
 
         {/* Countdown or close time */}
