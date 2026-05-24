@@ -36,12 +36,6 @@ const steps = [
   },
 ];
 
-const highlights = [
-  { label: 'Live leaderboard', value: 'Real-time' },
-  { label: 'Match pool', value: 'FIFA 2026' },
-  { label: 'Scoring', value: 'Points-based' },
-];
-
 const Home: React.FC = () => {
   const { isLoggedIn } = useAuth();
 
@@ -108,19 +102,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Stats strip */}
-      <section className="relative z-10 -mt-5 mx-4">
-        <div className="grid grid-cols-3 gap-2 rounded-2xl border border-slate-200 bg-white p-3 shadow-md">
-          {highlights.map((item) => (
-            <div key={item.label} className="px-1 py-1 text-center">
-              <p className="font-display text-sm font-bold text-slate-900">{item.value}</p>
-              <p className="mt-0.5 text-[10px] font-medium leading-tight text-slate-500">{item.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="px-5 pb-6 pt-8">
+      <section className="px-5 pb-6 pt-6">
         <div className="space-y-3">
           {steps.map((step) => (
             <article

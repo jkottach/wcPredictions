@@ -12,6 +12,7 @@
     "start": "node dist/server.js",
     "lint": "eslint src --ext .ts",
     "seed:mongo": "tsx scripts/seedMongo.ts",
+    "update:match-times": "tsx scripts/updateMatchTimesFromFifa.ts",
     "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\""
   },
   "dependencies": {
