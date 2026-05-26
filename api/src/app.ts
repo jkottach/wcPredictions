@@ -11,6 +11,7 @@ import { connectMongo, pingMongo } from './lib/mongodb';
 import authRoutes from './routes/authRoutes';
 import matchRoutes from './routes/matchRoutes';
 import predictionRoutes from './routes/predictionRoutes';
+import tournamentPredictionRoutes from './routes/tournamentPredictionRoutes';
 import leaderboardRoutes from './routes/leaderboardRoutes';
 import adminRoutes from './routes/adminRoutes';
 import rolesRoutes from './routes/rolesRoutes';
@@ -88,6 +89,7 @@ export function buildApp(): Express {
   app.use('/api/auth', authRoutes);
   app.use('/api/matches', matchRoutes);
   app.use('/api/predictions', predictionRoutes);
+  app.use('/api/tournament-predictions', tournamentPredictionRoutes);
   app.use('/api/leaderboard', leaderboardRoutes);
   app.use('/api/admin', adminRoutes);
 

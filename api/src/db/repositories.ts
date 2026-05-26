@@ -4,9 +4,15 @@ import type {
   EmbeddedPrediction,
   MatchDocument,
   TeamDocument,
+  TournamentBracketPrediction,
   UserDocument,
 } from './types';
-import { enrichMatchWithTeams, sumPredictionPoints, teamMapFromDocs } from './helpers';
+import {
+  enrichMatchWithTeams,
+  isPickableNationTeamId,
+  sumPredictionPoints,
+  teamMapFromDocs,
+} from './helpers';
 
 // ── Users (`users` collection) ───────────────────────────────────────────────
 
@@ -55,6 +61,7 @@ export async function updateUserById(
       | 'isActive'
       | 'totalPoints'
       | 'predictions'
+      | 'tournamentPrediction'
     >
   >
 ): Promise<UserDocument | null> {
@@ -128,6 +135,36 @@ export async function findUsersWithPredictionForMatch(matchId: string): Promise<
   return getUsersCollection().find({ 'predictions.matchId': matchId }).toArray();
 }
 
+export async function getEarliestMatchKickoff(): Promise<Date | null> {
+  const match = await getMatchesCollection()
+    .find({ status: { $in: ['scheduled', 'ongoing'] } })
+    .sort({ matchTime: 1 })
+    .limit(1)
+    .next();
+  return match?.matchTime ?? null;
+}
+
+export async function upsertTournamentPrediction(
+  userId: string,
+  data: Pick<TournamentBracketPrediction, 'champion' | 'finalists' | 'semifinalists'>
+): Promise<TournamentBracketPrediction | null> {
+  const user = await findUserById(userId);
+  if (!user) return null;
+
+  const now = new Date();
+  const entry: TournamentBracketPrediction = {
+    champion: data.champion,
+    finalists: data.finalists,
+    semifinalists: data.semifinalists,
+    points: user.tournamentPrediction?.points ?? 0,
+    submittedTime: user.tournamentPrediction?.submittedTime ?? now,
+    updatedAt: now,
+  };
+
+  await updateUserById(userId, { tournamentPrediction: entry });
+  return entry;
+}
+
 /** Active users; legacy docs without `isActive` are included. */
 const activeUserFilter: Filter<UserDocument> = {
   $or: [{ isActive: true }, { isActive: { $exists: false } }],
@@ -157,17 +194,65 @@ export async function deleteUserById(userId: string): Promise<boolean> {
 
 // ── Teams (`teams` collection) ────────────────────────────────────────────────
 
+/** Unique teams derived from match fixtures when the `teams` collection is empty. */
+export async function listTeamsFromMatches(): Promise<TeamDocument[]> {
+  const matches = await getMatchesCollection()
+    .find({})
+    .project({ team1: 1, team2: 1, team1Info: 1, team2Info: 1 })
+    .toArray();
+
+  const byId = new Map<string, TeamDocument>();
+  const now = new Date();
+
+  for (const m of matches) {
+    const pairs: [string, MatchDocument['team1Info']][] = [
+      [m.team1, m.team1Info],
+      [m.team2, m.team2Info],
+    ];
+    for (const [teamId, info] of pairs) {
+      if (!teamId || !isPickableNationTeamId(teamId) || byId.has(teamId)) continue;
+      byId.set(teamId, {
+        _id: new ObjectId(),
+        teamId,
+        teamName: info?.teamName ?? teamId,
+        country: info?.teamName ?? teamId,
+        countryLogo: info?.countryLogo ?? null,
+        createdAt: now,
+        updatedAt: now,
+      });
+    }
+  }
+
+  return [...byId.values()].sort((a, b) => a.teamName.localeCompare(b.teamName));
+}
+
 export async function listTeams(): Promise<TeamDocument[]> {
   return getTeamsCollection().find({}).sort({ teamName: 1 }).toArray();
 }
 
+/** Teams for pickers: `teams` collection, or match-derived list if collection is empty. */
+export async function listTeamsForPicker(): Promise<TeamDocument[]> {
+  const fromCollection = await listTeams();
+  if (fromCollection.length > 0) return fromCollection;
+  return listTeamsFromMatches();
+}
+
 export async function findTeamByTeamId(teamId: string): Promise<TeamDocument | null> {
-  return getTeamsCollection().findOne({ teamId });
+  const fromCollection = await getTeamsCollection().findOne({ teamId });
+  if (fromCollection) return fromCollection;
+  const fromMatches = await listTeamsFromMatches();
+  return fromMatches.find((t) => t.teamId === teamId) ?? null;
 }
 
 export async function findTeamsByIds(teamIds: string[]): Promise<TeamDocument[]> {
   if (teamIds.length === 0) return [];
-  return getTeamsCollection().find({ teamId: { $in: teamIds } }).toArray();
+  const fromCollection = await getTeamsCollection().find({ teamId: { $in: teamIds } }).toArray();
+  const foundIds = new Set(fromCollection.map((t) => t.teamId));
+  const missing = teamIds.filter((id) => !foundIds.has(id));
+  if (missing.length === 0) return fromCollection;
+
+  const fromMatches = (await listTeamsFromMatches()).filter((t) => missing.includes(t.teamId));
+  return [...fromCollection, ...fromMatches];
 }
 
 // ── Matches (`matches` collection) ──────────────────────────────────────────

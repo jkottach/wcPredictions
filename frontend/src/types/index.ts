@@ -43,6 +43,21 @@ export interface Match {
   team2Info?: TeamInfo | null;
 }
 
+export interface TournamentTeamPick {
+  teamId: string;
+  teamName: string;
+  countryLogo?: string | null;
+}
+
+export interface TournamentPrediction {
+  champion: TournamentTeamPick;
+  finalists: TournamentTeamPick[];
+  semifinalists: TournamentTeamPick[];
+  points?: number;
+  submittedTime?: string;
+  updatedAt?: string;
+}
+
 export interface Prediction {
   _id?: string;
   userId: string;

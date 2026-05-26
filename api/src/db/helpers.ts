@@ -1,6 +1,11 @@
 import { ObjectId } from 'mongodb';
 import type { MatchDocument, TeamDocument, UserDocument } from './types';
 
+/** FIFA nation codes (excludes knockout placeholders like 1A, W73). */
+export function isPickableNationTeamId(teamId: string): boolean {
+  return /^[A-Z]{3}$/.test(teamId) && !/^[0-9W]/.test(teamId);
+}
+
 export function formatUserId(user: UserDocument): string {
   return user._id.toString();
 }

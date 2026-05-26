@@ -9,14 +9,14 @@ import {
   getEnrichedMatch,
   getEnrichedMatches,
   listMatches,
-  listTeams,
+  listTeamsForPicker,
   resolveTeamInfoForMatch,
   updateMatchById,
 } from '../db/repositories';
 
 export const getAllTeams = async (_req: AuthRequest, res: Response) => {
   try {
-    const teams = await listTeams();
+    const teams = await listTeamsForPicker();
     res.json({
       teams: teams.map((t) => ({
         teamId: t.teamId,

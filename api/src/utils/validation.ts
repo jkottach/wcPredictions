@@ -42,6 +42,18 @@ export const schemas = {
     comment: Joi.string().allow('', null).optional(),
   }),
 
+  tournamentPrediction: Joi.object({
+    champion: Joi.string().trim().uppercase().length(3).required(),
+    finalists: Joi.array()
+      .items(Joi.string().trim().uppercase().length(3))
+      .length(2)
+      .required(),
+    semifinalists: Joi.array()
+      .items(Joi.string().trim().uppercase().length(3))
+      .length(4)
+      .required(),
+  }),
+
   match: Joi.object({
     matchId: Joi.string().optional(),
     sequence: Joi.number().required(),

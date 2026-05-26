@@ -1,0 +1,1438 @@
+{
+  "teams": [
+    {
+      "teamId": "ALG",
+      "teamName": "Algeria",
+      "country": "Algeria",
+      "countryLogo": "https://flagcdn.com/w80/dz.png"
+    },
+    {
+      "teamId": "ARG",
+      "teamName": "Argentina",
+      "country": "Argentina",
+      "countryLogo": "https://flagcdn.com/w80/ar.png"
+    },
+    {
+      "teamId": "AUS",
+      "teamName": "Australia",
+      "country": "Australia",
+      "countryLogo": "https://flagcdn.com/w80/au.png"
+    },
+    {
+      "teamId": "AUT",
+      "teamName": "Austria",
+      "country": "Austria",
+      "countryLogo": "https://flagcdn.com/w80/at.png"
+    },
+    {
+      "teamId": "BEL",
+      "teamName": "Belgium",
+      "country": "Belgium",
+      "countryLogo": "https://flagcdn.com/w80/be.png"
+    },
+    {
+      "teamId": "BIH",
+      "teamName": "Bosnia and Herzegovina",
+      "country": "Bosnia and Herzegovina",
+      "countryLogo": "https://flagcdn.com/w80/ba.png"
+    },
+    {
+      "teamId": "BRA",
+      "teamName": "Brazil",
+      "country": "Brazil",
+      "countryLogo": "https://flagcdn.com/w80/br.png"
+    },
+    {
+      "teamId": "CAN",
+      "teamName": "Canada",
+      "country": "Canada",
+      "countryLogo": "https://flagcdn.com/w80/ca.png"
+    },
+    {
+      "teamId": "CIV",
+      "teamName": "Ivory Coast",
+      "country": "Ivory Coast",
+      "countryLogo": "https://flagcdn.com/w80/ci.png"
+    },
+    {
+      "teamId": "COD",
+      "teamName": "DR Congo",
+      "country": "DR Congo",
+      "countryLogo": "https://flagcdn.com/w80/cd.png"
+    },
+    {
+      "teamId": "COL",
+      "teamName": "Colombia",
+      "country": "Colombia",
+      "countryLogo": "https://flagcdn.com/w80/co.png"
+    },
+    {
+      "teamId": "CPV",
+      "teamName": "Cape Verde",
+      "country": "Cape Verde",
+      "countryLogo": "https://flagcdn.com/w80/cv.png"
+    },
+    {
+      "teamId": "CRO",
+      "teamName": "Croatia",
+      "country": "Croatia",
+      "countryLogo": "https://flagcdn.com/w80/hr.png"
+    },
+    {
+      "teamId": "CUW",
+      "teamName": "Curacao",
+      "country": "Curacao",
+      "countryLogo": "https://flagcdn.com/w80/cw.png"
+    },
+    {
+      "teamId": "CZE",
+      "teamName": "Czech Republic",
+      "country": "Czech Republic",
+      "countryLogo": "https://flagcdn.com/w80/cz.png"
+    },
+    {
+      "teamId": "ECU",
+      "teamName": "Ecuador",
+      "country": "Ecuador",
+      "countryLogo": "https://flagcdn.com/w80/ec.png"
+    },
+    {
+      "teamId": "EGY",
+      "teamName": "Egypt",
+      "country": "Egypt",
+      "countryLogo": "https://flagcdn.com/w80/eg.png"
+    },
+    {
+      "teamId": "ENG",
+      "teamName": "England",
+      "country": "England",
+      "countryLogo": "https://flagcdn.com/w80/gb-eng.png"
+    },
+    {
+      "teamId": "ESP",
+      "teamName": "Spain",
+      "country": "Spain",
+      "countryLogo": "https://flagcdn.com/w80/es.png"
+    },
+    {
+      "teamId": "FRA",
+      "teamName": "France",
+      "country": "France",
+      "countryLogo": "https://flagcdn.com/w80/fr.png"
+    },
+    {
+      "teamId": "GER",
+      "teamName": "Germany",
+      "country": "Germany",
+      "countryLogo": "https://flagcdn.com/w80/de.png"
+    },
+    {
+      "teamId": "GHA",
+      "teamName": "Ghana",
+      "country": "Ghana",
+      "countryLogo": "https://flagcdn.com/w80/gh.png"
+    },
+    {
+      "teamId": "HAI",
+      "teamName": "Haiti",
+      "country": "Haiti",
+      "countryLogo": "https://flagcdn.com/w80/ht.png"
+    },
+    {
+      "teamId": "IRN",
+      "teamName": "Iran",
+      "country": "Iran",
+      "countryLogo": "https://flagcdn.com/w80/ir.png"
+    },
+    {
+      "teamId": "IRQ",
+      "teamName": "Iraq",
+      "country": "Iraq",
+      "countryLogo": "https://flagcdn.com/w80/iq.png"
+    },
+    {
+      "teamId": "JOR",
+      "teamName": "Jordan",
+      "country": "Jordan",
+      "countryLogo": "https://flagcdn.com/w80/jo.png"
+    },
+    {
+      "teamId": "JPN",
+      "teamName": "Japan",
+      "country": "Japan",
+      "countryLogo": "https://flagcdn.com/w80/jp.png"
+    },
+    {
+      "teamId": "KOR",
+      "teamName": "South Korea",
+      "country": "South Korea",
+      "countryLogo": "https://flagcdn.com/w80/kr.png"
+    },
+    {
+      "teamId": "KSA",
+      "teamName": "Saudi Arabia",
+      "country": "Saudi Arabia",
+      "countryLogo": "https://flagcdn.com/w80/sa.png"
+    },
+    {
+      "teamId": "MAR",
+      "teamName": "Morocco",
+      "country": "Morocco",
+      "countryLogo": "https://flagcdn.com/w80/ma.png"
+    },
+    {
+      "teamId": "MEX",
+      "teamName": "Mexico",
+      "country": "Mexico",
+      "countryLogo": "https://flagcdn.com/w80/mx.png"
+    },
+    {
+      "teamId": "NED",
+      "teamName": "Netherlands",
+      "country": "Netherlands",
+      "countryLogo": "https://flagcdn.com/w80/nl.png"
+    },
+    {
+      "teamId": "NOR",
+      "teamName": "Norway",
+      "country": "Norway",
+      "countryLogo": "https://flagcdn.com/w80/no.png"
+    },
+    {
+      "teamId": "NZL",
+      "teamName": "New Zealand",
+      "country": "New Zealand",
+      "countryLogo": "https://flagcdn.com/w80/nz.png"
+    },
+    {
+      "teamId": "PAN",
+      "teamName": "Panama",
+      "country": "Panama",
+      "countryLogo": "https://flagcdn.com/w80/pa.png"
+    },
+    {
+      "teamId": "PAR",
+      "teamName": "Paraguay",
+      "country": "Paraguay",
+      "countryLogo": "https://flagcdn.com/w80/py.png"
+    },
+    {
+      "teamId": "POR",
+      "teamName": "Portugal",
+      "country": "Portugal",
+      "countryLogo": "https://flagcdn.com/w80/pt.png"
+    },
+    {
+      "teamId": "QAT",
+      "teamName": "Qatar",
+      "country": "Qatar",
+      "countryLogo": "https://flagcdn.com/w80/qa.png"
+    },
+    {
+      "teamId": "RSA",
+      "teamName": "South Africa",
+      "country": "South Africa",
+      "countryLogo": "https://flagcdn.com/w80/za.png"
+    },
+    {
+      "teamId": "SCO",
+      "teamName": "Scotland",
+      "country": "Scotland",
+      "countryLogo": "https://flagcdn.com/w80/gb-sct.png"
+    },
+    {
+      "teamId": "SEN",
+      "teamName": "Senegal",
+      "country": "Senegal",
+      "countryLogo": "https://flagcdn.com/w80/sn.png"
+    },
+    {
+      "teamId": "SUI",
+      "teamName": "Switzerland",
+      "country": "Switzerland",
+      "countryLogo": "https://flagcdn.com/w80/ch.png"
+    },
+    {
+      "teamId": "SWE",
+      "teamName": "Sweden",
+      "country": "Sweden",
+      "countryLogo": "https://flagcdn.com/w80/se.png"
+    },
+    {
+      "teamId": "TUN",
+      "teamName": "Tunisia",
+      "country": "Tunisia",
+      "countryLogo": "https://flagcdn.com/w80/tn.png"
+    },
+    {
+      "teamId": "TUR",
+      "teamName": "Turkey",
+      "country": "Turkey",
+      "countryLogo": "https://flagcdn.com/w80/tr.png"
+    },
+    {
+      "teamId": "URU",
+      "teamName": "Uruguay",
+      "country": "Uruguay",
+      "countryLogo": "https://flagcdn.com/w80/uy.png"
+    },
+    {
+      "teamId": "USA",
+      "teamName": "United States",
+      "country": "United States",
+      "countryLogo": "https://flagcdn.com/w80/us.png"
+    },
+    {
+      "teamId": "UZB",
+      "teamName": "Uzbekistan",
+      "country": "Uzbekistan",
+      "countryLogo": "https://flagcdn.com/w80/uz.png"
+    }
+  ],
+  "matches": [
+    {
+      "sequence": 1,
+      "team1": "MEX",
+      "team2": "RSA",
+      "round": "Group Stage",
+      "group": "A",
+      "matchTime": "2026-06-11T19:00:00.000Z",
+      "predictionsEndingTime": "2026-06-11T18:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#MEX_RSA"
+    },
+    {
+      "sequence": 2,
+      "team1": "KOR",
+      "team2": "CZE",
+      "round": "Group Stage",
+      "group": "A",
+      "matchTime": "2026-06-12T02:00:00.000Z",
+      "predictionsEndingTime": "2026-06-12T01:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#KOR_CZE"
+    },
+    {
+      "sequence": 3,
+      "team1": "CAN",
+      "team2": "BIH",
+      "round": "Group Stage",
+      "group": "B",
+      "matchTime": "2026-06-12T19:00:00.000Z",
+      "predictionsEndingTime": "2026-06-12T18:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#CAN_BIH"
+    },
+    {
+      "sequence": 4,
+      "team1": "USA",
+      "team2": "PAR",
+      "round": "Group Stage",
+      "group": "D",
+      "matchTime": "2026-06-13T01:00:00.000Z",
+      "predictionsEndingTime": "2026-06-13T00:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#USA_PAR"
+    },
+    {
+      "sequence": 5,
+      "team1": "HAI",
+      "team2": "SCO",
+      "round": "Group Stage",
+      "group": "C",
+      "matchTime": "2026-06-14T01:00:00.000Z",
+      "predictionsEndingTime": "2026-06-14T00:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#HAI_SCO"
+    },
+    {
+      "sequence": 6,
+      "team1": "AUS",
+      "team2": "TUR",
+      "round": "Group Stage",
+      "group": "D",
+      "matchTime": "2026-06-14T04:00:00.000Z",
+      "predictionsEndingTime": "2026-06-14T03:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#AUS_TUR"
+    },
+    {
+      "sequence": 7,
+      "team1": "BRA",
+      "team2": "MAR",
+      "round": "Group Stage",
+      "group": "C",
+      "matchTime": "2026-06-13T22:00:00.000Z",
+      "predictionsEndingTime": "2026-06-13T21:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#BRA_MAR"
+    },
+    {
+      "sequence": 8,
+      "team1": "QAT",
+      "team2": "SUI",
+      "round": "Group Stage",
+      "group": "B",
+      "matchTime": "2026-06-13T19:00:00.000Z",
+      "predictionsEndingTime": "2026-06-13T18:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#QAT_SUI"
+    },
+    {
+      "sequence": 9,
+      "team1": "CIV",
+      "team2": "ECU",
+      "round": "Group Stage",
+      "group": "E",
+      "matchTime": "2026-06-14T23:00:00.000Z",
+      "predictionsEndingTime": "2026-06-14T22:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#CIV_ECU"
+    },
+    {
+      "sequence": 10,
+      "team1": "GER",
+      "team2": "CUW",
+      "round": "Group Stage",
+      "group": "E",
+      "matchTime": "2026-06-14T17:00:00.000Z",
+      "predictionsEndingTime": "2026-06-14T16:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#GER_CUW"
+    },
+    {
+      "sequence": 11,
+      "team1": "NED",
+      "team2": "JPN",
+      "round": "Group Stage",
+      "group": "F",
+      "matchTime": "2026-06-14T20:00:00.000Z",
+      "predictionsEndingTime": "2026-06-14T19:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#NED_JPN"
+    },
+    {
+      "sequence": 12,
+      "team1": "SWE",
+      "team2": "TUN",
+      "round": "Group Stage",
+      "group": "F",
+      "matchTime": "2026-06-15T02:00:00.000Z",
+      "predictionsEndingTime": "2026-06-15T01:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#SWE_TUN"
+    },
+    {
+      "sequence": 13,
+      "team1": "KSA",
+      "team2": "URU",
+      "round": "Group Stage",
+      "group": "H",
+      "matchTime": "2026-06-15T22:00:00.000Z",
+      "predictionsEndingTime": "2026-06-15T21:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#KSA_URU"
+    },
+    {
+      "sequence": 14,
+      "team1": "ESP",
+      "team2": "CPV",
+      "round": "Group Stage",
+      "group": "H",
+      "matchTime": "2026-06-15T16:00:00.000Z",
+      "predictionsEndingTime": "2026-06-15T15:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#ESP_CPV"
+    },
+    {
+      "sequence": 15,
+      "team1": "IRN",
+      "team2": "NZL",
+      "round": "Group Stage",
+      "group": "G",
+      "matchTime": "2026-06-16T01:00:00.000Z",
+      "predictionsEndingTime": "2026-06-16T00:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#IRN_NZL"
+    },
+    {
+      "sequence": 16,
+      "team1": "BEL",
+      "team2": "EGY",
+      "round": "Group Stage",
+      "group": "G",
+      "matchTime": "2026-06-15T19:00:00.000Z",
+      "predictionsEndingTime": "2026-06-15T18:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#BEL_EGY"
+    },
+    {
+      "sequence": 17,
+      "team1": "FRA",
+      "team2": "SEN",
+      "round": "Group Stage",
+      "group": "I",
+      "matchTime": "2026-06-16T19:00:00.000Z",
+      "predictionsEndingTime": "2026-06-16T18:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#FRA_SEN"
+    },
+    {
+      "sequence": 18,
+      "team1": "IRQ",
+      "team2": "NOR",
+      "round": "Group Stage",
+      "group": "I",
+      "matchTime": "2026-06-16T22:00:00.000Z",
+      "predictionsEndingTime": "2026-06-16T21:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#IRQ_NOR"
+    },
+    {
+      "sequence": 19,
+      "team1": "ARG",
+      "team2": "ALG",
+      "round": "Group Stage",
+      "group": "J",
+      "matchTime": "2026-06-17T01:00:00.000Z",
+      "predictionsEndingTime": "2026-06-17T00:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#ARG_ALG"
+    },
+    {
+      "sequence": 20,
+      "team1": "AUT",
+      "team2": "JOR",
+      "round": "Group Stage",
+      "group": "J",
+      "matchTime": "2026-06-17T04:00:00.000Z",
+      "predictionsEndingTime": "2026-06-17T03:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#AUT_JOR"
+    },
+    {
+      "sequence": 21,
+      "team1": "GHA",
+      "team2": "PAN",
+      "round": "Group Stage",
+      "group": "L",
+      "matchTime": "2026-06-17T23:00:00.000Z",
+      "predictionsEndingTime": "2026-06-17T22:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#GHA_PAN"
+    },
+    {
+      "sequence": 22,
+      "team1": "ENG",
+      "team2": "CRO",
+      "round": "Group Stage",
+      "group": "L",
+      "matchTime": "2026-06-17T20:00:00.000Z",
+      "predictionsEndingTime": "2026-06-17T19:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#ENG_CRO"
+    },
+    {
+      "sequence": 23,
+      "team1": "POR",
+      "team2": "COD",
+      "round": "Group Stage",
+      "group": "K",
+      "matchTime": "2026-06-17T17:00:00.000Z",
+      "predictionsEndingTime": "2026-06-17T16:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#POR_COD"
+    },
+    {
+      "sequence": 24,
+      "team1": "UZB",
+      "team2": "COL",
+      "round": "Group Stage",
+      "group": "K",
+      "matchTime": "2026-06-18T02:00:00.000Z",
+      "predictionsEndingTime": "2026-06-18T01:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#UZB_COL"
+    },
+    {
+      "sequence": 25,
+      "team1": "CZE",
+      "team2": "RSA",
+      "round": "Group Stage",
+      "group": "A",
+      "matchTime": "2026-06-18T16:00:00.000Z",
+      "predictionsEndingTime": "2026-06-18T15:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#CZE_RSA"
+    },
+    {
+      "sequence": 26,
+      "team1": "SUI",
+      "team2": "BIH",
+      "round": "Group Stage",
+      "group": "B",
+      "matchTime": "2026-06-18T19:00:00.000Z",
+      "predictionsEndingTime": "2026-06-18T18:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#SUI_BIH"
+    },
+    {
+      "sequence": 27,
+      "team1": "CAN",
+      "team2": "QAT",
+      "round": "Group Stage",
+      "group": "B",
+      "matchTime": "2026-06-18T22:00:00.000Z",
+      "predictionsEndingTime": "2026-06-18T21:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#CAN_QAT"
+    },
+    {
+      "sequence": 28,
+      "team1": "MEX",
+      "team2": "KOR",
+      "round": "Group Stage",
+      "group": "A",
+      "matchTime": "2026-06-19T01:00:00.000Z",
+      "predictionsEndingTime": "2026-06-19T00:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#MEX_KOR"
+    },
+    {
+      "sequence": 29,
+      "team1": "BRA",
+      "team2": "HAI",
+      "round": "Group Stage",
+      "group": "C",
+      "matchTime": "2026-06-20T00:30:00.000Z",
+      "predictionsEndingTime": "2026-06-19T23:30:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#BRA_HAI"
+    },
+    {
+      "sequence": 30,
+      "team1": "SCO",
+      "team2": "MAR",
+      "round": "Group Stage",
+      "group": "C",
+      "matchTime": "2026-06-19T22:00:00.000Z",
+      "predictionsEndingTime": "2026-06-19T21:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#SCO_MAR"
+    },
+    {
+      "sequence": 31,
+      "team1": "TUR",
+      "team2": "PAR",
+      "round": "Group Stage",
+      "group": "D",
+      "matchTime": "2026-06-20T03:00:00.000Z",
+      "predictionsEndingTime": "2026-06-20T02:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#TUR_PAR"
+    },
+    {
+      "sequence": 32,
+      "team1": "USA",
+      "team2": "AUS",
+      "round": "Group Stage",
+      "group": "D",
+      "matchTime": "2026-06-19T19:00:00.000Z",
+      "predictionsEndingTime": "2026-06-19T18:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#USA_AUS"
+    },
+    {
+      "sequence": 33,
+      "team1": "GER",
+      "team2": "CIV",
+      "round": "Group Stage",
+      "group": "E",
+      "matchTime": "2026-06-20T20:00:00.000Z",
+      "predictionsEndingTime": "2026-06-20T19:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#GER_CIV"
+    },
+    {
+      "sequence": 34,
+      "team1": "ECU",
+      "team2": "CUW",
+      "round": "Group Stage",
+      "group": "E",
+      "matchTime": "2026-06-21T00:00:00.000Z",
+      "predictionsEndingTime": "2026-06-20T23:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#ECU_CUW"
+    },
+    {
+      "sequence": 35,
+      "team1": "NED",
+      "team2": "SWE",
+      "round": "Group Stage",
+      "group": "F",
+      "matchTime": "2026-06-20T17:00:00.000Z",
+      "predictionsEndingTime": "2026-06-20T16:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#NED_SWE"
+    },
+    {
+      "sequence": 36,
+      "team1": "TUN",
+      "team2": "JPN",
+      "round": "Group Stage",
+      "group": "F",
+      "matchTime": "2026-06-21T04:00:00.000Z",
+      "predictionsEndingTime": "2026-06-21T03:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#TUN_JPN"
+    },
+    {
+      "sequence": 37,
+      "team1": "URU",
+      "team2": "CPV",
+      "round": "Group Stage",
+      "group": "H",
+      "matchTime": "2026-06-21T22:00:00.000Z",
+      "predictionsEndingTime": "2026-06-21T21:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#URU_CPV"
+    },
+    {
+      "sequence": 38,
+      "team1": "ESP",
+      "team2": "KSA",
+      "round": "Group Stage",
+      "group": "H",
+      "matchTime": "2026-06-21T16:00:00.000Z",
+      "predictionsEndingTime": "2026-06-21T15:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#ESP_KSA"
+    },
+    {
+      "sequence": 39,
+      "team1": "BEL",
+      "team2": "IRN",
+      "round": "Group Stage",
+      "group": "G",
+      "matchTime": "2026-06-21T19:00:00.000Z",
+      "predictionsEndingTime": "2026-06-21T18:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#BEL_IRN"
+    },
+    {
+      "sequence": 40,
+      "team1": "NZL",
+      "team2": "EGY",
+      "round": "Group Stage",
+      "group": "G",
+      "matchTime": "2026-06-22T01:00:00.000Z",
+      "predictionsEndingTime": "2026-06-22T00:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#NZL_EGY"
+    },
+    {
+      "sequence": 41,
+      "team1": "NOR",
+      "team2": "SEN",
+      "round": "Group Stage",
+      "group": "I",
+      "matchTime": "2026-06-23T00:00:00.000Z",
+      "predictionsEndingTime": "2026-06-22T23:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#NOR_SEN"
+    },
+    {
+      "sequence": 42,
+      "team1": "FRA",
+      "team2": "IRQ",
+      "round": "Group Stage",
+      "group": "I",
+      "matchTime": "2026-06-22T21:00:00.000Z",
+      "predictionsEndingTime": "2026-06-22T20:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#FRA_IRQ"
+    },
+    {
+      "sequence": 43,
+      "team1": "ARG",
+      "team2": "AUT",
+      "round": "Group Stage",
+      "group": "J",
+      "matchTime": "2026-06-22T17:00:00.000Z",
+      "predictionsEndingTime": "2026-06-22T16:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#ARG_AUT"
+    },
+    {
+      "sequence": 44,
+      "team1": "JOR",
+      "team2": "ALG",
+      "round": "Group Stage",
+      "group": "J",
+      "matchTime": "2026-06-23T03:00:00.000Z",
+      "predictionsEndingTime": "2026-06-23T02:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#JOR_ALG"
+    },
+    {
+      "sequence": 45,
+      "team1": "ENG",
+      "team2": "GHA",
+      "round": "Group Stage",
+      "group": "L",
+      "matchTime": "2026-06-23T20:00:00.000Z",
+      "predictionsEndingTime": "2026-06-23T19:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#ENG_GHA"
+    },
+    {
+      "sequence": 46,
+      "team1": "PAN",
+      "team2": "CRO",
+      "round": "Group Stage",
+      "group": "L",
+      "matchTime": "2026-06-23T23:00:00.000Z",
+      "predictionsEndingTime": "2026-06-23T22:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#PAN_CRO"
+    },
+    {
+      "sequence": 47,
+      "team1": "POR",
+      "team2": "UZB",
+      "round": "Group Stage",
+      "group": "K",
+      "matchTime": "2026-06-23T17:00:00.000Z",
+      "predictionsEndingTime": "2026-06-23T16:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#POR_UZB"
+    },
+    {
+      "sequence": 48,
+      "team1": "COL",
+      "team2": "COD",
+      "round": "Group Stage",
+      "group": "K",
+      "matchTime": "2026-06-24T02:00:00.000Z",
+      "predictionsEndingTime": "2026-06-24T01:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#COL_COD"
+    },
+    {
+      "sequence": 49,
+      "team1": "SCO",
+      "team2": "BRA",
+      "round": "Group Stage",
+      "group": "C",
+      "matchTime": "2026-06-24T22:00:00.000Z",
+      "predictionsEndingTime": "2026-06-24T21:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#SCO_BRA"
+    },
+    {
+      "sequence": 50,
+      "team1": "MAR",
+      "team2": "HAI",
+      "round": "Group Stage",
+      "group": "C",
+      "matchTime": "2026-06-24T22:00:00.000Z",
+      "predictionsEndingTime": "2026-06-24T21:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#MAR_HAI"
+    },
+    {
+      "sequence": 51,
+      "team1": "SUI",
+      "team2": "CAN",
+      "round": "Group Stage",
+      "group": "B",
+      "matchTime": "2026-06-24T19:00:00.000Z",
+      "predictionsEndingTime": "2026-06-24T18:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#SUI_CAN"
+    },
+    {
+      "sequence": 52,
+      "team1": "BIH",
+      "team2": "QAT",
+      "round": "Group Stage",
+      "group": "B",
+      "matchTime": "2026-06-24T19:00:00.000Z",
+      "predictionsEndingTime": "2026-06-24T18:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#BIH_QAT"
+    },
+    {
+      "sequence": 53,
+      "team1": "CZE",
+      "team2": "MEX",
+      "round": "Group Stage",
+      "group": "A",
+      "matchTime": "2026-06-25T01:00:00.000Z",
+      "predictionsEndingTime": "2026-06-25T00:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#CZE_MEX"
+    },
+    {
+      "sequence": 54,
+      "team1": "RSA",
+      "team2": "KOR",
+      "round": "Group Stage",
+      "group": "A",
+      "matchTime": "2026-06-25T01:00:00.000Z",
+      "predictionsEndingTime": "2026-06-25T00:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#RSA_KOR"
+    },
+    {
+      "sequence": 55,
+      "team1": "CUW",
+      "team2": "CIV",
+      "round": "Group Stage",
+      "group": "E",
+      "matchTime": "2026-06-25T20:00:00.000Z",
+      "predictionsEndingTime": "2026-06-25T19:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#CUW_CIV"
+    },
+    {
+      "sequence": 56,
+      "team1": "ECU",
+      "team2": "GER",
+      "round": "Group Stage",
+      "group": "E",
+      "matchTime": "2026-06-25T20:00:00.000Z",
+      "predictionsEndingTime": "2026-06-25T19:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#ECU_GER"
+    },
+    {
+      "sequence": 57,
+      "team1": "JPN",
+      "team2": "SWE",
+      "round": "Group Stage",
+      "group": "F",
+      "matchTime": "2026-06-25T23:00:00.000Z",
+      "predictionsEndingTime": "2026-06-25T22:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#JPN_SWE"
+    },
+    {
+      "sequence": 58,
+      "team1": "TUN",
+      "team2": "NED",
+      "round": "Group Stage",
+      "group": "F",
+      "matchTime": "2026-06-25T23:00:00.000Z",
+      "predictionsEndingTime": "2026-06-25T22:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#TUN_NED"
+    },
+    {
+      "sequence": 59,
+      "team1": "TUR",
+      "team2": "USA",
+      "round": "Group Stage",
+      "group": "D",
+      "matchTime": "2026-06-26T02:00:00.000Z",
+      "predictionsEndingTime": "2026-06-26T01:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#TUR_USA"
+    },
+    {
+      "sequence": 60,
+      "team1": "PAR",
+      "team2": "AUS",
+      "round": "Group Stage",
+      "group": "D",
+      "matchTime": "2026-06-26T02:00:00.000Z",
+      "predictionsEndingTime": "2026-06-26T01:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#PAR_AUS"
+    },
+    {
+      "sequence": 61,
+      "team1": "NOR",
+      "team2": "FRA",
+      "round": "Group Stage",
+      "group": "I",
+      "matchTime": "2026-06-26T19:00:00.000Z",
+      "predictionsEndingTime": "2026-06-26T18:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#NOR_FRA"
+    },
+    {
+      "sequence": 62,
+      "team1": "SEN",
+      "team2": "IRQ",
+      "round": "Group Stage",
+      "group": "I",
+      "matchTime": "2026-06-26T19:00:00.000Z",
+      "predictionsEndingTime": "2026-06-26T18:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#SEN_IRQ"
+    },
+    {
+      "sequence": 63,
+      "team1": "EGY",
+      "team2": "IRN",
+      "round": "Group Stage",
+      "group": "G",
+      "matchTime": "2026-06-27T03:00:00.000Z",
+      "predictionsEndingTime": "2026-06-27T02:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#EGY_IRN"
+    },
+    {
+      "sequence": 64,
+      "team1": "NZL",
+      "team2": "BEL",
+      "round": "Group Stage",
+      "group": "G",
+      "matchTime": "2026-06-27T03:00:00.000Z",
+      "predictionsEndingTime": "2026-06-27T02:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#NZL_BEL"
+    },
+    {
+      "sequence": 65,
+      "team1": "CPV",
+      "team2": "KSA",
+      "round": "Group Stage",
+      "group": "H",
+      "matchTime": "2026-06-27T00:00:00.000Z",
+      "predictionsEndingTime": "2026-06-26T23:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#CPV_KSA"
+    },
+    {
+      "sequence": 66,
+      "team1": "URU",
+      "team2": "ESP",
+      "round": "Group Stage",
+      "group": "H",
+      "matchTime": "2026-06-27T00:00:00.000Z",
+      "predictionsEndingTime": "2026-06-26T23:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#URU_ESP"
+    },
+    {
+      "sequence": 67,
+      "team1": "PAN",
+      "team2": "ENG",
+      "round": "Group Stage",
+      "group": "L",
+      "matchTime": "2026-06-27T21:00:00.000Z",
+      "predictionsEndingTime": "2026-06-27T20:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#PAN_ENG"
+    },
+    {
+      "sequence": 68,
+      "team1": "CRO",
+      "team2": "GHA",
+      "round": "Group Stage",
+      "group": "L",
+      "matchTime": "2026-06-27T21:00:00.000Z",
+      "predictionsEndingTime": "2026-06-27T20:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#CRO_GHA"
+    },
+    {
+      "sequence": 69,
+      "team1": "ALG",
+      "team2": "AUT",
+      "round": "Group Stage",
+      "group": "J",
+      "matchTime": "2026-06-28T02:00:00.000Z",
+      "predictionsEndingTime": "2026-06-28T01:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#ALG_AUT"
+    },
+    {
+      "sequence": 70,
+      "team1": "JOR",
+      "team2": "ARG",
+      "round": "Group Stage",
+      "group": "J",
+      "matchTime": "2026-06-28T02:00:00.000Z",
+      "predictionsEndingTime": "2026-06-28T01:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#JOR_ARG"
+    },
+    {
+      "sequence": 71,
+      "team1": "COL",
+      "team2": "POR",
+      "round": "Group Stage",
+      "group": "K",
+      "matchTime": "2026-06-27T23:30:00.000Z",
+      "predictionsEndingTime": "2026-06-27T22:30:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#COL_POR"
+    },
+    {
+      "sequence": 72,
+      "team1": "COD",
+      "team2": "UZB",
+      "round": "Group Stage",
+      "group": "K",
+      "matchTime": "2026-06-27T23:30:00.000Z",
+      "predictionsEndingTime": "2026-06-27T22:30:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#COD_UZB"
+    },
+    {
+      "sequence": 73,
+      "team1": "2A",
+      "team2": "2B",
+      "round": "Round of 32",
+      "group": null,
+      "matchTime": "2026-06-28T19:00:00.000Z",
+      "predictionsEndingTime": "2026-06-28T18:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#2A_2B"
+    },
+    {
+      "sequence": 74,
+      "team1": "1E",
+      "team2": "3ABCDF",
+      "round": "Round of 32",
+      "group": null,
+      "matchTime": "2026-06-29T20:30:00.000Z",
+      "predictionsEndingTime": "2026-06-29T19:30:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#1E_3ABCDF"
+    },
+    {
+      "sequence": 75,
+      "team1": "1F",
+      "team2": "2C",
+      "round": "Round of 32",
+      "group": null,
+      "matchTime": "2026-06-30T01:00:00.000Z",
+      "predictionsEndingTime": "2026-06-30T00:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#1F_2C"
+    },
+    {
+      "sequence": 76,
+      "team1": "1C",
+      "team2": "2F",
+      "round": "Round of 32",
+      "group": null,
+      "matchTime": "2026-06-29T17:00:00.000Z",
+      "predictionsEndingTime": "2026-06-29T16:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#1C_2F"
+    },
+    {
+      "sequence": 77,
+      "team1": "1I",
+      "team2": "3CDFGH",
+      "round": "Round of 32",
+      "group": null,
+      "matchTime": "2026-06-30T21:00:00.000Z",
+      "predictionsEndingTime": "2026-06-30T20:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#1I_3CDFGH"
+    },
+    {
+      "sequence": 78,
+      "team1": "2E",
+      "team2": "2I",
+      "round": "Round of 32",
+      "group": null,
+      "matchTime": "2026-06-30T17:00:00.000Z",
+      "predictionsEndingTime": "2026-06-30T16:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#2E_2I"
+    },
+    {
+      "sequence": 79,
+      "team1": "1A",
+      "team2": "3CEFHI",
+      "round": "Round of 32",
+      "group": null,
+      "matchTime": "2026-07-01T01:00:00.000Z",
+      "predictionsEndingTime": "2026-07-01T00:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#1A_3CEFHI"
+    },
+    {
+      "sequence": 80,
+      "team1": "1L",
+      "team2": "3EHIJK",
+      "round": "Round of 32",
+      "group": null,
+      "matchTime": "2026-07-01T16:00:00.000Z",
+      "predictionsEndingTime": "2026-07-01T15:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#1L_3EHIJK"
+    },
+    {
+      "sequence": 81,
+      "team1": "1D",
+      "team2": "3BEFIJ",
+      "round": "Round of 32",
+      "group": null,
+      "matchTime": "2026-07-02T00:00:00.000Z",
+      "predictionsEndingTime": "2026-07-01T23:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#1D_3BEFIJ"
+    },
+    {
+      "sequence": 82,
+      "team1": "1G",
+      "team2": "3AEHIJ",
+      "round": "Round of 32",
+      "group": null,
+      "matchTime": "2026-07-01T20:00:00.000Z",
+      "predictionsEndingTime": "2026-07-01T19:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#1G_3AEHIJ"
+    },
+    {
+      "sequence": 83,
+      "team1": "2K",
+      "team2": "2L",
+      "round": "Round of 32",
+      "group": null,
+      "matchTime": "2026-07-02T23:00:00.000Z",
+      "predictionsEndingTime": "2026-07-02T22:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#2K_2L"
+    },
+    {
+      "sequence": 84,
+      "team1": "1H",
+      "team2": "2J",
+      "round": "Round of 32",
+      "group": null,
+      "matchTime": "2026-07-02T19:00:00.000Z",
+      "predictionsEndingTime": "2026-07-02T18:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#1H_2J"
+    },
+    {
+      "sequence": 85,
+      "team1": "1B",
+      "team2": "3EFGIJ",
+      "round": "Round of 32",
+      "group": null,
+      "matchTime": "2026-07-03T03:00:00.000Z",
+      "predictionsEndingTime": "2026-07-03T02:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#1B_3EFGIJ"
+    },
+    {
+      "sequence": 86,
+      "team1": "1J",
+      "team2": "2H",
+      "round": "Round of 32",
+      "group": null,
+      "matchTime": "2026-07-03T22:00:00.000Z",
+      "predictionsEndingTime": "2026-07-03T21:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#1J_2H"
+    },
+    {
+      "sequence": 87,
+      "team1": "1K",
+      "team2": "3DEIJL",
+      "round": "Round of 32",
+      "group": null,
+      "matchTime": "2026-07-04T01:30:00.000Z",
+      "predictionsEndingTime": "2026-07-04T00:30:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#1K_3DEIJL"
+    },
+    {
+      "sequence": 88,
+      "team1": "2D",
+      "team2": "2G",
+      "round": "Round of 32",
+      "group": null,
+      "matchTime": "2026-07-03T18:00:00.000Z",
+      "predictionsEndingTime": "2026-07-03T17:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#2D_2G"
+    },
+    {
+      "sequence": 89,
+      "team1": "W74",
+      "team2": "W77",
+      "round": "Round of 16",
+      "group": null,
+      "matchTime": "2026-07-04T21:00:00.000Z",
+      "predictionsEndingTime": "2026-07-04T20:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#W74_W77"
+    },
+    {
+      "sequence": 90,
+      "team1": "W73",
+      "team2": "W75",
+      "round": "Round of 16",
+      "group": null,
+      "matchTime": "2026-07-04T17:00:00.000Z",
+      "predictionsEndingTime": "2026-07-04T16:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#W73_W75"
+    },
+    {
+      "sequence": 91,
+      "team1": "W76",
+      "team2": "W78",
+      "round": "Round of 16",
+      "group": null,
+      "matchTime": "2026-07-05T20:00:00.000Z",
+      "predictionsEndingTime": "2026-07-05T19:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#W76_W78"
+    },
+    {
+      "sequence": 92,
+      "team1": "W79",
+      "team2": "W80",
+      "round": "Round of 16",
+      "group": null,
+      "matchTime": "2026-07-06T00:00:00.000Z",
+      "predictionsEndingTime": "2026-07-05T23:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#W79_W80"
+    },
+    {
+      "sequence": 93,
+      "team1": "W83",
+      "team2": "W84",
+      "round": "Round of 16",
+      "group": null,
+      "matchTime": "2026-07-06T19:00:00.000Z",
+      "predictionsEndingTime": "2026-07-06T18:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#W83_W84"
+    },
+    {
+      "sequence": 94,
+      "team1": "W81",
+      "team2": "W82",
+      "round": "Round of 16",
+      "group": null,
+      "matchTime": "2026-07-07T00:00:00.000Z",
+      "predictionsEndingTime": "2026-07-06T23:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#W81_W82"
+    },
+    {
+      "sequence": 95,
+      "team1": "W86",
+      "team2": "W88",
+      "round": "Round of 16",
+      "group": null,
+      "matchTime": "2026-07-07T16:00:00.000Z",
+      "predictionsEndingTime": "2026-07-07T15:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#W86_W88"
+    },
+    {
+      "sequence": 96,
+      "team1": "W85",
+      "team2": "W87",
+      "round": "Round of 16",
+      "group": null,
+      "matchTime": "2026-07-07T20:00:00.000Z",
+      "predictionsEndingTime": "2026-07-07T19:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#W85_W87"
+    },
+    {
+      "sequence": 97,
+      "team1": "W89",
+      "team2": "W90",
+      "round": "Quarter Finals",
+      "group": null,
+      "matchTime": "2026-07-09T20:00:00.000Z",
+      "predictionsEndingTime": "2026-07-09T19:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#W89_W90"
+    },
+    {
+      "sequence": 98,
+      "team1": "W93",
+      "team2": "W94",
+      "round": "Quarter Finals",
+      "group": null,
+      "matchTime": "2026-07-10T19:00:00.000Z",
+      "predictionsEndingTime": "2026-07-10T18:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#W93_W94"
+    },
+    {
+      "sequence": 99,
+      "team1": "W91",
+      "team2": "W92",
+      "round": "Quarter Finals",
+      "group": null,
+      "matchTime": "2026-07-11T21:00:00.000Z",
+      "predictionsEndingTime": "2026-07-11T20:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#W91_W92"
+    },
+    {
+      "sequence": 100,
+      "team1": "W95",
+      "team2": "W96",
+      "round": "Quarter Finals",
+      "group": null,
+      "matchTime": "2026-07-12T01:00:00.000Z",
+      "predictionsEndingTime": "2026-07-12T00:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#W95_W96"
+    },
+    {
+      "sequence": 101,
+      "team1": "W97",
+      "team2": "W98",
+      "round": "Semi Finals",
+      "group": null,
+      "matchTime": "2026-07-14T19:00:00.000Z",
+      "predictionsEndingTime": "2026-07-14T18:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#W97_W98"
+    },
+    {
+      "sequence": 102,
+      "team1": "W99",
+      "team2": "W100",
+      "round": "Semi Finals",
+      "group": null,
+      "matchTime": "2026-07-15T19:00:00.000Z",
+      "predictionsEndingTime": "2026-07-15T18:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#W99_W100"
+    },
+    {
+      "sequence": 103,
+      "team1": "L101",
+      "team2": "L102",
+      "round": "3rd Place",
+      "group": null,
+      "matchTime": "2026-07-18T21:00:00.000Z",
+      "predictionsEndingTime": "2026-07-18T20:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#L101_L102"
+    },
+    {
+      "sequence": 104,
+      "team1": "W101",
+      "team2": "W102",
+      "round": "Final",
+      "group": null,
+      "matchTime": "2026-07-19T19:00:00.000Z",
+      "predictionsEndingTime": "2026-07-19T18:00:00.000Z",
+      "status": "scheduled",
+      "matchTag": "#W101_W102"
+    }
+  ]
+}

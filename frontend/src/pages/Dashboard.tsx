@@ -5,6 +5,7 @@ import { loginWithGoogle, useAzureAuth } from '../services/swaAuth';
 import { apiService } from '../services/apiService';
 import { Match, Prediction } from '../types';
 import MatchCard from '../components/MatchCard';
+import TournamentPredictions from '../components/TournamentPredictions';
 import PageHero from '../components/PageHero';
 import { alertError, cardPad, linkAccent, spinner } from '../theme';
 
@@ -173,6 +174,11 @@ const Dashboard: React.FC = () => {
           <span className="font-display font-bold text-slate-900">View previous predictions</span>
           <span className={linkAccent}>→</span>
         </Link>
+
+        <div>
+          <h2 className="font-display text-lg font-bold text-slate-900 mb-4">Tournament predictions</h2>
+          <TournamentPredictions />
+        </div>
 
         <div>
           <h2 className="font-display text-lg font-bold text-slate-900 mb-4">Matches to predict</h2>

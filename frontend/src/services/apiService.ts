@@ -97,6 +97,18 @@ class ApiService {
     return this.client.get('/matches/teams');
   }
 
+  getTournamentPrediction() {
+    return this.client.get('/tournament-predictions');
+  }
+
+  submitTournamentPrediction(data: {
+    champion: string;
+    finalists: [string, string];
+    semifinalists: [string, string, string, string];
+  }) {
+    return this.client.post('/tournament-predictions', data);
+  }
+
   submitPrediction(data: Record<string, unknown>) {
     return this.client.post('/predictions', data);
   }

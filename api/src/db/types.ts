@@ -10,6 +10,16 @@ export interface EmbeddedPrediction {
   submittedTime: Date;
 }
 
+/** Knockout bracket picks stored on the user document. */
+export interface TournamentBracketPrediction {
+  champion: string;
+  finalists: [string, string];
+  semifinalists: [string, string, string, string];
+  points?: number;
+  submittedTime: Date;
+  updatedAt: Date;
+}
+
 /** Stored in the `users` collection (profile + embedded predictions + totalPoints). */
 export interface UserDocument {
   _id: ObjectId;
@@ -29,6 +39,7 @@ export interface UserDocument {
   isActive: boolean;
   totalPoints: number;
   predictions: EmbeddedPrediction[];
+  tournamentPrediction?: TournamentBracketPrediction | null;
   createdAt: Date;
   updatedAt: Date;
 }
