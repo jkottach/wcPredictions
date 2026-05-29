@@ -10,11 +10,21 @@ export interface EmbeddedPrediction {
   submittedTime: Date;
 }
 
-/** Knockout bracket picks stored on the user document. */
+/** Group letter → winning nation `teamId` (e.g. `{ A: "MEX", B: "CAN" }`). */
+export type GroupChampionsPicks = Record<string, string>;
+
+/** Group stage teams derived from match fixtures. */
+export interface GroupStageGroup {
+  group: string;
+  teamIds: string[];
+}
+
+/** Knockout bracket + group-stage picks stored on the user document. */
 export interface TournamentBracketPrediction {
   champion: string;
   finalists: [string, string];
   semifinalists: [string, string, string, string];
+  groupChampions?: GroupChampionsPicks;
   points?: number;
   submittedTime: Date;
   updatedAt: Date;
