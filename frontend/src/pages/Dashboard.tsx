@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
-import { loginWithGoogle, useAzureAuth } from '../services/swaAuth';
+import { useAzureAuth } from '../services/swaAuth';
 import { apiService } from '../services/apiService';
 import { Match, Prediction } from '../types';
 import MatchCard from '../components/MatchCard';
@@ -34,11 +34,7 @@ const Dashboard: React.FC = () => {
   useEffect(() => {
     if (!authReady) return;
     if (!isLoggedIn) {
-      if (useAzureAuth) {
-        loginWithGoogle('/dashboard');
-      } else {
-        navigate('/login?signed_out=1', { replace: true });
-      }
+      navigate(useAzureAuth ? '/login' : '/login?signed_out=1', { replace: true });
       return;
     }
     loadDashboardData();
@@ -143,6 +139,15 @@ const Dashboard: React.FC = () => {
 
   const rankDisplay = myRank.rank === '-' ? '–' : `#${myRank.rank}`;
 
+  if (!authReady) {
+    return (
+      <div className="min-h-full bg-slate-50 flex flex-col items-center justify-center py-20">
+        <div className={spinner} />
+        <p className="mt-4 text-sm text-slate-600">Loading dashboard…</p>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-full bg-slate-50">
       <PageHero
@@ -175,10 +180,12 @@ const Dashboard: React.FC = () => {
           <span className={linkAccent}>→</span>
         </Link>
 
-        <div>
-          <h2 className="font-display text-lg font-bold text-slate-900 mb-4">Tournament predictions</h2>
-          <TournamentPredictions />
-        </div>
+        {isLoggedIn && (
+          <div>
+            <h2 className="font-display text-lg font-bold text-slate-900 mb-4">Tournament predictions</h2>
+            <TournamentPredictions />
+          </div>
+        )}
 
         <div>
           <h2 className="font-display text-lg font-bold text-slate-900 mb-4">Matches to predict</h2>

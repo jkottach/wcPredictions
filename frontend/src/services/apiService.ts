@@ -98,7 +98,9 @@ class ApiService {
   }
 
   getTournamentPrediction() {
-    return this.client.get('/tournament-predictions');
+    return this.client.get('/tournament-predictions', {
+      skipAuthRedirect: true,
+    } as AuthRequestConfig);
   }
 
   submitTournamentPrediction(data: {

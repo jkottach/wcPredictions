@@ -8,6 +8,7 @@ import type {
   TournamentBracketPrediction,
   UserDocument,
 } from './types';
+import { HARDCODED_GROUP_STAGE } from '../constants/tournamentTeams';
 import {
   enrichMatchWithTeams,
   isPickableNationTeamId,
@@ -185,6 +186,10 @@ export async function listGroupStageGroups(): Promise<GroupStageGroup[]> {
     const ids = byGroup.get(group)!;
     if (isPickableNationTeamId(m.team1)) ids.add(m.team1);
     if (isPickableNationTeamId(m.team2)) ids.add(m.team2);
+  }
+
+  if (byGroup.size === 0) {
+    return HARDCODED_GROUP_STAGE.map(({ group, teamIds }) => ({ group, teamIds: [...teamIds] }));
   }
 
   return [...byGroup.entries()]
