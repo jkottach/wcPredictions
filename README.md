@@ -6,8 +6,8 @@ Match prediction app: submit scores, earn points, view leaderboards.
 
 | Layer | Tech |
 |-------|------|
-| Frontend | React, TypeScript, Vite, Tailwind — **Azure Static Web Apps** |
-| API | Express, MongoDB — **Azure Functions** (linked to SWA at `/api`) |
+| Frontend | React, TypeScript, Vite, Tailwind |
+| API | Express, MongoDB (EC2 + nginx, or Azure Functions on SWA) |
 
 ## Project layout
 
@@ -43,9 +43,10 @@ MongoDB collections: `users`, `teams`, `matches`.
 
 ## Production
 
-See **[AZURE_DEPLOYMENT.md](./AZURE_DEPLOYMENT.md)** for Static Web App settings, CI/CD, and troubleshooting.
-
-Push to `dev` deploys via `.github/workflows/azure-static-web-apps-blue-plant-0ba785610.yml`.
+| Host | Guide |
+|------|--------|
+| **EC2** (recommended) | **[EC2_DEPLOYMENT.md](./EC2_DEPLOYMENT.md)** + `deploy/nginx-wc26.conf` |
+| Azure Static Web Apps | **[AZURE_DEPLOYMENT.md](./AZURE_DEPLOYMENT.md)** |
 
 ## Environment
 
