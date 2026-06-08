@@ -21,16 +21,20 @@ function getBearerToken(req: Request): string | undefined {
   return raw;
 }
 
-/** Cookie first — SWA often drops Authorization on linked Functions. */
+/**
+ * Prefer explicit client headers over cookies. On Azure SWA a stale `auth_token`
+ * cookie (old JWT_SECRET / expired) can otherwise beat the fresh token sent
+ * in X-Access-Token right after Google sign-in.
+ */
 export function getAccessToken(req: Request): string | undefined {
-  const fromCookie = getTokenFromCookie(req);
-  if (fromCookie) return fromCookie;
+  const alt = req.headers['x-access-token'];
+  if (typeof alt === 'string' && alt.trim()) return alt.trim();
 
   const bearer = getBearerToken(req);
   if (bearer) return bearer;
 
-  const alt = req.headers['x-access-token'];
-  if (typeof alt === 'string' && alt.trim()) return alt.trim();
+  const fromCookie = getTokenFromCookie(req);
+  if (fromCookie) return fromCookie;
 
   return undefined;
 }
