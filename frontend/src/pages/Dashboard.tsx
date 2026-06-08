@@ -15,6 +15,7 @@ interface UserRankInfo {
 }
 
 const defaultRankInfo: UserRankInfo = { rank: '-', totalPoints: 0 };
+const OPEN_MATCHES_LIMIT = 24;
 
 const pickRank = (data: { final?: UserRankInfo; overall?: UserRankInfo } | undefined): UserRankInfo =>
   data?.final ?? data?.overall ?? defaultRankInfo;
@@ -48,7 +49,7 @@ const Dashboard: React.FC = () => {
 
     // Public endpoint first — must not depend on auth headers (Azure SWA can strip them).
     try {
-      const matchesRes = await apiService.getOpenMatches(1, 5);
+      const matchesRes = await apiService.getOpenMatches(1, OPEN_MATCHES_LIMIT);
       setMatches(matchesRes.data?.matches ?? []);
     } catch (err) {
       console.error('Failed to load matches:', err);

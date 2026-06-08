@@ -62,18 +62,48 @@ VITE_GOOGLE_CLIENT_ID=your-client-id.apps.googleusercontent.com
 
 Same-origin `/api` works because nginx proxies to Node.
 
+**Do not use `npm run dev` on EC2 for real users** — Vite hot-reload reconnects when you switch browser tabs and causes a full page refresh. Use the production build below.
+
 ---
 
-## 3. Run API with pm2
+## 3. Run API + frontend with pm2
+
+**Option A — both apps in pm2** (frontend on port 3000 via `vite preview`):
 
 ```bash
-cd /var/www/wc26/api
-pm2 start dist/server.js --name wc26-api
+cd ~/fifaPrediction
+
+cd api && npm ci && npm run build
+cd ../frontend && npm ci && npm run build
+
+cd ..
+pm2 start deploy/ecosystem.config.cjs
 pm2 save
 pm2 startup
 ```
 
-Verify: `curl http://127.0.0.1:5001/api/health`
+Use nginx config `deploy/nginx-wc26-pm2.conf` (proxies `/` → 3000, `/api` → 5001).
+
+**Option B — API only in pm2, nginx serves static `frontend/dist`** (lighter, recommended):
+
+```bash
+cd api && npm run build
+pm2 start dist/server.js --name wc26-api
+```
+
+Use `deploy/nginx-wc26.conf` (serves `frontend/dist` directly).
+
+Verify on the **EC2 instance** (must return JSON, not 502):
+
+```bash
+curl -s http://127.0.0.1:5001/api/health
+```
+
+Then verify through nginx:
+
+```bash
+curl -s https://wc26.kanhans.com/api/health
+```
 
 ---
 
@@ -130,7 +160,8 @@ http://localhost:3000
 | **`Invalid token` on `/api/predictions`** (same `JWT_SECRET`) | Usually a **stale `auth_token` cookie** or **nginx not forwarding** `Authorization` / `X-Access-Token`. Fix nginx headers (below), sign out, clear site cookies, sign in again. Opening `/api/predictions` in the browser tab alone will only send the cookie — test from the app or with `curl -H "Authorization: Bearer …"`. |
 | Login works, predictions 401 | nginx missing `proxy_set_header Authorization` / `X-Access-Token` |
 | Google `origin_mismatch` | Add `https://wc26.kanhans.com` to OAuth JavaScript origins |
-| API 502 | pm2 not running or wrong `PORT` |
+| **502 Bad Gateway** on `/api/*` | API not running on port 5001. On EC2: `pm2 status`, `pm2 logs wc26-api --lines 50`, `curl http://127.0.0.1:5001/api/health`. Usually fix: `cd api && npm run build && pm2 restart wc26-api` |
+| API 502 | pm2 not running, `npm run build` failed, or MongoDB connection error on startup |
 | Empty matches | `MONGODB_DB` must be `wc26Prod` (not empty `kanhans_fifa26`) |
 | CORS errors | Set `FRONTEND_URL=https://wc26.kanhans.com`; API uses `cors({ origin: true, credentials: true })` |
 
