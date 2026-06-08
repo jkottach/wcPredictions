@@ -84,9 +84,20 @@ class ApiService {
   }
 
   getAllMatches(status?: string, page?: number, limit?: number) {
+    const params: Record<string, string | number> = { page: page ?? 1, limit: limit ?? 10 };
+    if (status) params.status = status;
     return this.client.get('/matches', {
-      params: { status, page, limit },
-    });
+      params,
+      skipAuthRedirect: true,
+    } as AuthRequestConfig);
+  }
+
+  /** Matches still accepting predictions — filtered server-side (works on Azure SWA). */
+  getOpenMatches(page?: number, limit?: number) {
+    return this.client.get('/matches', {
+      params: { openForPredictions: 'true', page: page ?? 1, limit: limit ?? 5 },
+      skipAuthRedirect: true,
+    } as AuthRequestConfig);
   }
 
   getMatch(matchId: string) {
@@ -119,7 +130,8 @@ class ApiService {
   getUserPredictions(page?: number, limit?: number) {
     return this.client.get('/predictions', {
       params: { page, limit },
-    });
+      skipAuthRedirect: true,
+    } as AuthRequestConfig);
   }
 
   getUserPredictionsFromResults(page?: number, limit?: number) {
@@ -141,7 +153,9 @@ class ApiService {
   }
 
   getUserStats() {
-    return this.client.get('/leaderboard/stats');
+    return this.client.get('/leaderboard/stats', {
+      skipAuthRedirect: true,
+    } as AuthRequestConfig);
   }
 }
 

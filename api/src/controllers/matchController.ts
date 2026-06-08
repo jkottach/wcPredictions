@@ -34,21 +34,26 @@ function parseListQuery(query: AuthRequest['query']) {
   const rawPage = Array.isArray(query.page) ? query.page[0] : query.page;
   const rawLimit = Array.isArray(query.limit) ? query.limit[0] : query.limit;
   const rawStatus = Array.isArray(query.status) ? query.status[0] : query.status;
+  const rawOpen = Array.isArray(query.openForPredictions)
+    ? query.openForPredictions[0]
+    : query.openForPredictions;
 
   const pageNum = Math.max(1, parseInt(String(rawPage ?? '1'), 10) || 1);
   const limitNum = Math.min(100, Math.max(1, parseInt(String(rawLimit ?? '10'), 10) || 10));
   const status =
     typeof rawStatus === 'string' && rawStatus.trim() ? rawStatus.trim() : undefined;
+  const openForPredictions = rawOpen === 'true' || rawOpen === '1';
 
-  return { pageNum, limitNum, status };
+  return { pageNum, limitNum, status, openForPredictions };
 }
 
 export const getAllMatches = async (req: AuthRequest, res: Response) => {
   try {
-    const { pageNum, limitNum, status } = parseListQuery(req.query);
+    const { pageNum, limitNum, status, openForPredictions } = parseListQuery(req.query);
 
     const { matches, total } = await listMatches({
-      status,
+      status: openForPredictions ? undefined : status,
+      openForPredictions,
       page: pageNum,
       limit: limitNum,
     });

@@ -300,11 +300,17 @@ export async function findMatchById(matchId: string): Promise<MatchDocument | nu
 
 export async function listMatches(options: {
   status?: string;
+  openForPredictions?: boolean;
   page: number;
   limit: number;
 }): Promise<{ matches: MatchDocument[]; total: number }> {
   const filter: Filter<MatchDocument> = {};
-  if (options.status) filter.status = options.status;
+  if (options.openForPredictions) {
+    filter.status = { $in: ['scheduled', 'ongoing'] };
+    filter.predictionsEndingTime = { $gt: new Date() };
+  } else if (options.status) {
+    filter.status = options.status;
+  }
 
   const col = getMatchesCollection();
   const [matches, total] = await Promise.all([

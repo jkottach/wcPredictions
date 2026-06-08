@@ -44,20 +44,24 @@ const Dashboard: React.FC = () => {
     setLoading(true);
     setLoadError('');
 
-    const [matchesResult, predictionsResult, statsResult] = await Promise.allSettled([
-      apiService.getAllMatches('scheduled', 1, 50),
+    const errors: string[] = [];
+
+    // Public endpoint first — must not depend on auth headers (Azure SWA can strip them).
+    try {
+      const matchesRes = await apiService.getOpenMatches(1, 5);
+      setMatches(matchesRes.data?.matches ?? []);
+    } catch (err) {
+      console.error('Failed to load matches:', err);
+      setMatches([]);
+      errors.push('matches');
+    } finally {
+      setLoading(false);
+    }
+
+    const [predictionsResult, statsResult] = await Promise.allSettled([
       apiService.getUserPredictions(1, 100),
       apiService.getUserStats(),
     ]);
-
-    const errors: string[] = [];
-
-    if (matchesResult.status === 'fulfilled') {
-      setMatches(matchesResult.value.data?.matches ?? []);
-    } else {
-      console.error('Failed to load matches:', matchesResult.reason);
-      errors.push('matches');
-    }
 
     if (predictionsResult.status === 'fulfilled') {
       setUserPredictions(predictionsResult.value.data?.predictions ?? []);
@@ -80,8 +84,6 @@ const Dashboard: React.FC = () => {
           : 'Some dashboard data could not be loaded. Please refresh.'
       );
     }
-
-    setLoading(false);
   };
 
   const handlePredictionSubmit = (matchId: string, team1Score: number, team2Score: number) => {
@@ -120,22 +122,13 @@ const Dashboard: React.FC = () => {
       .catch(() => undefined);
   };
 
-  const displayMatches = useMemo(() => {
-    const now = Date.now();
-
-    const openForPrediction = matches.filter((m) => {
-      const status = String(m.status || '').trim().toLowerCase();
-      if (status !== 'scheduled' && status !== 'ongoing') return false;
-
-      const deadline = new Date(m.predictionsEndingTime).getTime();
-      if (Number.isNaN(deadline)) return false;
-      return deadline > now;
-    });
-
-    return [...openForPrediction]
-      .sort((a, b) => new Date(a.matchTime).getTime() - new Date(b.matchTime).getTime())
-      .slice(0, 5);
-  }, [matches]);
+  const displayMatches = useMemo(
+    () =>
+      [...matches].sort(
+        (a, b) => new Date(a.matchTime).getTime() - new Date(b.matchTime).getTime()
+      ),
+    [matches]
+  );
 
   const rankDisplay = myRank.rank === '-' ? '–' : `#${myRank.rank}`;
 
@@ -212,8 +205,19 @@ const Dashboard: React.FC = () => {
               })}
             </div>
           ) : (
-            <div className={`${cardPad} text-center py-10 text-slate-600 text-sm`}>
-              No open matches to predict right now
+            <div className={`${cardPad} text-center py-10 text-slate-600 text-sm space-y-2`}>
+              <p>No open matches to predict right now.</p>
+              {matches.length === 0 ? (
+                <p className="text-xs text-slate-500">
+                  No matches were loaded. Confirm the API is running and check{' '}
+                  <code className="text-emerald-700">/api/health</code> shows your database.
+                </p>
+              ) : (
+                <p className="text-xs text-slate-500">
+                  Predictions close at each match&apos;s deadline (usually just before kickoff). Later
+                  fixtures may still open even when earlier ones have closed.
+                </p>
+              )}
             </div>
           )}
         </div>
