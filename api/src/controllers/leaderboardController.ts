@@ -7,32 +7,42 @@ import {
   listUsersByTotalPoints,
 } from '../db/repositories';
 import { formatUserId } from '../db/helpers';
+import type { UserDocument } from '../db/types';
+
+function getLeaderboardName(user: UserDocument): string {
+  return `${user.firstName ?? ''} ${user.lastName ?? ''}`.trim() || user.email || 'User';
+}
 
 function buildLeaderboardEntries(users: Awaited<ReturnType<typeof listUsersByTotalPoints>>) {
   let denseRank = 0;
   let previousPoints: number | null = null;
 
-  return users
+  const sortedUsers = [...users]
     .filter((user) => user._id)
-    .map((user) => {
-      const totalPoints = user.totalPoints ?? 0;
-      if (previousPoints === null || totalPoints !== previousPoints) {
-        denseRank += 1;
-        previousPoints = totalPoints;
-      }
-
-      return {
-        rank: denseRank,
-        totalPoints,
-        name:
-          `${user.firstName ?? ''} ${user.lastName ?? ''}`.trim() ||
-          user.email ||
-          'User',
-        state: user.state || '',
-        userId: formatUserId(user),
-        email: user.email ?? '',
-      };
+    .sort((a, b) => {
+      const pointsDiff = (b.totalPoints ?? 0) - (a.totalPoints ?? 0);
+      if (pointsDiff !== 0) return pointsDiff;
+      return getLeaderboardName(a).localeCompare(getLeaderboardName(b), undefined, {
+        sensitivity: 'base',
+      });
     });
+
+  return sortedUsers.map((user) => {
+    const totalPoints = user.totalPoints ?? 0;
+    if (previousPoints === null || totalPoints !== previousPoints) {
+      denseRank += 1;
+      previousPoints = totalPoints;
+    }
+
+    return {
+      rank: denseRank,
+      totalPoints,
+      name: getLeaderboardName(user),
+      state: user.state || '',
+      userId: formatUserId(user),
+      email: user.email ?? '',
+    };
+  });
 }
 
 export const getTopLeaderboard = async (req: AuthRequest, res: Response) => {

@@ -208,7 +208,7 @@ const activeUserFilter: Filter<UserDocument> = {
 export async function listUsersByTotalPoints(limit: number): Promise<UserDocument[]> {
   return getUsersCollection()
     .find(activeUserFilter)
-    .sort({ totalPoints: -1, updatedAt: 1 })
+    .sort({ totalPoints: -1, firstName: 1, lastName: 1, email: 1 })
     .limit(limit)
     .toArray();
 }
