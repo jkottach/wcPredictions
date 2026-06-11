@@ -2,26 +2,37 @@ import { Response } from 'express';
 import { AuthRequest } from '../middleware/auth';
 import { logger } from '../lib/logger';
 import {
-  countUsersAhead,
+  countDistinctPointTiersAhead,
   findUserById,
   listUsersByTotalPoints,
 } from '../db/repositories';
 import { formatUserId } from '../db/helpers';
 
 function buildLeaderboardEntries(users: Awaited<ReturnType<typeof listUsersByTotalPoints>>) {
+  let denseRank = 0;
+  let previousPoints: number | null = null;
+
   return users
     .filter((user) => user._id)
-    .map((user, index) => ({
-      rank: index + 1,
-      totalPoints: user.totalPoints ?? 0,
-      name:
-        `${user.firstName ?? ''} ${user.lastName ?? ''}`.trim() ||
-        user.email ||
-        'User',
-      state: user.state || '',
-      userId: formatUserId(user),
-      email: user.email ?? '',
-    }));
+    .map((user) => {
+      const totalPoints = user.totalPoints ?? 0;
+      if (previousPoints === null || totalPoints !== previousPoints) {
+        denseRank += 1;
+        previousPoints = totalPoints;
+      }
+
+      return {
+        rank: denseRank,
+        totalPoints,
+        name:
+          `${user.firstName ?? ''} ${user.lastName ?? ''}`.trim() ||
+          user.email ||
+          'User',
+        state: user.state || '',
+        userId: formatUserId(user),
+        email: user.email ?? '',
+      };
+    });
 }
 
 export const getTopLeaderboard = async (req: AuthRequest, res: Response) => {
@@ -47,8 +58,8 @@ export const getUserStats = async (req: AuthRequest, res: Response) => {
     const user = await findUserById(userId);
     if (!user) return res.status(404).json({ error: 'User not found' });
 
-    const ahead = await countUsersAhead(user.totalPoints);
-    const rank = user.totalPoints > 0 ? ahead + 1 : '-';
+    const tiersAhead = await countDistinctPointTiersAhead(user.totalPoints);
+    const rank = user.totalPoints > 0 ? tiersAhead + 1 : '-';
     const stats = { rank, totalPoints: user.totalPoints };
 
     res.json({

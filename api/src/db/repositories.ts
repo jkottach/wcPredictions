@@ -220,6 +220,15 @@ export async function countUsersAhead(totalPoints: number): Promise<number> {
   });
 }
 
+/** Distinct point totals strictly above the given score (for dense rank). */
+export async function countDistinctPointTiersAhead(totalPoints: number): Promise<number> {
+  const tiers = await getUsersCollection().distinct('totalPoints', {
+    ...activeUserFilter,
+    totalPoints: { $gt: totalPoints },
+  });
+  return tiers.length;
+}
+
 export async function deleteUserById(userId: string): Promise<boolean> {
   const oid = toObjectId(userId);
   if (!oid) return false;
