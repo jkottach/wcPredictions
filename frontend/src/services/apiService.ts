@@ -137,7 +137,8 @@ class ApiService {
   getUserPredictionsFromResults(page?: number, limit?: number) {
     return this.client.get('/predictions/results/list', {
       params: { page, limit },
-    });
+      skipAuthRedirect: true,
+    } as AuthRequestConfig);
   }
 
   updatePrediction(predictionId: string, data: Record<string, unknown>) {

@@ -20,7 +20,7 @@ const MyPredictions: React.FC = () => {
   const fetchPredictions = async (page: number) => {
     try {
       setLoading(true);
-      const response = await apiService.getUserPredictions(page, 10);
+      const response = await apiService.getUserPredictionsFromResults(page, 10);
       setPredictions(response.data.predictions);
       setPagination(response.data.pagination);
     } catch (error) {
@@ -50,7 +50,7 @@ const MyPredictions: React.FC = () => {
     <div className="min-h-full bg-slate-50">
       <PageHero
         title="My predictions"
-        subtitle="Track your picks and points"
+        subtitle="Completed matches and points earned"
         badge="History"
       />
 
@@ -163,7 +163,7 @@ const MyPredictions: React.FC = () => {
         ) : (
           <div className={`${cardPad} py-12 text-center`}>
             <p className="mb-4 text-sm font-medium text-slate-600">
-              You haven&apos;t made any predictions yet.
+              No completed predictions yet. Finished matches will appear here once results are in.
             </p>
             <Link to="/dashboard" className={`${btnPrimary} inline-flex max-w-xs mx-auto`}>
               Start predicting

@@ -159,5 +159,48 @@ export const deletePrediction = async (req: AuthRequest, res: Response) => {
 };
 
 export const getUserPredictionsFromResults = async (req: AuthRequest, res: Response) => {
-  return getUserPredictions(req, res);
+  try {
+    const userId = req.user?.userId;
+    const { page = '1', limit = '10' } = req.query;
+
+    if (!userId) return res.status(401).json({ error: 'User not authenticated' });
+
+    const user = await findUserById(userId);
+    if (!user) return res.status(404).json({ error: 'User not found' });
+
+    const populatedPredictions = await attachMatchToPredictions(user, [...user.predictions]);
+
+    const completedPredictions = populatedPredictions.filter((prediction) => {
+      const match = prediction.matchId as { status?: string } | null;
+      return match?.status === 'completed';
+    });
+
+    completedPredictions.sort((a, b) => {
+      const matchA = a.matchId as { matchTime?: string | Date } | null;
+      const matchB = b.matchId as { matchTime?: string | Date } | null;
+      const timeA = matchA?.matchTime ? new Date(matchA.matchTime).getTime() : 0;
+      const timeB = matchB?.matchTime ? new Date(matchB.matchTime).getTime() : 0;
+      return timeB - timeA;
+    });
+
+    const pageNum = parseInt(page as string, 10);
+    const limitNum = parseInt(limit as string, 10);
+    const total = completedPredictions.length;
+    const slice = completedPredictions.slice((pageNum - 1) * limitNum, pageNum * limitNum);
+
+    res.json({
+      predictions: slice,
+      pagination: {
+        total,
+        page: pageNum,
+        limit: limitNum,
+        pages: Math.ceil(total / limitNum) || 1,
+      },
+    });
+  } catch (error) {
+    const errorDetails = logger.error('getUserPredictionsFromResults', error, {
+      userId: req.user?.userId,
+    });
+    res.status(errorDetails.statusCode || 500).json({ error: 'Failed to fetch predictions' });
+  }
 };
