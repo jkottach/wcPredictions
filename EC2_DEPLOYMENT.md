@@ -38,7 +38,20 @@ RATE_LIMIT_MAX_REQUESTS=1000
 
 ---
 
-## 2. Build on the server
+## 2. Pull and deploy on the server
+
+From the repo root (e.g. `~/fifaPrediction` or `/var/www/wc26`):
+
+```bash
+chmod +x deploy/deploy.sh   # once, after first clone
+./deploy/deploy.sh
+```
+
+This pulls `main`, runs `npm ci` + build for API and frontend, restarts pm2 (`wc26-api` + `wc26-frontend` if both exist, otherwise `wc26-api` only), and checks `/api/health`.
+
+Optional: deploy a different branch with `DEPLOY_BRANCH=dev ./deploy/deploy.sh`.
+
+### Manual build (same steps as the script)
 
 ```bash
 cd /var/www/wc26   # or your clone path
