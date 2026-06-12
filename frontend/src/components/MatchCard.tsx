@@ -62,7 +62,8 @@ const CountUnit: React.FC<{ value: number; label: string }> = ({ value, label })
 const MatchCard: React.FC<MatchCardProps> = ({ match, userPrediction, onPredictionSubmit }) => {
   const isCompleted = match.status === 'completed';
   const isOngoing   = match.status === 'ongoing';
-  const isPredictionOpen = new Date(match.predictionsEndingTime) > new Date();
+  const isLiveReadOnly = isOngoing;
+  const isPredictionOpen = !isLiveReadOnly && new Date(match.predictionsEndingTime) > new Date();
 
   const [team1Score, setTeam1Score] = useState<number | ''>('');
   const [team2Score, setTeam2Score] = useState<number | ''>('');
@@ -173,7 +174,7 @@ const MatchCard: React.FC<MatchCardProps> = ({ match, userPrediction, onPredicti
         {/* Score / Inputs */}
         <div className="flex flex-col items-center gap-1 shrink-0">
           <div className="flex items-center gap-1.5">
-            {isCompleted ? (
+            {isCompleted || isLiveReadOnly ? (
               <>
                 <div className="w-12 h-12 bg-white/10 border border-white/20 rounded-lg flex items-center justify-center text-white font-black text-xl">
                   {match.team1Score ?? 0}
@@ -205,7 +206,10 @@ const MatchCard: React.FC<MatchCardProps> = ({ match, userPrediction, onPredicti
               </>
             )}
           </div>
-          {!isCompleted && (
+          {isLiveReadOnly && (
+            <span className="text-white/30 text-[9px] uppercase tracking-widest">Live Score</span>
+          )}
+          {!isCompleted && !isLiveReadOnly && (
             <span className="text-white/30 text-[9px] uppercase tracking-widest">
               {isPredictionOpen ? 'Your Prediction' : 'Closed'}
             </span>
@@ -245,7 +249,13 @@ const MatchCard: React.FC<MatchCardProps> = ({ match, userPrediction, onPredicti
         {/* Countdown or close time */}
         <div className="flex flex-col items-end gap-1 shrink-0">
           <span className="text-white/35 text-[9px] uppercase tracking-widest text-right">
-            {isPredictionOpen ? 'Prediction closes in' : isCompleted ? 'Match ended' : 'Prediction closed'}
+            {isLiveReadOnly
+              ? 'In progress'
+              : isPredictionOpen
+              ? 'Prediction closes in'
+              : isCompleted
+              ? 'Match ended'
+              : 'Prediction closed'}
           </span>
           {isPredictionOpen && countdown ? (
             <div className="flex items-end gap-1">
@@ -269,9 +279,29 @@ const MatchCard: React.FC<MatchCardProps> = ({ match, userPrediction, onPredicti
         </div>
       </div>
 
+      {/* ── User prediction (live matches only) ── */}
+      {isLiveReadOnly && (
+        <div className="relative z-10 px-4 pb-2 text-center">
+          {userPrediction ? (
+            <p className="text-white/60 text-xs">
+              Your prediction:{' '}
+              <span className="text-white font-bold tabular-nums">
+                {userPrediction.team1Score} – {userPrediction.team2Score}
+              </span>
+            </p>
+          ) : (
+            <p className="text-white/40 text-xs">No prediction submitted</p>
+          )}
+        </div>
+      )}
+
       {/* ── Submit / status button ── */}
       <div className="relative z-10 px-4 pb-4">
-        {!isCompleted ? (
+        {isLiveReadOnly ? (
+          <div className="w-full py-2.5 bg-green-500/15 border border-green-400/30 rounded-xl text-center text-green-300 text-sm font-bold tracking-wide">
+            ● Match Live — predictions locked
+          </div>
+        ) : !isCompleted ? (
           <button
             onClick={handleSubmit}
             disabled={loading || !isPredictionOpen}

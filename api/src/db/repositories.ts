@@ -315,8 +315,10 @@ export async function listMatches(options: {
 }): Promise<{ matches: MatchDocument[]; total: number }> {
   const filter: Filter<MatchDocument> = {};
   if (options.openForPredictions) {
-    filter.status = { $in: ['scheduled', 'ongoing'] };
-    filter.predictionsEndingTime = { $gt: new Date() };
+    filter.$or = [
+      { status: 'scheduled', predictionsEndingTime: { $gt: new Date() } },
+      { status: 'ongoing' },
+    ];
   } else if (options.status) {
     filter.status = options.status;
   }

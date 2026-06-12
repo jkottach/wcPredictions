@@ -125,9 +125,12 @@ const Dashboard: React.FC = () => {
 
   const displayMatches = useMemo(
     () =>
-      [...matches].sort(
-        (a, b) => new Date(a.matchTime).getTime() - new Date(b.matchTime).getTime()
-      ),
+      [...matches].sort((a, b) => {
+        const aLive = a.status === 'ongoing' ? 0 : 1;
+        const bLive = b.status === 'ongoing' ? 0 : 1;
+        if (aLive !== bLive) return aLive - bLive;
+        return new Date(a.matchTime).getTime() - new Date(b.matchTime).getTime();
+      }),
     [matches]
   );
 

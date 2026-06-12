@@ -92,7 +92,7 @@ class ApiService {
     } as AuthRequestConfig);
   }
 
-  /** Matches still accepting predictions — filtered server-side (works on Azure SWA). */
+  /** Upcoming matches open for predictions plus live (ongoing) matches — filtered server-side. */
   getOpenMatches(page?: number, limit?: number) {
     return this.client.get('/matches', {
       params: { openForPredictions: 'true', page: page ?? 1, limit: limit ?? 5 },
