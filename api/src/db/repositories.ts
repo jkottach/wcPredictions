@@ -315,9 +315,13 @@ export async function listMatches(options: {
 }): Promise<{ matches: MatchDocument[]; total: number }> {
   const filter: Filter<MatchDocument> = {};
   if (options.openForPredictions) {
+    const now = new Date();
+    const recentKickoff = new Date(now.getTime() - 24 * 60 * 60 * 1000);
     filter.$or = [
-      { status: 'scheduled', predictionsEndingTime: { $gt: new Date() } },
       { status: 'ongoing' },
+      { status: 'scheduled', predictionsEndingTime: { $gt: now } },
+      // Predictions closed but kickoff was recent — still show locked pick until finalized.
+      { status: 'scheduled', matchTime: { $gte: recentKickoff } },
     ];
   } else if (options.status) {
     filter.status = options.status;
