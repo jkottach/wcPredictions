@@ -158,6 +158,18 @@ class ApiService {
       skipAuthRedirect: true,
     } as AuthRequestConfig);
   }
+
+  getAdminUsers() {
+    return this.client.get('/admin/users');
+  }
+
+  deleteAdminUser(userId: string) {
+    return this.client.delete(`/admin/users/${userId}`);
+  }
+
+  finalizeMatch(matchId: string, team1Score: number, team2Score: number) {
+    return this.client.post('/admin/finalize-match', { matchId, team1Score, team2Score });
+  }
 }
 
 export const apiService = new ApiService();

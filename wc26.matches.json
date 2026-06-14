@@ -1,0 +1,3016 @@
+[{
+  "_id": {
+    "$oid": "6a18780570a0db7a3283097e"
+  },
+  "sequence": 9,
+  "team1": "CIV",
+  "team2": "ECU",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-14T23:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-14T22:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "E",
+  "matchTag": "#CIV_ECU",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a3283098e"
+  },
+  "sequence": 25,
+  "team1": "CZE",
+  "team2": "RSA",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-18T16:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-18T15:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "A",
+  "matchTag": "#CZE_RSA",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a32830991"
+  },
+  "sequence": 28,
+  "team1": "MEX",
+  "team2": "KOR",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-19T01:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-19T00:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "A",
+  "matchTag": "#MEX_KOR",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a32830992"
+  },
+  "sequence": 29,
+  "team1": "BRA",
+  "team2": "HAI",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-20T00:30:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-19T23:30:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "C",
+  "matchTag": "#BRA_HAI",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a32830994"
+  },
+  "sequence": 31,
+  "team1": "TUR",
+  "team2": "PAR",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-20T03:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-20T02:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "D",
+  "matchTag": "#TUR_PAR",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a32830996"
+  },
+  "sequence": 33,
+  "team1": "GER",
+  "team2": "CIV",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-20T20:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-20T19:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "E",
+  "matchTag": "#GER_CIV",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a32830998"
+  },
+  "sequence": 35,
+  "team1": "NED",
+  "team2": "SWE",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-20T17:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-20T16:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "F",
+  "matchTag": "#NED_SWE",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a3283099d"
+  },
+  "sequence": 40,
+  "team1": "NZL",
+  "team2": "EGY",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-22T01:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-22T00:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "G",
+  "matchTag": "#NZL_EGY",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309a0"
+  },
+  "sequence": 43,
+  "team1": "ARG",
+  "team2": "AUT",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-22T17:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-22T16:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "J",
+  "matchTag": "#ARG_AUT",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309b4"
+  },
+  "sequence": 63,
+  "team1": "EGY",
+  "team2": "IRN",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-27T03:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-27T02:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "G",
+  "matchTag": "#EGY_IRN",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309b7"
+  },
+  "sequence": 66,
+  "team1": "URU",
+  "team2": "ESP",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-27T00:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-26T23:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "H",
+  "matchTag": "#URU_ESP",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309b8"
+  },
+  "sequence": 67,
+  "team1": "PAN",
+  "team2": "ENG",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-27T21:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-27T20:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "L",
+  "matchTag": "#PAN_ENG",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309ba"
+  },
+  "sequence": 69,
+  "team1": "ALG",
+  "team2": "AUT",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-28T02:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-28T01:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "J",
+  "matchTag": "#ALG_AUT",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309bc"
+  },
+  "sequence": 71,
+  "team1": "COL",
+  "team2": "POR",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-27T23:30:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-27T22:30:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "K",
+  "matchTag": "#COL_POR",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309bf"
+  },
+  "sequence": 74,
+  "team1": "1E",
+  "team2": "3ABCDF",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-29T20:30:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-29T19:30:00.000Z"
+  },
+  "round": "Round of 32",
+  "group": null,
+  "matchTag": "#1E_3ABCDF",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309c1"
+  },
+  "sequence": 76,
+  "team1": "1C",
+  "team2": "2F",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-29T17:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-29T16:00:00.000Z"
+  },
+  "round": "Round of 32",
+  "group": null,
+  "matchTag": "#1C_2F",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309ce"
+  },
+  "sequence": 89,
+  "team1": "W74",
+  "team2": "W77",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-07-04T21:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-07-04T20:00:00.000Z"
+  },
+  "round": "Round of 16",
+  "group": null,
+  "matchTag": "#W74_W77",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309d0"
+  },
+  "sequence": 91,
+  "team1": "W76",
+  "team2": "W78",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-07-05T20:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-07-05T19:00:00.000Z"
+  },
+  "round": "Round of 16",
+  "group": null,
+  "matchTag": "#W76_W78",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309d2"
+  },
+  "sequence": 93,
+  "team1": "W83",
+  "team2": "W84",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-07-06T19:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-07-06T18:00:00.000Z"
+  },
+  "round": "Round of 16",
+  "group": null,
+  "matchTag": "#W83_W84",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309d3"
+  },
+  "sequence": 94,
+  "team1": "W81",
+  "team2": "W82",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-07-07T00:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-07-06T23:00:00.000Z"
+  },
+  "round": "Round of 16",
+  "group": null,
+  "matchTag": "#W81_W82",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309d5"
+  },
+  "sequence": 96,
+  "team1": "W85",
+  "team2": "W87",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-07-07T20:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-07-07T19:00:00.000Z"
+  },
+  "round": "Round of 16",
+  "group": null,
+  "matchTag": "#W85_W87",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a32830976"
+  },
+  "sequence": 1,
+  "team1": "MEX",
+  "team2": "RSA",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": 2,
+  "team2Score": 0,
+  "matchTime": {
+    "$date": "2026-06-11T19:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-11T18:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "A",
+  "matchTag": "#MEX_RSA",
+  "comment": null,
+  "status": "completed",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-11T21:15:25.118Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a32830979"
+  },
+  "sequence": 4,
+  "team1": "USA",
+  "team2": "PAR",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": 4,
+  "team2Score": 1,
+  "matchTime": {
+    "$date": "2026-06-13T01:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-13T00:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "D",
+  "matchTag": "#USA_PAR",
+  "comment": null,
+  "status": "completed",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-13T03:03:53.737Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a3283097d"
+  },
+  "sequence": 8,
+  "team1": "QAT",
+  "team2": "SUI",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": 1,
+  "team2Score": 1,
+  "matchTime": {
+    "$date": "2026-06-13T19:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-13T18:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "B",
+  "matchTag": "#QAT_SUI",
+  "comment": null,
+  "status": "completed",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-13T21:09:56.140Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a3283097f"
+  },
+  "sequence": 10,
+  "team1": "GER",
+  "team2": "CUW",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": 7,
+  "team2Score": 1,
+  "matchTime": {
+    "$date": "2026-06-14T17:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-14T16:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "E",
+  "matchTag": "#GER_CUW",
+  "comment": null,
+  "status": "completed",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-14T19:01:25.813Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a32830981"
+  },
+  "sequence": 12,
+  "team1": "SWE",
+  "team2": "TUN",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-15T02:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-15T01:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "F",
+  "matchTag": "#SWE_TUN",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a32830983"
+  },
+  "sequence": 14,
+  "team1": "ESP",
+  "team2": "CPV",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-15T16:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-15T15:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "H",
+  "matchTag": "#ESP_CPV",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a32830987"
+  },
+  "sequence": 18,
+  "team1": "IRQ",
+  "team2": "NOR",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-16T22:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-16T21:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "I",
+  "matchTag": "#IRQ_NOR",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a3283098a"
+  },
+  "sequence": 21,
+  "team1": "GHA",
+  "team2": "PAN",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-17T23:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-17T22:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "L",
+  "matchTag": "#GHA_PAN",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a32830997"
+  },
+  "sequence": 34,
+  "team1": "ECU",
+  "team2": "CUW",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-21T00:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-20T23:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "E",
+  "matchTag": "#ECU_CUW",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a3283099e"
+  },
+  "sequence": 41,
+  "team1": "NOR",
+  "team2": "SEN",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-23T00:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-22T23:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "I",
+  "matchTag": "#NOR_SEN",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309a1"
+  },
+  "sequence": 44,
+  "team1": "JOR",
+  "team2": "ALG",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-23T03:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-23T02:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "J",
+  "matchTag": "#JOR_ALG",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309a2"
+  },
+  "sequence": 45,
+  "team1": "ENG",
+  "team2": "GHA",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-23T20:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-23T19:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "L",
+  "matchTag": "#ENG_GHA",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309a6"
+  },
+  "sequence": 49,
+  "team1": "SCO",
+  "team2": "BRA",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-24T22:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-24T21:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "C",
+  "matchTag": "#SCO_BRA",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309a7"
+  },
+  "sequence": 50,
+  "team1": "MAR",
+  "team2": "HAI",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-24T22:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-24T21:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "C",
+  "matchTag": "#MAR_HAI",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309ab"
+  },
+  "sequence": 54,
+  "team1": "RSA",
+  "team2": "KOR",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-25T01:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-25T00:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "A",
+  "matchTag": "#RSA_KOR",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309ac"
+  },
+  "sequence": 55,
+  "team1": "CUW",
+  "team2": "CIV",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-25T20:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-25T19:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "E",
+  "matchTag": "#CUW_CIV",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309ad"
+  },
+  "sequence": 56,
+  "team1": "ECU",
+  "team2": "GER",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-25T20:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-25T19:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "E",
+  "matchTag": "#ECU_GER",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309af"
+  },
+  "sequence": 58,
+  "team1": "TUN",
+  "team2": "NED",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-25T23:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-25T22:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "F",
+  "matchTag": "#TUN_NED",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309b2"
+  },
+  "sequence": 61,
+  "team1": "NOR",
+  "team2": "FRA",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-26T19:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-26T18:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "I",
+  "matchTag": "#NOR_FRA",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309b6"
+  },
+  "sequence": 65,
+  "team1": "CPV",
+  "team2": "KSA",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-27T00:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-26T23:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "H",
+  "matchTag": "#CPV_KSA",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309b9"
+  },
+  "sequence": 68,
+  "team1": "CRO",
+  "team2": "GHA",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-27T21:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-27T20:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "L",
+  "matchTag": "#CRO_GHA",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309c0"
+  },
+  "sequence": 75,
+  "team1": "1F",
+  "team2": "2C",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-30T01:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-30T00:00:00.000Z"
+  },
+  "round": "Round of 32",
+  "group": null,
+  "matchTag": "#1F_2C",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309c2"
+  },
+  "sequence": 77,
+  "team1": "1I",
+  "team2": "3CDFGH",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-30T21:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-30T20:00:00.000Z"
+  },
+  "round": "Round of 32",
+  "group": null,
+  "matchTag": "#1I_3CDFGH",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309c3"
+  },
+  "sequence": 78,
+  "team1": "2E",
+  "team2": "2I",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-30T17:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-30T16:00:00.000Z"
+  },
+  "round": "Round of 32",
+  "group": null,
+  "matchTag": "#2E_2I",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309c7"
+  },
+  "sequence": 82,
+  "team1": "1G",
+  "team2": "3AEHIJ",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-07-01T20:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-07-01T19:00:00.000Z"
+  },
+  "round": "Round of 32",
+  "group": null,
+  "matchTag": "#1G_3AEHIJ",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309cf"
+  },
+  "sequence": 90,
+  "team1": "W73",
+  "team2": "W75",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-07-04T17:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-07-04T16:00:00.000Z"
+  },
+  "round": "Round of 16",
+  "group": null,
+  "matchTag": "#W73_W75",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309d8"
+  },
+  "sequence": 99,
+  "team1": "W91",
+  "team2": "W92",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-07-11T21:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-07-11T20:00:00.000Z"
+  },
+  "round": "Quarter Finals",
+  "group": null,
+  "matchTag": "#W91_W92",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309db"
+  },
+  "sequence": 102,
+  "team1": "W99",
+  "team2": "W100",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-07-15T19:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-07-15T18:00:00.000Z"
+  },
+  "round": "Semi Finals",
+  "group": null,
+  "matchTag": "#W99_W100",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309dc"
+  },
+  "sequence": 103,
+  "team1": "L101",
+  "team2": "L102",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-07-18T21:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-07-18T20:00:00.000Z"
+  },
+  "round": "3rd Place",
+  "group": null,
+  "matchTag": "#L101_L102",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309dd"
+  },
+  "sequence": 104,
+  "team1": "W101",
+  "team2": "W102",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-07-19T19:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-07-19T18:00:00.000Z"
+  },
+  "round": "Final",
+  "group": null,
+  "matchTag": "#W101_W102",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a32830977"
+  },
+  "sequence": 2,
+  "team1": "KOR",
+  "team2": "CZE",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": 2,
+  "team2Score": 1,
+  "matchTime": {
+    "$date": "2026-06-12T02:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-12T01:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "A",
+  "matchTag": "#KOR_CZE",
+  "comment": null,
+  "status": "completed",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-12T08:16:05.710Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a3283097a"
+  },
+  "sequence": 5,
+  "team1": "HAI",
+  "team2": "SCO",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": 0,
+  "team2Score": 1,
+  "matchTime": {
+    "$date": "2026-06-14T01:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-14T00:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "C",
+  "matchTag": "#HAI_SCO",
+  "comment": null,
+  "status": "completed",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-14T15:10:52.394Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a3283097c"
+  },
+  "sequence": 7,
+  "team1": "BRA",
+  "team2": "MAR",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": 1,
+  "team2Score": 1,
+  "matchTime": {
+    "$date": "2026-06-13T22:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-13T21:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "C",
+  "matchTag": "#BRA_MAR",
+  "comment": null,
+  "status": "completed",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-14T15:10:38.025Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a32830982"
+  },
+  "sequence": 13,
+  "team1": "KSA",
+  "team2": "URU",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-15T22:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-15T21:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "H",
+  "matchTag": "#KSA_URU",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a32830984"
+  },
+  "sequence": 15,
+  "team1": "IRN",
+  "team2": "NZL",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-16T01:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-16T00:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "G",
+  "matchTag": "#IRN_NZL",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a32830985"
+  },
+  "sequence": 16,
+  "team1": "BEL",
+  "team2": "EGY",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-15T19:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-15T18:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "G",
+  "matchTag": "#BEL_EGY",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a32830988"
+  },
+  "sequence": 19,
+  "team1": "ARG",
+  "team2": "ALG",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-17T01:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-17T00:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "J",
+  "matchTag": "#ARG_ALG",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a32830989"
+  },
+  "sequence": 20,
+  "team1": "AUT",
+  "team2": "JOR",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-17T04:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-17T03:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "J",
+  "matchTag": "#AUT_JOR",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a3283098c"
+  },
+  "sequence": 23,
+  "team1": "POR",
+  "team2": "COD",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-17T17:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-17T16:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "K",
+  "matchTag": "#POR_COD",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a3283098d"
+  },
+  "sequence": 24,
+  "team1": "UZB",
+  "team2": "COL",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-18T02:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-18T01:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "K",
+  "matchTag": "#UZB_COL",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a3283098f"
+  },
+  "sequence": 26,
+  "team1": "SUI",
+  "team2": "BIH",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-18T19:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-18T18:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "B",
+  "matchTag": "#SUI_BIH",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a32830993"
+  },
+  "sequence": 30,
+  "team1": "SCO",
+  "team2": "MAR",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-19T22:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-19T21:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "C",
+  "matchTag": "#SCO_MAR",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a3283099b"
+  },
+  "sequence": 38,
+  "team1": "ESP",
+  "team2": "KSA",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-21T16:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-21T15:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "H",
+  "matchTag": "#ESP_KSA",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a3283099c"
+  },
+  "sequence": 39,
+  "team1": "BEL",
+  "team2": "IRN",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-21T19:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-21T18:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "G",
+  "matchTag": "#BEL_IRN",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a3283099f"
+  },
+  "sequence": 42,
+  "team1": "FRA",
+  "team2": "IRQ",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-22T21:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-22T20:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "I",
+  "matchTag": "#FRA_IRQ",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309a4"
+  },
+  "sequence": 47,
+  "team1": "POR",
+  "team2": "UZB",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-23T17:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-23T16:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "K",
+  "matchTag": "#POR_UZB",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309a5"
+  },
+  "sequence": 48,
+  "team1": "COL",
+  "team2": "COD",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-24T02:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-24T01:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "K",
+  "matchTag": "#COL_COD",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309a8"
+  },
+  "sequence": 51,
+  "team1": "SUI",
+  "team2": "CAN",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-24T19:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-24T18:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "B",
+  "matchTag": "#SUI_CAN",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309a9"
+  },
+  "sequence": 52,
+  "team1": "BIH",
+  "team2": "QAT",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-24T19:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-24T18:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "B",
+  "matchTag": "#BIH_QAT",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309aa"
+  },
+  "sequence": 53,
+  "team1": "CZE",
+  "team2": "MEX",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-25T01:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-25T00:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "A",
+  "matchTag": "#CZE_MEX",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309ae"
+  },
+  "sequence": 57,
+  "team1": "JPN",
+  "team2": "SWE",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-25T23:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-25T22:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "F",
+  "matchTag": "#JPN_SWE",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309b0"
+  },
+  "sequence": 59,
+  "team1": "TUR",
+  "team2": "USA",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-26T02:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-26T01:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "D",
+  "matchTag": "#TUR_USA",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309b3"
+  },
+  "sequence": 62,
+  "team1": "SEN",
+  "team2": "IRQ",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-26T19:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-26T18:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "I",
+  "matchTag": "#SEN_IRQ",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309b5"
+  },
+  "sequence": 64,
+  "team1": "NZL",
+  "team2": "BEL",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-27T03:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-27T02:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "G",
+  "matchTag": "#NZL_BEL",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309be"
+  },
+  "sequence": 73,
+  "team1": "2A",
+  "team2": "2B",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-28T19:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-28T18:00:00.000Z"
+  },
+  "round": "Round of 32",
+  "group": null,
+  "matchTag": "#2A_2B",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309ca"
+  },
+  "sequence": 85,
+  "team1": "1B",
+  "team2": "3EFGIJ",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-07-03T03:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-07-03T02:00:00.000Z"
+  },
+  "round": "Round of 32",
+  "group": null,
+  "matchTag": "#1B_3EFGIJ",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309cb"
+  },
+  "sequence": 86,
+  "team1": "1J",
+  "team2": "2H",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-07-03T22:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-07-03T21:00:00.000Z"
+  },
+  "round": "Round of 32",
+  "group": null,
+  "matchTag": "#1J_2H",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309d1"
+  },
+  "sequence": 92,
+  "team1": "W79",
+  "team2": "W80",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-07-06T00:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-07-05T23:00:00.000Z"
+  },
+  "round": "Round of 16",
+  "group": null,
+  "matchTag": "#W79_W80",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309da"
+  },
+  "sequence": 101,
+  "team1": "W97",
+  "team2": "W98",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-07-14T19:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-07-14T18:00:00.000Z"
+  },
+  "round": "Semi Finals",
+  "group": null,
+  "matchTag": "#W97_W98",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a32830978"
+  },
+  "sequence": 3,
+  "team1": "CAN",
+  "team2": "BIH",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": 1,
+  "team2Score": 1,
+  "matchTime": {
+    "$date": "2026-06-12T19:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-12T18:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "B",
+  "matchTag": "#CAN_BIH",
+  "comment": null,
+  "status": "completed",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-12T21:16:04.555Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a3283097b"
+  },
+  "sequence": 6,
+  "team1": "AUS",
+  "team2": "TUR",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": 2,
+  "team2Score": 0,
+  "matchTime": {
+    "$date": "2026-06-14T04:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-14T03:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "D",
+  "matchTag": "#AUS_TUR",
+  "comment": null,
+  "status": "completed",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-14T08:33:32.106Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a32830980"
+  },
+  "sequence": 11,
+  "team1": "NED",
+  "team2": "JPN",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-14T20:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-14T19:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "F",
+  "matchTag": "#NED_JPN",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a32830986"
+  },
+  "sequence": 17,
+  "team1": "FRA",
+  "team2": "SEN",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-16T19:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-16T18:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "I",
+  "matchTag": "#FRA_SEN",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a3283098b"
+  },
+  "sequence": 22,
+  "team1": "ENG",
+  "team2": "CRO",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-17T20:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-17T19:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "L",
+  "matchTag": "#ENG_CRO",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a32830990"
+  },
+  "sequence": 27,
+  "team1": "CAN",
+  "team2": "QAT",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-18T22:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-18T21:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "B",
+  "matchTag": "#CAN_QAT",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a32830995"
+  },
+  "sequence": 32,
+  "team1": "USA",
+  "team2": "AUS",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-19T19:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-19T18:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "D",
+  "matchTag": "#USA_AUS",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a32830999"
+  },
+  "sequence": 36,
+  "team1": "TUN",
+  "team2": "JPN",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-21T04:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-21T03:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "F",
+  "matchTag": "#TUN_JPN",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a3283099a"
+  },
+  "sequence": 37,
+  "team1": "URU",
+  "team2": "CPV",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-21T22:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-21T21:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "H",
+  "matchTag": "#URU_CPV",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309a3"
+  },
+  "sequence": 46,
+  "team1": "PAN",
+  "team2": "CRO",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-23T23:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-23T22:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "L",
+  "matchTag": "#PAN_CRO",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309b1"
+  },
+  "sequence": 60,
+  "team1": "PAR",
+  "team2": "AUS",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-26T02:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-26T01:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "D",
+  "matchTag": "#PAR_AUS",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309bb"
+  },
+  "sequence": 70,
+  "team1": "JOR",
+  "team2": "ARG",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-28T02:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-28T01:00:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "J",
+  "matchTag": "#JOR_ARG",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309bd"
+  },
+  "sequence": 72,
+  "team1": "COD",
+  "team2": "UZB",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-06-27T23:30:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-06-27T22:30:00.000Z"
+  },
+  "round": "Group Stage",
+  "group": "K",
+  "matchTag": "#COD_UZB",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309c4"
+  },
+  "sequence": 79,
+  "team1": "1A",
+  "team2": "3CEFHI",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-07-01T01:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-07-01T00:00:00.000Z"
+  },
+  "round": "Round of 32",
+  "group": null,
+  "matchTag": "#1A_3CEFHI",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309c5"
+  },
+  "sequence": 80,
+  "team1": "1L",
+  "team2": "3EHIJK",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-07-01T16:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-07-01T15:00:00.000Z"
+  },
+  "round": "Round of 32",
+  "group": null,
+  "matchTag": "#1L_3EHIJK",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309c6"
+  },
+  "sequence": 81,
+  "team1": "1D",
+  "team2": "3BEFIJ",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-07-02T00:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-07-01T23:00:00.000Z"
+  },
+  "round": "Round of 32",
+  "group": null,
+  "matchTag": "#1D_3BEFIJ",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309c8"
+  },
+  "sequence": 83,
+  "team1": "2K",
+  "team2": "2L",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-07-02T23:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-07-02T22:00:00.000Z"
+  },
+  "round": "Round of 32",
+  "group": null,
+  "matchTag": "#2K_2L",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309c9"
+  },
+  "sequence": 84,
+  "team1": "1H",
+  "team2": "2J",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-07-02T19:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-07-02T18:00:00.000Z"
+  },
+  "round": "Round of 32",
+  "group": null,
+  "matchTag": "#1H_2J",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309cc"
+  },
+  "sequence": 87,
+  "team1": "1K",
+  "team2": "3DEIJL",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-07-04T01:30:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-07-04T00:30:00.000Z"
+  },
+  "round": "Round of 32",
+  "group": null,
+  "matchTag": "#1K_3DEIJL",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309cd"
+  },
+  "sequence": 88,
+  "team1": "2D",
+  "team2": "2G",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-07-03T18:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-07-03T17:00:00.000Z"
+  },
+  "round": "Round of 32",
+  "group": null,
+  "matchTag": "#2D_2G",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309d4"
+  },
+  "sequence": 95,
+  "team1": "W86",
+  "team2": "W88",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-07-07T16:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-07-07T15:00:00.000Z"
+  },
+  "round": "Round of 16",
+  "group": null,
+  "matchTag": "#W86_W88",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309d6"
+  },
+  "sequence": 97,
+  "team1": "W89",
+  "team2": "W90",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-07-09T20:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-07-09T19:00:00.000Z"
+  },
+  "round": "Quarter Finals",
+  "group": null,
+  "matchTag": "#W89_W90",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309d7"
+  },
+  "sequence": 98,
+  "team1": "W93",
+  "team2": "W94",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-07-10T19:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-07-10T18:00:00.000Z"
+  },
+  "round": "Quarter Finals",
+  "group": null,
+  "matchTag": "#W93_W94",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a18780570a0db7a328309d9"
+  },
+  "sequence": 100,
+  "team1": "W95",
+  "team2": "W96",
+  "team1Info": null,
+  "team2Info": null,
+  "team1Score": null,
+  "team2Score": null,
+  "matchTime": {
+    "$date": "2026-07-12T01:00:00.000Z"
+  },
+  "predictionsEndingTime": {
+    "$date": "2026-07-12T00:00:00.000Z"
+  },
+  "round": "Quarter Finals",
+  "group": null,
+  "matchTag": "#W95_W96",
+  "comment": null,
+  "status": "scheduled",
+  "createdAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T17:14:45.490Z"
+  }
+}]

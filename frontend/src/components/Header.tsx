@@ -22,6 +22,8 @@ const Header: React.FC = () => {
 
   const closeMenu = () => setMenuOpen(false);
 
+  const isAdmin = user?.role === 'admin';
+
   const navLinkClass =
     'block py-3 px-1 text-base font-medium text-white/90 hover:text-emerald-300 transition min-h-[44px] flex items-center';
 
@@ -90,6 +92,11 @@ const Header: React.FC = () => {
                 <Link to="/profile" className={navLinkClass} onClick={closeMenu}>
                   My Profile
                 </Link>
+                {isAdmin && (
+                  <Link to="/admin" className={navLinkClass} onClick={closeMenu}>
+                    Admin
+                  </Link>
+                )}
                 <div className="pt-3 mt-2 border-t border-white/15">
                   <p className="text-sm font-bold px-1 mb-2 text-white">Hi, {user?.firstName}</p>
                   <button

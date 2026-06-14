@@ -2,17 +2,19 @@
 
 ## Single source of truth
 
-All fixture data lives in:
+Fixture data is available in two forms:
 
-- **`data/worldCup2026.seed.json`** — 48 teams + 104 matches (group + knockout)
-- **`data/worldCup2026Seed.ts`** — types and loader/validation
+- **`../../wc26.teams.json`** + **`../../wc26.matches.json`** — MongoDB export at repo root (recommended for new deployments; use `deploy/seed-from-export.sh`)
+- **`data/worldCup2026.seed.json`** — simplified JSON used by `npm run seed`
+- **`data/worldCup2026Seed.ts`** — types and loader/validation for the bundled seed
 
 ## Commands
 
 | Command | Purpose |
 |---------|---------|
-| `npm run seed` | Wipe `teams` + `matches`, reload from JSON |
+| `npm run seed` | Wipe `teams` + `matches`, reload from `data/worldCup2026.seed.json` |
 | `npm run seed:export` | Export current MongoDB `teams` + `matches` back into the JSON file |
+| `../../deploy/seed-from-export.sh` | Import root `wc26.*.json` exports via `mongoimport` |
 
 ## Collections
 

@@ -1,0 +1,816 @@
+[{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf831"
+  },
+  "teamId": "ALG",
+  "teamName": "Algeria",
+  "country": "Algeria",
+  "countryLogo": "https://flagcdn.com/w80/dz.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf832"
+  },
+  "teamId": "ARG",
+  "teamName": "Argentina",
+  "country": "Argentina",
+  "countryLogo": "https://flagcdn.com/w80/ar.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf833"
+  },
+  "teamId": "AUS",
+  "teamName": "Australia",
+  "country": "Australia",
+  "countryLogo": "https://flagcdn.com/w80/au.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf834"
+  },
+  "teamId": "AUT",
+  "teamName": "Austria",
+  "country": "Austria",
+  "countryLogo": "https://flagcdn.com/w80/at.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf835"
+  },
+  "teamId": "BEL",
+  "teamName": "Belgium",
+  "country": "Belgium",
+  "countryLogo": "https://flagcdn.com/w80/be.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf836"
+  },
+  "teamId": "BIH",
+  "teamName": "Bosnia and Herzegovina",
+  "country": "Bosnia and Herzegovina",
+  "countryLogo": "https://flagcdn.com/w80/ba.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf837"
+  },
+  "teamId": "BRA",
+  "teamName": "Brazil",
+  "country": "Brazil",
+  "countryLogo": "https://flagcdn.com/w80/br.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf838"
+  },
+  "teamId": "CAN",
+  "teamName": "Canada",
+  "country": "Canada",
+  "countryLogo": "https://flagcdn.com/w80/ca.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf839"
+  },
+  "teamId": "CIV",
+  "teamName": "Ivory Coast",
+  "country": "Ivory Coast",
+  "countryLogo": "https://flagcdn.com/w80/ci.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf83a"
+  },
+  "teamId": "COD",
+  "teamName": "DR Congo",
+  "country": "DR Congo",
+  "countryLogo": "https://flagcdn.com/w80/cd.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf83b"
+  },
+  "teamId": "COL",
+  "teamName": "Colombia",
+  "country": "Colombia",
+  "countryLogo": "https://flagcdn.com/w80/co.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf83c"
+  },
+  "teamId": "CPV",
+  "teamName": "Cape Verde",
+  "country": "Cape Verde",
+  "countryLogo": "https://flagcdn.com/w80/cv.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf83d"
+  },
+  "teamId": "CRO",
+  "teamName": "Croatia",
+  "country": "Croatia",
+  "countryLogo": "https://flagcdn.com/w80/hr.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf83e"
+  },
+  "teamId": "CUW",
+  "teamName": "Curacao",
+  "country": "Curacao",
+  "countryLogo": "https://flagcdn.com/w80/cw.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf83f"
+  },
+  "teamId": "CZE",
+  "teamName": "Czech Republic",
+  "country": "Czech Republic",
+  "countryLogo": "https://flagcdn.com/w80/cz.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf840"
+  },
+  "teamId": "ECU",
+  "teamName": "Ecuador",
+  "country": "Ecuador",
+  "countryLogo": "https://flagcdn.com/w80/ec.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf841"
+  },
+  "teamId": "EGY",
+  "teamName": "Egypt",
+  "country": "Egypt",
+  "countryLogo": "https://flagcdn.com/w80/eg.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf842"
+  },
+  "teamId": "ENG",
+  "teamName": "England",
+  "country": "England",
+  "countryLogo": "https://flagcdn.com/w80/gb-eng.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf843"
+  },
+  "teamId": "ESP",
+  "teamName": "Spain",
+  "country": "Spain",
+  "countryLogo": "https://flagcdn.com/w80/es.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf844"
+  },
+  "teamId": "FRA",
+  "teamName": "France",
+  "country": "France",
+  "countryLogo": "https://flagcdn.com/w80/fr.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf845"
+  },
+  "teamId": "GER",
+  "teamName": "Germany",
+  "country": "Germany",
+  "countryLogo": "https://flagcdn.com/w80/de.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf846"
+  },
+  "teamId": "GHA",
+  "teamName": "Ghana",
+  "country": "Ghana",
+  "countryLogo": "https://flagcdn.com/w80/gh.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf847"
+  },
+  "teamId": "HAI",
+  "teamName": "Haiti",
+  "country": "Haiti",
+  "countryLogo": "https://flagcdn.com/w80/ht.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf848"
+  },
+  "teamId": "IRN",
+  "teamName": "Iran",
+  "country": "Iran",
+  "countryLogo": "https://flagcdn.com/w80/ir.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf849"
+  },
+  "teamId": "IRQ",
+  "teamName": "Iraq",
+  "country": "Iraq",
+  "countryLogo": "https://flagcdn.com/w80/iq.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf84a"
+  },
+  "teamId": "JOR",
+  "teamName": "Jordan",
+  "country": "Jordan",
+  "countryLogo": "https://flagcdn.com/w80/jo.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf84b"
+  },
+  "teamId": "JPN",
+  "teamName": "Japan",
+  "country": "Japan",
+  "countryLogo": "https://flagcdn.com/w80/jp.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf84c"
+  },
+  "teamId": "KOR",
+  "teamName": "South Korea",
+  "country": "South Korea",
+  "countryLogo": "https://flagcdn.com/w80/kr.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf84d"
+  },
+  "teamId": "KSA",
+  "teamName": "Saudi Arabia",
+  "country": "Saudi Arabia",
+  "countryLogo": "https://flagcdn.com/w80/sa.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf84e"
+  },
+  "teamId": "MAR",
+  "teamName": "Morocco",
+  "country": "Morocco",
+  "countryLogo": "https://flagcdn.com/w80/ma.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf84f"
+  },
+  "teamId": "MEX",
+  "teamName": "Mexico",
+  "country": "Mexico",
+  "countryLogo": "https://flagcdn.com/w80/mx.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf850"
+  },
+  "teamId": "NED",
+  "teamName": "Netherlands",
+  "country": "Netherlands",
+  "countryLogo": "https://flagcdn.com/w80/nl.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf851"
+  },
+  "teamId": "NOR",
+  "teamName": "Norway",
+  "country": "Norway",
+  "countryLogo": "https://flagcdn.com/w80/no.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf852"
+  },
+  "teamId": "NZL",
+  "teamName": "New Zealand",
+  "country": "New Zealand",
+  "countryLogo": "https://flagcdn.com/w80/nz.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf853"
+  },
+  "teamId": "PAN",
+  "teamName": "Panama",
+  "country": "Panama",
+  "countryLogo": "https://flagcdn.com/w80/pa.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf854"
+  },
+  "teamId": "PAR",
+  "teamName": "Paraguay",
+  "country": "Paraguay",
+  "countryLogo": "https://flagcdn.com/w80/py.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf855"
+  },
+  "teamId": "POR",
+  "teamName": "Portugal",
+  "country": "Portugal",
+  "countryLogo": "https://flagcdn.com/w80/pt.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf856"
+  },
+  "teamId": "QAT",
+  "teamName": "Qatar",
+  "country": "Qatar",
+  "countryLogo": "https://flagcdn.com/w80/qa.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf857"
+  },
+  "teamId": "RSA",
+  "teamName": "South Africa",
+  "country": "South Africa",
+  "countryLogo": "https://flagcdn.com/w80/za.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf858"
+  },
+  "teamId": "SCO",
+  "teamName": "Scotland",
+  "country": "Scotland",
+  "countryLogo": "https://flagcdn.com/w80/gb-sct.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf859"
+  },
+  "teamId": "SEN",
+  "teamName": "Senegal",
+  "country": "Senegal",
+  "countryLogo": "https://flagcdn.com/w80/sn.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf85a"
+  },
+  "teamId": "SUI",
+  "teamName": "Switzerland",
+  "country": "Switzerland",
+  "countryLogo": "https://flagcdn.com/w80/ch.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf85b"
+  },
+  "teamId": "SWE",
+  "teamName": "Sweden",
+  "country": "Sweden",
+  "countryLogo": "https://flagcdn.com/w80/se.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf85c"
+  },
+  "teamId": "TUN",
+  "teamName": "Tunisia",
+  "country": "Tunisia",
+  "countryLogo": "https://flagcdn.com/w80/tn.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf85d"
+  },
+  "teamId": "TUR",
+  "teamName": "Turkey",
+  "country": "Turkey",
+  "countryLogo": "https://flagcdn.com/w80/tr.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf85e"
+  },
+  "teamId": "URU",
+  "teamName": "Uruguay",
+  "country": "Uruguay",
+  "countryLogo": "https://flagcdn.com/w80/uy.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf85f"
+  },
+  "teamId": "USA",
+  "teamName": "United States",
+  "country": "United States",
+  "countryLogo": "https://flagcdn.com/w80/us.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a14e592f6aa831b0acbf860"
+  },
+  "teamId": "UZB",
+  "teamName": "Uzbekistan",
+  "country": "Uzbekistan",
+  "countryLogo": "https://flagcdn.com/w80/uz.png",
+  "coach": null,
+  "foundedYear": null,
+  "createdAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-26T00:13:06.725Z"
+  }
+}]

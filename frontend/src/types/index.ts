@@ -96,6 +96,17 @@ export interface LeaderboardEntry {
   email: string;
 }
 
+export interface AdminUser {
+  userId: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  role: 'user' | 'admin';
+  totalPoints: number;
+  predictionCount: number;
+  isActive: boolean;
+}
+
 export interface AuthState {
   token: string | null;
   user: User | null;
