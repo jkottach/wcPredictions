@@ -53,9 +53,24 @@ On the EC2 instance you will install:
 
 ### 1. Clone and install
 
+Install **Git** if you do not have it yet:
+
 ```bash
-git clone https://github.com/YOUR_ORG/wc26Prediction.git
-cd wc26Prediction
+# Ubuntu / Debian (EC2)
+sudo apt update && sudo apt install -y git
+
+# macOS (Homebrew)
+brew install git
+
+# Verify
+git --version
+```
+
+Clone the repository and install dependencies:
+
+```bash
+git clone https://github.com/jkottach/wcPredictions.git
+cd wcPredictions
 
 cd api && npm install && cd ..
 cd frontend && npm install && cd ..
